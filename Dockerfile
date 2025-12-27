@@ -13,18 +13,14 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-# Python Dependencies (minimal for production)
-COPY requirements-minimal.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
 # Copy application code
 COPY . .
 
-# Make entrypoint executable
-RUN chmod +x entrypoint.sh
+# Python Dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose port
 EXPOSE 8080
 
-# Start with debug entrypoint
-CMD ["./entrypoint.sh"]
+# Start application (Railway provides $PORT)
+CMD uvicorn api_v2:app --host 0.0.0.0 --port $PORT
