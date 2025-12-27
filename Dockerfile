@@ -23,4 +23,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Start application (Railway provides $PORT)
-CMD uvicorn api_v2:app --host 0.0.0.0 --port $PORT
+# Use shell form to allow environment variable expansion
+CMD ["sh", "-c", "uvicorn api_v2:app --host 0.0.0.0 --port ${PORT:-8080}"]
