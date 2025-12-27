@@ -1,0 +1,14 @@
+# gcloud ignore file für Cloud Build
+# ===================================
+
+.git
+.gitignore
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+.vscode/
+.idea/
+data/
+venv/
+env/

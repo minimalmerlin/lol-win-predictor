@@ -1,0 +1,1114 @@
+{
+  "Vladimir": {
+    "games": 3203,
+    "wins": 1573,
+    "losses": 1630,
+    "win_rate": 0.49110209178894787,
+    "picks": 3203,
+    "bans": 3167
+  },
+  "Bard": {
+    "games": 3733,
+    "wins": 1785,
+    "losses": 1948,
+    "win_rate": 0.4781676935440664,
+    "picks": 3733,
+    "bans": 529
+  },
+  "Kog'Maw": {
+    "games": 3227,
+    "wins": 1628,
+    "losses": 1599,
+    "win_rate": 0.5044933374651379,
+    "picks": 3227,
+    "bans": 1575
+  },
+  "Master Yi": {
+    "games": 5955,
+    "wins": 3033,
+    "losses": 2922,
+    "win_rate": 0.5093198992443325,
+    "picks": 5955,
+    "bans": 11199
+  },
+  "Viktor": {
+    "games": 1769,
+    "wins": 837,
+    "losses": 932,
+    "win_rate": 0.47314867156585644,
+    "picks": 1769,
+    "bans": 128
+  },
+  "Graves": {
+    "games": 1444,
+    "wins": 684,
+    "losses": 760,
+    "win_rate": 0.47368421052631576,
+    "picks": 1444,
+    "bans": 224
+  },
+  "Xayah": {
+    "games": 7843,
+    "wins": 3906,
+    "losses": 3937,
+    "win_rate": 0.4980237154150198,
+    "picks": 7843,
+    "bans": 6274
+  },
+  "Darius": {
+    "games": 3894,
+    "wins": 2012,
+    "losses": 1882,
+    "win_rate": 0.5166923472008218,
+    "picks": 3894,
+    "bans": 22870
+  },
+  "Zed": {
+    "games": 6460,
+    "wins": 3189,
+    "losses": 3271,
+    "win_rate": 0.4936532507739938,
+    "picks": 6460,
+    "bans": 25393
+  },
+  "Thresh": {
+    "games": 13002,
+    "wins": 6143,
+    "losses": 6859,
+    "win_rate": 0.47246577449623134,
+    "picks": 13002,
+    "bans": 5867
+  },
+  "Riven": {
+    "games": 6074,
+    "wins": 3029,
+    "losses": 3045,
+    "win_rate": 0.4986829107672045,
+    "picks": 6074,
+    "bans": 4400
+  },
+  "Fiora": {
+    "games": 3078,
+    "wins": 1531,
+    "losses": 1547,
+    "win_rate": 0.49740090968161144,
+    "picks": 3078,
+    "bans": 14855
+  },
+  "Janna": {
+    "games": 8691,
+    "wins": 4826,
+    "losses": 3865,
+    "win_rate": 0.5552870785870441,
+    "picks": 8691,
+    "bans": 21390
+  },
+  "Vayne": {
+    "games": 10658,
+    "wins": 5498,
+    "losses": 5160,
+    "win_rate": 0.5158566335147308,
+    "picks": 10658,
+    "bans": 9026
+  },
+  "Cassiopeia": {
+    "games": 2766,
+    "wins": 1352,
+    "losses": 1414,
+    "win_rate": 0.48879248011569054,
+    "picks": 2766,
+    "bans": 1605
+  },
+  "Karma": {
+    "games": 3134,
+    "wins": 1415,
+    "losses": 1719,
+    "win_rate": 0.4514996809189534,
+    "picks": 3134,
+    "bans": 215
+  },
+  "Draven": {
+    "games": 5081,
+    "wins": 2546,
+    "losses": 2535,
+    "win_rate": 0.5010824640818736,
+    "picks": 5081,
+    "bans": 20262
+  },
+  "Soraka": {
+    "games": 6144,
+    "wins": 3247,
+    "losses": 2897,
+    "win_rate": 0.5284830729166666,
+    "picks": 6144,
+    "bans": 4796
+  },
+  "Kayn": {
+    "games": 9853,
+    "wins": 4807,
+    "losses": 5046,
+    "win_rate": 0.4878717141987212,
+    "picks": 9853,
+    "bans": 17384
+  },
+  "Caitlyn": {
+    "games": 6776,
+    "wins": 3183,
+    "losses": 3593,
+    "win_rate": 0.4697461629279811,
+    "picks": 6776,
+    "bans": 10248
+  },
+  "Irelia": {
+    "games": 2291,
+    "wins": 1161,
+    "losses": 1130,
+    "win_rate": 0.5067656045395024,
+    "picks": 2291,
+    "bans": 1143
+  },
+  "Nidalee": {
+    "games": 1689,
+    "wins": 781,
+    "losses": 908,
+    "win_rate": 0.4624037892243931,
+    "picks": 1689,
+    "bans": 232
+  },
+  "Kayle": {
+    "games": 2003,
+    "wins": 1018,
+    "losses": 985,
+    "win_rate": 0.5082376435346979,
+    "picks": 2003,
+    "bans": 651
+  },
+  "Shaco": {
+    "games": 2557,
+    "wins": 1263,
+    "losses": 1294,
+    "win_rate": 0.4939382088384826,
+    "picks": 2557,
+    "bans": 1497
+  },
+  "Malphite": {
+    "games": 2518,
+    "wins": 1262,
+    "losses": 1256,
+    "win_rate": 0.5011914217633042,
+    "picks": 2518,
+    "bans": 486
+  },
+  "Morgana": {
+    "games": 5936,
+    "wins": 2849,
+    "losses": 3087,
+    "win_rate": 0.47995283018867924,
+    "picks": 5936,
+    "bans": 3271
+  },
+  "Hecarim": {
+    "games": 2002,
+    "wins": 1020,
+    "losses": 982,
+    "win_rate": 0.5094905094905094,
+    "picks": 2002,
+    "bans": 658
+  },
+  "Yasuo": {
+    "games": 7872,
+    "wins": 3948,
+    "losses": 3924,
+    "win_rate": 0.5015243902439024,
+    "picks": 7872,
+    "bans": 33015
+  },
+  "Teemo": {
+    "games": 4144,
+    "wins": 2149,
+    "losses": 1995,
+    "win_rate": 0.518581081081081,
+    "picks": 4144,
+    "bans": 3956
+  },
+  "Warwick": {
+    "games": 5851,
+    "wins": 3019,
+    "losses": 2832,
+    "win_rate": 0.5159801743291745,
+    "picks": 5851,
+    "bans": 5667
+  },
+  "Illaoi": {
+    "games": 1482,
+    "wins": 722,
+    "losses": 760,
+    "win_rate": 0.48717948717948717,
+    "picks": 1482,
+    "bans": 3085
+  },
+  "Tristana": {
+    "games": 12983,
+    "wins": 6713,
+    "losses": 6270,
+    "win_rate": 0.5170607717784795,
+    "picks": 12983,
+    "bans": 13067
+  },
+  "Nami": {
+    "games": 4694,
+    "wins": 2430,
+    "losses": 2264,
+    "win_rate": 0.5176821474222412,
+    "picks": 4694,
+    "bans": 245
+  },
+  "Rumble": {
+    "games": 1581,
+    "wins": 778,
+    "losses": 803,
+    "win_rate": 0.49209361163820364,
+    "picks": 1581,
+    "bans": 335
+  },
+  "Kassadin": {
+    "games": 3046,
+    "wins": 1501,
+    "losses": 1545,
+    "win_rate": 0.4927774130006566,
+    "picks": 3046,
+    "bans": 5280
+  },
+  "Jayce": {
+    "games": 3199,
+    "wins": 1613,
+    "losses": 1586,
+    "win_rate": 0.5042200687714911,
+    "picks": 3199,
+    "bans": 2196
+  },
+  "Jax": {
+    "games": 6618,
+    "wins": 3347,
+    "losses": 3271,
+    "win_rate": 0.5057419159867029,
+    "picks": 6618,
+    "bans": 4934
+  },
+  "Ashe": {
+    "games": 5391,
+    "wins": 2571,
+    "losses": 2820,
+    "win_rate": 0.4769059543683918,
+    "picks": 5391,
+    "bans": 493
+  },
+  "Lulu": {
+    "games": 6705,
+    "wins": 3367,
+    "losses": 3338,
+    "win_rate": 0.5021625652498136,
+    "picks": 6705,
+    "bans": 13461
+  },
+  "Twitch": {
+    "games": 8838,
+    "wins": 4665,
+    "losses": 4173,
+    "win_rate": 0.5278343516632722,
+    "picks": 8838,
+    "bans": 15832
+  },
+  "Kha'Zix": {
+    "games": 4303,
+    "wins": 2092,
+    "losses": 2211,
+    "win_rate": 0.48617243783406927,
+    "picks": 4303,
+    "bans": 2193
+  },
+  "Maokai": {
+    "games": 4310,
+    "wins": 2224,
+    "losses": 2086,
+    "win_rate": 0.5160092807424594,
+    "picks": 4310,
+    "bans": 7320
+  },
+  "Blitzcrank": {
+    "games": 6847,
+    "wins": 3506,
+    "losses": 3341,
+    "win_rate": 0.5120490725865342,
+    "picks": 6847,
+    "bans": 18795
+  },
+  "Evelynn": {
+    "games": 1616,
+    "wins": 772,
+    "losses": 844,
+    "win_rate": 0.4777227722772277,
+    "picks": 1616,
+    "bans": 1426
+  },
+  "Brand": {
+    "games": 3876,
+    "wins": 1996,
+    "losses": 1880,
+    "win_rate": 0.5149638802889577,
+    "picks": 3876,
+    "bans": 2857
+  },
+  "Orianna": {
+    "games": 6538,
+    "wins": 3286,
+    "losses": 3252,
+    "win_rate": 0.5026001835423677,
+    "picks": 6538,
+    "bans": 2764
+  },
+  "Dr. Mundo": {
+    "games": 1567,
+    "wins": 783,
+    "losses": 784,
+    "win_rate": 0.49968091895341415,
+    "picks": 1567,
+    "bans": 640
+  },
+  "Malzahar": {
+    "games": 3752,
+    "wins": 1986,
+    "losses": 1766,
+    "win_rate": 0.529317697228145,
+    "picks": 3752,
+    "bans": 5480
+  },
+  "Camille": {
+    "games": 1886,
+    "wins": 906,
+    "losses": 980,
+    "win_rate": 0.48038176033934255,
+    "picks": 1886,
+    "bans": 1739
+  },
+  "Ornn": {
+    "games": 4766,
+    "wins": 1955,
+    "losses": 2811,
+    "win_rate": 0.4101972303818716,
+    "picks": 4766,
+    "bans": 5685
+  },
+  "Cho'Gath": {
+    "games": 4175,
+    "wins": 2199,
+    "losses": 1976,
+    "win_rate": 0.5267065868263473,
+    "picks": 4175,
+    "bans": 25175
+  },
+  "Syndra": {
+    "games": 3751,
+    "wins": 1747,
+    "losses": 2004,
+    "win_rate": 0.46574246867502,
+    "picks": 3751,
+    "bans": 4543
+  },
+  "Sona": {
+    "games": 5429,
+    "wins": 2942,
+    "losses": 2487,
+    "win_rate": 0.5419045864800147,
+    "picks": 5429,
+    "bans": 613
+  },
+  "Jarvan IV": {
+    "games": 6025,
+    "wins": 3152,
+    "losses": 2873,
+    "win_rate": 0.5231535269709544,
+    "picks": 6025,
+    "bans": 2043
+  },
+  "Garen": {
+    "games": 3893,
+    "wins": 2067,
+    "losses": 1826,
+    "win_rate": 0.530952992550732,
+    "picks": 3893,
+    "bans": 1869
+  },
+  "Lee Sin": {
+    "games": 9188,
+    "wins": 4217,
+    "losses": 4971,
+    "win_rate": 0.4589682194166304,
+    "picks": 9188,
+    "bans": 6516
+  },
+  "Braum": {
+    "games": 3744,
+    "wins": 1910,
+    "losses": 1834,
+    "win_rate": 0.5101495726495726,
+    "picks": 3744,
+    "bans": 1381
+  },
+  "Veigar": {
+    "games": 3914,
+    "wins": 1933,
+    "losses": 1981,
+    "win_rate": 0.4938681655595299,
+    "picks": 3914,
+    "bans": 1327
+  },
+  "Sivir": {
+    "games": 3976,
+    "wins": 2017,
+    "losses": 1959,
+    "win_rate": 0.5072937625754527,
+    "picks": 3976,
+    "bans": 304
+  },
+  "Ekko": {
+    "games": 4866,
+    "wins": 2428,
+    "losses": 2438,
+    "win_rate": 0.4989724619810933,
+    "picks": 4866,
+    "bans": 2750
+  },
+  "Olaf": {
+    "games": 1569,
+    "wins": 751,
+    "losses": 818,
+    "win_rate": 0.4786488209050351,
+    "picks": 1569,
+    "bans": 377
+  },
+  "Alistar": {
+    "games": 3476,
+    "wins": 1724,
+    "losses": 1752,
+    "win_rate": 0.49597238204833144,
+    "picks": 3476,
+    "bans": 696
+  },
+  "Urgot": {
+    "games": 2365,
+    "wins": 1147,
+    "losses": 1218,
+    "win_rate": 0.48498942917547566,
+    "picks": 2365,
+    "bans": 4229
+  },
+  "Zac": {
+    "games": 2508,
+    "wins": 1234,
+    "losses": 1274,
+    "win_rate": 0.4920255183413078,
+    "picks": 2508,
+    "bans": 15786
+  },
+  "Fizz": {
+    "games": 3468,
+    "wins": 1696,
+    "losses": 1772,
+    "win_rate": 0.48904267589388695,
+    "picks": 3468,
+    "bans": 13291
+  },
+  "Heimerdinger": {
+    "games": 1678,
+    "wins": 811,
+    "losses": 867,
+    "win_rate": 0.4833134684147795,
+    "picks": 1678,
+    "bans": 694
+  },
+  "Miss Fortune": {
+    "games": 6181,
+    "wins": 3256,
+    "losses": 2925,
+    "win_rate": 0.5267756026532924,
+    "picks": 6181,
+    "bans": 1250
+  },
+  "Vel'Koz": {
+    "games": 3187,
+    "wins": 1626,
+    "losses": 1561,
+    "win_rate": 0.5101976780671478,
+    "picks": 3187,
+    "bans": 417
+  },
+  "Nasus": {
+    "games": 4361,
+    "wins": 2223,
+    "losses": 2138,
+    "win_rate": 0.5097454712221967,
+    "picks": 4361,
+    "bans": 8026
+  },
+  "Corki": {
+    "games": 2449,
+    "wins": 1138,
+    "losses": 1311,
+    "win_rate": 0.46467946100449165,
+    "picks": 2449,
+    "bans": 646
+  },
+  "Amumu": {
+    "games": 2312,
+    "wins": 1178,
+    "losses": 1134,
+    "win_rate": 0.509515570934256,
+    "picks": 2312,
+    "bans": 587
+  },
+  "Kalista": {
+    "games": 3572,
+    "wins": 1707,
+    "losses": 1865,
+    "win_rate": 0.4778835386338186,
+    "picks": 3572,
+    "bans": 900
+  },
+  "Gnar": {
+    "games": 3922,
+    "wins": 1938,
+    "losses": 1984,
+    "win_rate": 0.4941356450790413,
+    "picks": 3922,
+    "bans": 1974
+  },
+  "Gragas": {
+    "games": 6424,
+    "wins": 3151,
+    "losses": 3273,
+    "win_rate": 0.4905043586550436,
+    "picks": 6424,
+    "bans": 1768
+  },
+  "Rakan": {
+    "games": 6841,
+    "wins": 3433,
+    "losses": 3408,
+    "win_rate": 0.501827218242947,
+    "picks": 6841,
+    "bans": 2157
+  },
+  "Nautilus": {
+    "games": 2104,
+    "wins": 1020,
+    "losses": 1084,
+    "win_rate": 0.4847908745247148,
+    "picks": 2104,
+    "bans": 195
+  },
+  "Lux": {
+    "games": 7199,
+    "wins": 3560,
+    "losses": 3639,
+    "win_rate": 0.4945131268231699,
+    "picks": 7199,
+    "bans": 1208
+  },
+  "Ivern": {
+    "games": 1076,
+    "wins": 505,
+    "losses": 571,
+    "win_rate": 0.46933085501858735,
+    "picks": 1076,
+    "bans": 623
+  },
+  "Diana": {
+    "games": 3079,
+    "wins": 1586,
+    "losses": 1493,
+    "win_rate": 0.5151023059434882,
+    "picks": 3079,
+    "bans": 1624
+  },
+  "Varus": {
+    "games": 2887,
+    "wins": 1442,
+    "losses": 1445,
+    "win_rate": 0.49948042951160376,
+    "picks": 2887,
+    "bans": 142
+  },
+  "Akali": {
+    "games": 2949,
+    "wins": 1484,
+    "losses": 1465,
+    "win_rate": 0.5032214309935571,
+    "picks": 2949,
+    "bans": 4501
+  },
+  "Lucian": {
+    "games": 8300,
+    "wins": 3915,
+    "losses": 4385,
+    "win_rate": 0.4716867469879518,
+    "picks": 8300,
+    "bans": 1331
+  },
+  "Zyra": {
+    "games": 2355,
+    "wins": 1175,
+    "losses": 1180,
+    "win_rate": 0.4989384288747346,
+    "picks": 2355,
+    "bans": 943
+  },
+  "LeBlanc": {
+    "games": 2233,
+    "wins": 1048,
+    "losses": 1185,
+    "win_rate": 0.4693237796686073,
+    "picks": 2233,
+    "bans": 3551
+  },
+  "Leona": {
+    "games": 4961,
+    "wins": 2544,
+    "losses": 2417,
+    "win_rate": 0.512799838742189,
+    "picks": 4961,
+    "bans": 1743
+  },
+  "Twisted Fate": {
+    "games": 3590,
+    "wins": 1847,
+    "losses": 1743,
+    "win_rate": 0.5144846796657382,
+    "picks": 3590,
+    "bans": 284
+  },
+  "Rammus": {
+    "games": 2997,
+    "wins": 1614,
+    "losses": 1383,
+    "win_rate": 0.5385385385385385,
+    "picks": 2997,
+    "bans": 1846
+  },
+  "Xerath": {
+    "games": 1695,
+    "wins": 894,
+    "losses": 801,
+    "win_rate": 0.5274336283185841,
+    "picks": 1695,
+    "bans": 219
+  },
+  "Ahri": {
+    "games": 6316,
+    "wins": 3295,
+    "losses": 3021,
+    "win_rate": 0.5216909436352122,
+    "picks": 6316,
+    "bans": 4481
+  },
+  "Xin Zhao": {
+    "games": 3245,
+    "wins": 1674,
+    "losses": 1571,
+    "win_rate": 0.5158705701078582,
+    "picks": 3245,
+    "bans": 1357
+  },
+  "Vi": {
+    "games": 3002,
+    "wins": 1519,
+    "losses": 1483,
+    "win_rate": 0.5059960026648901,
+    "picks": 3002,
+    "bans": 556
+  },
+  "Kennen": {
+    "games": 1848,
+    "wins": 886,
+    "losses": 962,
+    "win_rate": 0.47943722943722944,
+    "picks": 1848,
+    "bans": 689
+  },
+  "Rek'Sai": {
+    "games": 1436,
+    "wins": 701,
+    "losses": 735,
+    "win_rate": 0.4881615598885794,
+    "picks": 1436,
+    "bans": 324
+  },
+  "Annie": {
+    "games": 3277,
+    "wins": 1647,
+    "losses": 1630,
+    "win_rate": 0.5025938358254501,
+    "picks": 3277,
+    "bans": 2108
+  },
+  "Jhin": {
+    "games": 8044,
+    "wins": 3925,
+    "losses": 4119,
+    "win_rate": 0.48794132272501245,
+    "picks": 8044,
+    "bans": 1670
+  },
+  "Ezreal": {
+    "games": 5337,
+    "wins": 2479,
+    "losses": 2858,
+    "win_rate": 0.4644931609518456,
+    "picks": 5337,
+    "bans": 806
+  },
+  "Tryndamere": {
+    "games": 4083,
+    "wins": 2159,
+    "losses": 1924,
+    "win_rate": 0.5287778594170953,
+    "picks": 4083,
+    "bans": 5891
+  },
+  "Katarina": {
+    "games": 3416,
+    "wins": 1716,
+    "losses": 1700,
+    "win_rate": 0.5023419203747073,
+    "picks": 3416,
+    "bans": 6347
+  },
+  "Pantheon": {
+    "games": 2654,
+    "wins": 1346,
+    "losses": 1308,
+    "win_rate": 0.5071590052750565,
+    "picks": 2654,
+    "bans": 2662
+  },
+  "Azir": {
+    "games": 1280,
+    "wins": 555,
+    "losses": 725,
+    "win_rate": 0.43359375,
+    "picks": 1280,
+    "bans": 419
+  },
+  "Sejuani": {
+    "games": 3867,
+    "wins": 2054,
+    "losses": 1813,
+    "win_rate": 0.5311611068011378,
+    "picks": 3867,
+    "bans": 5231
+  },
+  "Mordekaiser": {
+    "games": 1182,
+    "wins": 604,
+    "losses": 578,
+    "win_rate": 0.5109983079526227,
+    "picks": 1182,
+    "bans": 227
+  },
+  "Galio": {
+    "games": 2717,
+    "wins": 1271,
+    "losses": 1446,
+    "win_rate": 0.46779536253220466,
+    "picks": 2717,
+    "bans": 2072
+  },
+  "Jinx": {
+    "games": 7980,
+    "wins": 4087,
+    "losses": 3893,
+    "win_rate": 0.5121553884711779,
+    "picks": 7980,
+    "bans": 880
+  },
+  "Taric": {
+    "games": 2586,
+    "wins": 1361,
+    "losses": 1225,
+    "win_rate": 0.5262954369682908,
+    "picks": 2586,
+    "bans": 210
+  },
+  "Swain": {
+    "games": 1494,
+    "wins": 794,
+    "losses": 700,
+    "win_rate": 0.5314591700133868,
+    "picks": 1494,
+    "bans": 467
+  },
+  "Gangplank": {
+    "games": 4204,
+    "wins": 2066,
+    "losses": 2138,
+    "win_rate": 0.49143672692673646,
+    "picks": 4204,
+    "bans": 821
+  },
+  "Nunu": {
+    "games": 1308,
+    "wins": 648,
+    "losses": 660,
+    "win_rate": 0.4954128440366973,
+    "picks": 1308,
+    "bans": 384
+  },
+  "Fiddlesticks": {
+    "games": 1739,
+    "wins": 862,
+    "losses": 877,
+    "win_rate": 0.49568717653824035,
+    "picks": 1739,
+    "bans": 286
+  },
+  "Nocturne": {
+    "games": 1676,
+    "wins": 865,
+    "losses": 811,
+    "win_rate": 0.516109785202864,
+    "picks": 1676,
+    "bans": 287
+  },
+  "Talon": {
+    "games": 3173,
+    "wins": 1589,
+    "losses": 1584,
+    "win_rate": 0.5007878978884337,
+    "picks": 3173,
+    "bans": 2987
+  },
+  "Elise": {
+    "games": 2607,
+    "wins": 1283,
+    "losses": 1324,
+    "win_rate": 0.4921365554276947,
+    "picks": 2607,
+    "bans": 1261
+  },
+  "Taliyah": {
+    "games": 2001,
+    "wins": 943,
+    "losses": 1058,
+    "win_rate": 0.47126436781609193,
+    "picks": 2001,
+    "bans": 262
+  },
+  "Trundle": {
+    "games": 1958,
+    "wins": 933,
+    "losses": 1025,
+    "win_rate": 0.47650663942798777,
+    "picks": 1958,
+    "bans": 238
+  },
+  "Singed": {
+    "games": 1425,
+    "wins": 762,
+    "losses": 663,
+    "win_rate": 0.5347368421052632,
+    "picks": 1425,
+    "bans": 504
+  },
+  "Poppy": {
+    "games": 1886,
+    "wins": 852,
+    "losses": 1034,
+    "win_rate": 0.4517497348886532,
+    "picks": 1886,
+    "bans": 161
+  },
+  "Udyr": {
+    "games": 1113,
+    "wins": 553,
+    "losses": 560,
+    "win_rate": 0.4968553459119497,
+    "picks": 1113,
+    "bans": 90
+  },
+  "Skarner": {
+    "games": 574,
+    "wins": 280,
+    "losses": 294,
+    "win_rate": 0.4878048780487805,
+    "picks": 574,
+    "bans": 70
+  },
+  "Anivia": {
+    "games": 2252,
+    "wins": 1207,
+    "losses": 1045,
+    "win_rate": 0.5359680284191829,
+    "picks": 2252,
+    "bans": 877
+  },
+  "Yorick": {
+    "games": 1378,
+    "wins": 744,
+    "losses": 634,
+    "win_rate": 0.5399129172714079,
+    "picks": 1378,
+    "bans": 505
+  },
+  "Sion": {
+    "games": 2100,
+    "wins": 1048,
+    "losses": 1052,
+    "win_rate": 0.4990476190476191,
+    "picks": 2100,
+    "bans": 117
+  },
+  "Wukong": {
+    "games": 2167,
+    "wins": 1134,
+    "losses": 1033,
+    "win_rate": 0.5233041070604523,
+    "picks": 2167,
+    "bans": 355
+  },
+  "Aurelion Sol": {
+    "games": 841,
+    "wins": 442,
+    "losses": 399,
+    "win_rate": 0.525564803804994,
+    "picks": 841,
+    "bans": 443
+  },
+  "Ryze": {
+    "games": 1032,
+    "wins": 421,
+    "losses": 611,
+    "win_rate": 0.40794573643410853,
+    "picks": 1032,
+    "bans": 96
+  },
+  "Kled": {
+    "games": 1769,
+    "wins": 910,
+    "losses": 859,
+    "win_rate": 0.5144149236856982,
+    "picks": 1769,
+    "bans": 1518
+  },
+  "Tahm Kench": {
+    "games": 1692,
+    "wins": 779,
+    "losses": 913,
+    "win_rate": 0.4604018912529551,
+    "picks": 1692,
+    "bans": 432
+  },
+  "Rengar": {
+    "games": 2157,
+    "wins": 1038,
+    "losses": 1119,
+    "win_rate": 0.4812239221140473,
+    "picks": 2157,
+    "bans": 594
+  },
+  "Lissandra": {
+    "games": 1105,
+    "wins": 509,
+    "losses": 596,
+    "win_rate": 0.4606334841628959,
+    "picks": 1105,
+    "bans": 188
+  },
+  "Renekton": {
+    "games": 3871,
+    "wins": 1941,
+    "losses": 1930,
+    "win_rate": 0.5014208214931543,
+    "picks": 3871,
+    "bans": 2253
+  },
+  "Champion_-1": {
+    "games": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "picks": 0,
+    "bans": 3866
+  },
+  "Shyvana": {
+    "games": 2445,
+    "wins": 1296,
+    "losses": 1149,
+    "win_rate": 0.5300613496932516,
+    "picks": 2445,
+    "bans": 387
+  },
+  "Quinn": {
+    "games": 1288,
+    "wins": 644,
+    "losses": 644,
+    "win_rate": 0.5,
+    "picks": 1288,
+    "bans": 298
+  },
+  "Shen": {
+    "games": 3161,
+    "wins": 1536,
+    "losses": 1625,
+    "win_rate": 0.4859221765264157,
+    "picks": 3161,
+    "bans": 244
+  },
+  "Volibear": {
+    "games": 1198,
+    "wins": 594,
+    "losses": 604,
+    "win_rate": 0.4958263772954925,
+    "picks": 1198,
+    "bans": 183
+  },
+  "Kindred": {
+    "games": 1147,
+    "wins": 558,
+    "losses": 589,
+    "win_rate": 0.4864864864864865,
+    "picks": 1147,
+    "bans": 158
+  },
+  "Zilean": {
+    "games": 1451,
+    "wins": 714,
+    "losses": 737,
+    "win_rate": 0.49207443142660234,
+    "picks": 1451,
+    "bans": 184
+  },
+  "Aatrox": {
+    "games": 753,
+    "wins": 354,
+    "losses": 399,
+    "win_rate": 0.4701195219123506,
+    "picks": 753,
+    "bans": 712
+  },
+  "Ziggs": {
+    "games": 2313,
+    "wins": 1192,
+    "losses": 1121,
+    "win_rate": 0.5153480328577604,
+    "picks": 2313,
+    "bans": 272
+  },
+  "Karthus": {
+    "games": 1007,
+    "wins": 514,
+    "losses": 493,
+    "win_rate": 0.5104270109235353,
+    "picks": 1007,
+    "bans": 131
+  }
+}

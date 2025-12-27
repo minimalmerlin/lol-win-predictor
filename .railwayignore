@@ -1,0 +1,42 @@
+# Ignoriere diese Dateien beim Deployment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.env
+.venv
+env/
+ENV/
+
+# Data files (zu groß für Deployment)
+data/matches_*.json
+data/processed_features.csv
+
+# Keep only the processed match IDs
+!data/processed_match_ids.txt
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore

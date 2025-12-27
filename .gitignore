@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv
+venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+
+# Next.js
+lol-coach-frontend/.next/
+lol-coach-frontend/out/
+lol-coach-frontend/node_modules/
+lol-coach-frontend/.env*.local
+
+# Temporary files
+*.tmp
+*.temp
+
+# Large data files (optional - je nachdem ob du sie hosten willst)
+# kaggle_data/
+# data/*.csv
+
+# Large model files (>100MB)
+models/win_predictor_rf.pkl
+models/backups/
