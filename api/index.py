@@ -1,11 +1,13 @@
 """
-Vercel Serverless Function Handler
-===================================
-Simple HTTP handler for Vercel deployment
+Vercel Serverless Function - Flask App
+=======================================
 """
 
-import json
-from urllib.parse import parse_qs, urlparse
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 # Champion list
 CHAMPIONS = [
@@ -29,64 +31,22 @@ CHAMPIONS = [
     "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"
 ]
 
-def handler(request):
-    """Vercel serverless function handler"""
+@app.route('/')
+def home():
+    return jsonify({"status": "online", "message": "LoL Coach API"})
 
-    # Get path
-    path = request.get('path', '/')
-    query = request.get('query', {})
+@app.route('/api/champions/list')
+def get_champions():
+    return jsonify({"champions": CHAMPIONS, "total": len(CHAMPIONS)})
 
-    # CORS headers
-    headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': '*',
-    }
+@app.route('/api/champions/search')
+def search_champions():
+    q = request.args.get('q', '')
 
-    # Handle OPTIONS for CORS
-    if request.get('method') == 'OPTIONS':
-        return {
-            'statusCode': 200,
-            'headers': headers,
-            'body': ''
-        }
+    if q:
+        filtered = [c for c in CHAMPIONS if q.lower() in c.lower()]
+        results = [{"name": c} for c in filtered[:10]]
+    else:
+        results = []
 
-    # Root endpoint
-    if path == '/':
-        return {
-            'statusCode': 200,
-            'headers': headers,
-            'body': json.dumps({"status": "online", "message": "LoL Coach API"})
-        }
-
-    # Champions list endpoint
-    if path == '/api/champions/list':
-        return {
-            'statusCode': 200,
-            'headers': headers,
-            'body': json.dumps({"champions": CHAMPIONS, "total": len(CHAMPIONS)})
-        }
-
-    # Champions search endpoint
-    if path == '/api/champions/search':
-        q = query.get('q', [''])[0] if isinstance(query.get('q'), list) else query.get('q', '')
-
-        if q:
-            filtered = [c for c in CHAMPIONS if q.lower() in c.lower()]
-            results = [{"name": c} for c in filtered[:10]]
-        else:
-            results = []
-
-        return {
-            'statusCode': 200,
-            'headers': headers,
-            'body': json.dumps({"results": results})
-        }
-
-    # 404 for unknown paths
-    return {
-        'statusCode': 404,
-        'headers': headers,
-        'body': json.dumps({"error": "Not found"})
-    }
+    return jsonify({"results": results})
