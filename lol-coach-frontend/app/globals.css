@@ -106,15 +106,16 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    @apply bg-background;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-card-foreground;
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  html {
-    scroll-behavior: smooth;
   }
 
   /* Rajdhani for headings & numbers - Military Tech Style */
