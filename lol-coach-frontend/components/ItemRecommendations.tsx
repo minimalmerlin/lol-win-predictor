@@ -146,31 +146,113 @@ export default function ItemRecommendations() {
         </Card>
       )}
 
-      {/* Recommendations / Pending Status */}
+      {/* Recommendations */}
       {recommendations && (
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-8 text-center">
-          <div className="text-orange-500 font-bold tracking-widest uppercase mb-2">
-            SYSTEM UPDATE IN PROGRESS
-          </div>
-          <p className="text-slate-400 mb-6">
-            Die KI lernt gerade aus neuen Live-Matches die aktuellen Meta-Builds.
-            Bitte warte auf den Abschluss des Crawling-Prozesses.
-          </p>
+        <div className="space-y-6">
+          {/* Show builds if available */}
+          {recommendations.popular_builds && recommendations.popular_builds.length > 0 ? (
+            <Card className="bg-slate-800/50 border-blue-700/30 backdrop-blur">
+              <CardHeader>
+                <CardTitle className="text-white text-2xl">
+                  🛡️ Most Common Winner Build for {recommendations.champion}
+                </CardTitle>
+                <CardDescription className="text-slate-400">
+                  Based on 1,590+ analyzed matches • Hover over items for details
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {recommendations.popular_builds.map((build, index) => (
+                    <div
+                      key={index}
+                      className="p-6 bg-gradient-to-r from-yellow-900/20 to-yellow-800/10 border-2 border-yellow-500/50 rounded-xl"
+                    >
+                      {/* Header */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className="text-3xl">🏆</div>
+                          <div>
+                            <h3 className="text-xl font-bold text-white">
+                              Core Build (Most Common Items)
+                            </h3>
+                            <p className="text-sm text-slate-400">
+                              Based on winning games across all roles
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-          {/* Visueller Platzhalter */}
-          <div className="flex justify-center gap-4 opacity-30">
-            {[1,2,3,4,5,6].map(i => (
-              <div key={i} className="w-12 h-12 bg-slate-800 rounded border border-slate-700"></div>
-            ))}
-          </div>
+                      {/* Items Grid */}
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                        {build.items.map((itemId, itemIndex) => {
+                          const itemData = getItemData(itemId);
+                          return (
+                            <div
+                              key={itemId}
+                              className="group relative flex flex-col items-center"
+                            >
+                              {/* Item Icon */}
+                              <div className="relative w-16 h-16 rounded-xl overflow-hidden border-2 border-slate-600 group-hover:border-blue-500 transition-all group-hover:scale-110 shadow-lg">
+                                <Image
+                                  src={itemData.image}
+                                  alt={itemData.name}
+                                  fill
+                                  className="object-cover"
+                                  unoptimized
+                                />
+                              </div>
 
-          {/* Status Info */}
-          <div className="mt-6 pt-6 border-t border-slate-800">
-            <p className="text-sm text-slate-500">
-              Der Item-Crawler sammelt aktuell Daten aus 5.000+ Ranked-Matches.
-              Diese Funktion wird automatisch aktiviert, sobald genug Daten verfügbar sind.
-            </p>
-          </div>
+                              {/* Item Number Badge */}
+                              <div className="mt-2 px-2 py-0.5 bg-slate-700 rounded text-xs text-slate-300">
+                                Item {itemIndex + 1}
+                              </div>
+
+                              {/* Item Name (always visible) */}
+                              <div className="mt-1 text-xs text-center text-white font-medium max-w-[80px] line-clamp-2">
+                                {itemData.name}
+                              </div>
+
+                              {/* Enhanced Tooltip on hover */}
+                              <div className="absolute -top-20 left-1/2 -translate-x-1/2 px-3 py-2 bg-slate-900 border border-blue-500 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20 shadow-xl">
+                                <div className="font-bold">{itemData.name}</div>
+                                <div className="text-xs text-slate-400">Item #{itemId}</div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            // Pending status when no builds available
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-8 text-center">
+              <div className="text-orange-500 font-bold tracking-widest uppercase mb-2">
+                SYSTEM UPDATE IN PROGRESS
+              </div>
+              <p className="text-slate-400 mb-6">
+                Die KI lernt gerade aus neuen Live-Matches die aktuellen Meta-Builds.
+                Bitte warte auf den Abschluss des Crawling-Prozesses.
+              </p>
+
+              {/* Visueller Platzhalter */}
+              <div className="flex justify-center gap-4 opacity-30">
+                {[1,2,3,4,5,6].map(i => (
+                  <div key={i} className="w-12 h-12 bg-slate-800 rounded border border-slate-700"></div>
+                ))}
+              </div>
+
+              {/* Status Info */}
+              <div className="mt-6 pt-6 border-t border-slate-800">
+                <p className="text-sm text-slate-500">
+                  Der Item-Crawler sammelt aktuell Daten aus 5.000+ Ranked-Matches.
+                  Diese Funktion wird automatisch aktiviert, sobald genug Daten verfügbar sind.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
