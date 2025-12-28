@@ -56,7 +56,7 @@ TRAINING_CONFIG = {
 
 # Data collection settings
 CRAWLER_STATE_DIR = DATA_DIR / 'crawler_state'
-TARGET_MATCHES = 5000  # Target for massive dataset
+TARGET_MATCHES = 50000  # Target for massive dataset
 
 # Create directories if they don't exist
 for directory in [DATA_DIR, MODELS_DIR, CHAMPION_DATA_DIR, MODEL_BACKUP_DIR, CRAWLER_STATE_DIR]:
