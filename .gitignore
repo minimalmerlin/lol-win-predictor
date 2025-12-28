@@ -57,9 +57,10 @@ lol-coach-frontend/.env*.local
 *.tmp
 *.temp
 
-# Large data files (optional - je nachdem ob du sie hosten willst)
-# kaggle_data/
-# data/*.csv
+# Large data files (locally generated training data)
+data/clean_training_data.csv
+data/clean_training_data_massive.csv
+data/crawler_state/
 
 # Large model files (>100MB)
 models/win_predictor_rf.pkl
