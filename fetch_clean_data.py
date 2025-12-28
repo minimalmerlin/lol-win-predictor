@@ -4,7 +4,7 @@ import time
 import os
 
 # KONFIGURATION
-API_KEY = 'RGAPI-99f0dd8c-40a0-42d6-8dda-03f6faaa9779'  # Hier Key einfügen
+API_KEY = 'R'  # Hier Key einfügen
 REGION = 'euw1'
 ROUTING = 'europe'
 COUNT_MATCHES = 100  # Wie viele Matches sollen geladen werden? (Für Test erst mal 100, später 1000+)
