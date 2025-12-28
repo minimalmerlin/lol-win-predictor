@@ -1,0 +1,12 @@
+# Vercel Ignore - Backend Deployment
+lol-coach-frontend/
+node_modules/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+*.log
+models/
+data/champion_data/
+*.pkl
+*.joblib
