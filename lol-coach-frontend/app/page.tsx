@@ -8,155 +8,189 @@ import ChampionStatsExplorer from '@/components/ChampionStatsExplorer';
 import ItemRecommendations from '@/components/ItemRecommendations';
 import ChampionSearch from '@/components/ChampionSearch';
 import { useRouter } from 'next/navigation';
-import { Target, Activity } from 'lucide-react';
+import { Target, Activity, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Hero Section */}
-      <header className="relative z-50 border-b border-blue-800/30 bg-slate-900/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-                <span className="text-2xl">🎮</span>
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Apple-style Header */}
+      <header className="sticky top-0 z-50 border-b border-border/40 bg-white/80 dark:bg-black/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-black/60">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className="relative w-10 h-10 flex items-center justify-center">
+                <Image 
+                  src="/logo.svg" 
+                  alt="LoL Coach" 
+                  width={40} 
+                  height={40}
+                  className="dark:invert"
+                />
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white">
-                  LoL Intelligent Coach
-                </h1>
-                <p className="text-blue-200">
-                  AI-Powered Win Prediction & Champion Analysis
-                </p>
-              </div>
+              <h1 className="text-xl font-semibold tracking-tight">
+                LoL Coach
+              </h1>
             </div>
-            <div className="hidden md:flex items-center gap-4">
+
+            {/* Navigation */}
+            <nav className="hidden md:flex items-center gap-6">
               <Button
-                variant="outline"
+                variant="ghost"
                 onClick={() => router.push('/draft')}
-                className="border-purple-600/50 text-purple-400 hover:bg-purple-900/20"
-              >
-                <Target className="mr-2 h-4 w-4" />
-                Draft Assistant
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => router.push('/live')}
-                className="border-green-600/50 text-green-400 hover:bg-green-900/20"
-              >
-                <Activity className="mr-2 h-4 w-4" />
-                Live Game
-              </Button>
-              <ChampionSearch />
-            </div>
-          </div>
-          {/* Mobile Search */}
-          <div className="md:hidden mt-4 space-y-2">
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={() => router.push('/draft')}
-                className="flex-1 border-purple-600/50 text-purple-400 hover:bg-purple-900/20"
+                className="text-sm font-medium"
               >
                 <Target className="mr-2 h-4 w-4" />
                 Draft
               </Button>
               <Button
-                variant="outline"
+                variant="ghost"
                 onClick={() => router.push('/live')}
-                className="flex-1 border-green-600/50 text-green-400 hover:bg-green-900/20"
+                className="text-sm font-medium"
               >
                 <Activity className="mr-2 h-4 w-4" />
-                Live
+                Live Game
               </Button>
-            </div>
-            <ChampionSearch />
+            </nav>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        {/* Stats Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Card className="bg-slate-800/50 border-blue-700/30 backdrop-blur">
-            <CardHeader className="pb-3">
-              <CardDescription className="text-blue-200">Model Accuracy</CardDescription>
-              <CardTitle className="text-3xl text-white">90.9%</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-slate-400">Win Prediction Model</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-slate-800/50 border-blue-700/30 backdrop-blur">
-            <CardHeader className="pb-3">
-              <CardDescription className="text-blue-200">Champions Analyzed</CardDescription>
-              <CardTitle className="text-3xl text-white">139</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-slate-400">From 51k+ Games</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-slate-800/50 border-blue-700/30 backdrop-blur">
-            <CardHeader className="pb-3">
-              <CardDescription className="text-blue-200">Matches Analyzed</CardDescription>
-              <CardTitle className="text-3xl text-white">360k+</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-slate-400">High-Elo Matches</p>
-            </CardContent>
-          </Card>
+      {/* Hero Section - Apple Style */}
+      <section className="relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
+              AI-Powered Win
+              <br />
+              <span className="bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 bg-clip-text text-transparent">
+                Prediction
+              </span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto font-normal">
+              Real-time analytics, champion insights, and intelligent recommendations for League of Legends
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                onClick={() => router.push('/draft')}
+                className="text-base h-12 px-8 rounded-full"
+              >
+                Get Started
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => router.push('/live')}
+                className="text-base h-12 px-8 rounded-full"
+              >
+                Watch Live Demo
+              </Button>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Tabs */}
-        <Tabs defaultValue="champion-select" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 bg-slate-800/50 border border-blue-700/30">
-            <TabsTrigger
-              value="champion-select"
-              className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
-            >
-              🎯 Champion Select
-            </TabsTrigger>
-            <TabsTrigger
-              value="stats"
-              className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
-            >
-              📊 Champion Stats
-            </TabsTrigger>
-            <TabsTrigger
-              value="items"
-              className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
-            >
-              🛡️ Item Builds
-            </TabsTrigger>
-          </TabsList>
+      {/* Features Section */}
+      <section className="border-t border-border bg-secondary/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <Tabs defaultValue="predictor" className="mx-auto max-w-6xl">
+            <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto gap-2 bg-transparent p-0">
+              <TabsTrigger
+                value="predictor"
+                className="data-[state=active]:bg-card data-[state=active]:shadow-sm rounded-xl py-4"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  <span>Win Prediction</span>
+                </div>
+              </TabsTrigger>
+              <TabsTrigger
+                value="stats"
+                className="data-[state=active]:bg-card data-[state=active]:shadow-sm rounded-xl py-4"
+              >
+                Champion Stats
+              </TabsTrigger>
+              <TabsTrigger
+                value="items"
+                className="data-[state=active]:bg-card data-[state=active]:shadow-sm rounded-xl py-4"
+              >
+                Item Builds
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="champion-select" className="space-y-4">
-            <ChampionSelectPredictor />
-          </TabsContent>
+            <div className="mt-8">
+              <TabsContent value="predictor" className="m-0">
+                <Card className="border-border/50 shadow-sm card-hover">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Win Prediction</CardTitle>
+                    <CardDescription className="text-base">
+                      Get real-time win probability based on team compositions
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ChampionSelectPredictor />
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-          <TabsContent value="stats" className="space-y-4">
-            <ChampionStatsExplorer />
-          </TabsContent>
+              <TabsContent value="stats" className="m-0">
+                <Card className="border-border/50 shadow-sm card-hover">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Champion Analytics</CardTitle>
+                    <CardDescription className="text-base">
+                      Explore detailed statistics and performance metrics
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ChampionStatsExplorer />
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-          <TabsContent value="items" className="space-y-4">
-            <ItemRecommendations />
-          </TabsContent>
-        </Tabs>
-      </main>
+              <TabsContent value="items" className="m-0">
+                <Card className="border-border/50 shadow-sm card-hover">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">AI Item Recommendations</CardTitle>
+                    <CardDescription className="text-base">
+                      Personalized builds based on matchup and game state
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ItemRecommendations />
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </div>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* Quick Search Section */}
+      <section className="border-t border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">
+              Quick Champion Lookup
+            </h2>
+            <p className="text-muted-foreground text-lg mb-8">
+              Search for any champion to view detailed statistics and insights
+            </p>
+            <ChampionSearch />
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="border-t border-blue-800/30 bg-slate-900/50 backdrop-blur-sm mt-16">
-        <div className="container mx-auto px-4 py-6 text-center text-sm text-slate-400">
-          <p>Built with ❤️ using Next.js, FastAPI, and Machine Learning</p>
-          <p className="mt-2">
-            <span className="text-blue-400">Model:</span> Random Forest (90.9% Accuracy, ROC-AUC: 0.982) |
-            <span className="text-blue-400"> Training Data:</span> 360,188 Matches
-          </p>
+      <footer className="border-t border-border bg-secondary/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center text-sm text-muted-foreground">
+            <p>Made for the League of Legends community</p>
+            <p className="mt-2">Powered by AI and machine learning</p>
+          </div>
         </div>
       </footer>
     </div>
