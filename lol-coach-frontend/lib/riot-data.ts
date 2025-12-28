@@ -25,7 +25,7 @@ export async function getLatestChampionData() {
   const version = await getLatestVersion();
   if (cachedChampions) return { version, champions: cachedChampions };
   try {
-    const res = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`);
+    const res = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/de_DE/champion.json`);
     const json = await res.json();
     cachedChampions = Object.values(json.data) as ChampionDto[];
     return { version, champions: cachedChampions };
@@ -38,7 +38,7 @@ export async function getChampionDetailByName(nameOrId: string): Promise<Champio
   if (!target) return null;
   const version = await getLatestVersion();
   try {
-    const res = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${target.id}.json`);
+    const res = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/de_DE/champion/${target.id}.json`);
     const json = await res.json();
     return json.data[target.id] as ChampionDetailDto;
   } catch { return null; }

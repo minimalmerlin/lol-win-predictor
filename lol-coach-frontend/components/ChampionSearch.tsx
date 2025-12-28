@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { getLatestChampionData, ChampionDto } from '@/lib/riot-data';
-import { ChampionCard } from './ChampionCard';
-import { Search } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { getLatestChampionData, ChampionDto, getChampionImageUrl } from '@/lib/riot-data';
+import Link from 'next/link';
+import { Search, X } from 'lucide-react';
 
 interface ChampionSearchProps {
   onSelect?: (championName: string) => void;
@@ -14,67 +14,112 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
   const [filtered, setFiltered] = useState<ChampionDto[]>([]);
   const [version, setVersion] = useState("14.24.1");
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    async function load() {
-      // Direkt von Riot via unsere Lib laden
-      const data = await getLatestChampionData();
+    getLatestChampionData().then(data => {
       setVersion(data.version);
-
-      // Sortieren
-      const sorted = data.champions.sort((a, b) => a.name.localeCompare(b.name));
-      setChampions(sorted);
-      setFiltered(sorted);
-      setLoading(false);
-    }
-    load();
+      setChampions(data.champions.sort((a, b) => a.name.localeCompare(b.name)));
+    });
   }, []);
 
-  // Filter Logik
   useEffect(() => {
+    if (!search) {
+      setFiltered([]);
+      return;
+    }
     const term = search.toLowerCase();
-    const result = champions.filter(c =>
-      c.name.toLowerCase().includes(term) ||
-      c.id.toLowerCase().includes(term) ||
-      c.tags.some(t => t.toLowerCase().includes(term))
-    );
-    setFiltered(result);
+    setFiltered(champions.filter(c =>
+      c.name.toLowerCase().includes(term) || c.id.toLowerCase().includes(term)
+    ));
   }, [search, champions]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="w-full max-w-7xl mx-auto p-4">
-      {/* Search Input */}
-      <div className="relative mb-8 max-w-xl mx-auto">
+    <div ref={wrapperRef} className="relative w-full max-w-xl mx-auto z-50">
+      <div className="relative">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5" />
         <input
           type="text"
-          placeholder="Suche Champion (z.B. Aatrox, Assassin...)"
-          className="w-full bg-slate-900 border border-slate-700 rounded-full py-3 px-6 text-white focus:outline-none focus:border-[#1E90FF] focus:ring-1 focus:ring-[#1E90FF] transition-all"
+          placeholder="Suche Champion..."
+          className="w-full bg-slate-900 border border-slate-700 rounded-lg py-3 pl-12 pr-10 text-white focus:outline-none focus:border-[#1E90FF] focus:ring-1 focus:ring-[#1E90FF] transition-all"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onFocus={() => setIsOpen(true)}
+          onChange={(e) => { setSearch(e.target.value); setIsOpen(true); }}
         />
+        {search && (
+          <button onClick={() => setSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white">
+            <X className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
-      {/* Grid */}
-      {loading ? (
-        <div className="text-center text-slate-500 animate-pulse">Lade Riot Daten...</div>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filtered.map((champ) => (
-            <div
-              key={champ.key}
-              className="h-full"
-              onClick={() => onSelect && onSelect(champ.name)}
-            >
-              {/* Wir reichen die Version explizit weiter, damit Bilder laden */}
-              <ChampionCard champion={champ} version={version} />
-            </div>
-          ))}
-        </div>
-      )}
+      {isOpen && search && (
+        <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-lg shadow-xl max-h-[400px] overflow-y-auto custom-scrollbar">
+          {filtered.length > 0 ? (
+            <div className="py-2">
+              {filtered.map((champ) => {
+                const handleClick = () => {
+                  if (onSelect) {
+                    onSelect(champ.name);
+                  }
+                  setIsOpen(false);
+                };
 
-      {!loading && filtered.length === 0 && (
-        <div className="text-center text-slate-500 mt-10">Keine Champions gefunden.</div>
+                const itemContent = (
+                  <>
+                    <img
+                      src={getChampionImageUrl(champ.id, version)}
+                      alt={champ.name}
+                      className="w-10 h-10 rounded-full border border-slate-700"
+                    />
+                    <div>
+                      <div className="text-slate-200 font-bold group-hover:text-white">{champ.name}</div>
+                      <div className="text-xs text-slate-500">{champ.title}</div>
+                    </div>
+                  </>
+                );
+
+                if (onSelect) {
+                  // Draft mode: Use button for selection
+                  return (
+                    <button
+                      key={champ.key}
+                      onClick={handleClick}
+                      className="w-full flex items-center gap-4 px-4 py-3 hover:bg-[#1E90FF]/10 border-l-4 border-transparent hover:border-[#1E90FF] transition-all group"
+                    >
+                      {itemContent}
+                    </button>
+                  );
+                } else {
+                  // Navigation mode: Use Link
+                  return (
+                    <Link
+                      key={champ.key}
+                      href={`/champion/${champ.id}`}
+                      onClick={handleClick}
+                      className="flex items-center gap-4 px-4 py-3 hover:bg-[#1E90FF]/10 border-l-4 border-transparent hover:border-[#1E90FF] transition-all group"
+                    >
+                      {itemContent}
+                    </Link>
+                  );
+                }
+              })}
+            </div>
+          ) : (
+            <div className="p-4 text-center text-slate-500 text-sm">Keine Treffer.</div>
+          )}
+        </div>
       )}
     </div>
   );
