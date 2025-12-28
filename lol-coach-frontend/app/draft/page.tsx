@@ -540,7 +540,7 @@ export default function DraftAssistantPage() {
                         <div className="w-12 h-12 rounded overflow-hidden border border-blue-500/30 bg-slate-700">
                           <Image
                             src={getItemImageUrl(itemId)}
-                            alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                            alt={getItemNameSync(itemId)}
                             width={48}
                             height={48}
                             className="object-cover"
@@ -564,7 +564,7 @@ export default function DraftAssistantPage() {
                         <div className="w-12 h-12 rounded overflow-hidden border border-yellow-500/30 bg-slate-700">
                           <Image
                             src={getItemImageUrl(itemId)}
-                            alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                            alt={getItemNameSync(itemId)}
                             width={48}
                             height={48}
                             className="object-cover"
@@ -588,7 +588,7 @@ export default function DraftAssistantPage() {
                         <div className="w-12 h-12 rounded overflow-hidden border border-purple-500/30 bg-slate-700">
                           <Image
                             src={getItemImageUrl(itemId)}
-                            alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                            alt={getItemNameSync(itemId)}
                             width={48}
                             height={48}
                             className="object-cover"
@@ -618,7 +618,7 @@ export default function DraftAssistantPage() {
                               <div className="w-12 h-12 rounded overflow-hidden border border-blue-500/30 bg-slate-700">
                                 <Image
                                   src={getItemImageUrl(itemId)}
-                                  alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                  alt={getItemNameSync(itemId)}
                                   width={48}
                                   height={48}
                                   className="object-cover"
@@ -643,7 +643,7 @@ export default function DraftAssistantPage() {
                               <div className="w-12 h-12 rounded overflow-hidden border border-red-500/30 bg-slate-700">
                                 <Image
                                   src={getItemImageUrl(itemId)}
-                                  alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                  alt={getItemNameSync(itemId)}
                                   width={48}
                                   height={48}
                                   className="object-cover"
@@ -668,7 +668,7 @@ export default function DraftAssistantPage() {
                               <div className="w-12 h-12 rounded overflow-hidden border border-purple-500/30 bg-slate-700">
                                 <Image
                                   src={getItemImageUrl(itemId)}
-                                  alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                  alt={getItemNameSync(itemId)}
                                   width={48}
                                   height={48}
                                   className="object-cover"
@@ -693,7 +693,7 @@ export default function DraftAssistantPage() {
                               <div className="w-12 h-12 rounded overflow-hidden border border-green-500/30 bg-slate-700">
                                 <Image
                                   src={getItemImageUrl(itemId)}
-                                  alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                  alt={getItemNameSync(itemId)}
                                   width={48}
                                   height={48}
                                   className="object-cover"
@@ -718,7 +718,7 @@ export default function DraftAssistantPage() {
                               <div className="w-12 h-12 rounded overflow-hidden border border-yellow-500/30 bg-slate-700">
                                 <Image
                                   src={getItemImageUrl(itemId)}
-                                  alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                  alt={getItemNameSync(itemId)}
                                   width={48}
                                   height={48}
                                   className="object-cover"
