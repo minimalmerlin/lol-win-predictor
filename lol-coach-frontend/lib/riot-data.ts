@@ -44,12 +44,33 @@ export async function getChampionDetailByName(nameOrId: string): Promise<Champio
   } catch { return null; }
 }
 
-export function getChampionImageUrl(id: string, version: string): string {
+export function getChampionImageUrl(id: string, version: string = "14.24.1"): string {
   return `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`;
 }
-export function getSpellImageUrl(imgName: string, version: string): string {
+export function getSpellImageUrl(imgName: string, version: string = "14.24.1"): string {
   return `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${imgName}`;
 }
-export function getPassiveImageUrl(imgName: string, version: string): string {
+export function getPassiveImageUrl(imgName: string, version: string = "14.24.1"): string {
   return `https://ddragon.leagueoflegends.com/cdn/${version}/img/passive/${imgName}`;
+}
+
+// --- ITEM HELPERS (Added to fix Build Errors in Draft Page) ---
+
+/**
+ * Generiert die URL für ein Item-Icon basierend auf der ID.
+ * Default Version fallback, falls keine Version übergeben wird.
+ */
+export function getItemImageUrl(id: string | number, version: string = "14.24.1"): string {
+  return `https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${id}.png`;
+}
+
+/**
+ * Legacy Support: Früher hatten wir eine lokale Item-Datenbank für Namen.
+ * Da wir jetzt API-first sind, geben wir als Fallback die ID zurück,
+ * bis wir einen asynchronen Item-Fetcher gebaut haben.
+ * Dies verhindert, dass app/draft/page.tsx abstürzt.
+ */
+export function getItemNameSync(id: string | number): string {
+  // TODO: Später durch echten Async-Call ersetzen oder Item-Liste cachen
+  return `Item ${id}`;
 }
