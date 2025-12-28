@@ -1,29 +1,47 @@
 import React from 'react';
+import Link from 'next/link';
+import { ChampionDto, getChampionImageUrl } from '@/lib/riot-data';
 
-// Props definieren
 interface ChampionCardProps {
-  championName: string; // Der "Key" name für die URL (z.B. "Aatrox")
-  version: string;      // Die aktuelle Patch-Version (z.B. "14.1.1")
+  champion: ChampionDto;
+  version?: string; // Optional, da riot-data jetzt einen Default hat
 }
 
-export const ChampionCard = ({ championName, version }: ChampionCardProps) => {
-  // URL generieren
-  const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championName}.png`;
+export const ChampionCard = ({ champion, version = "14.24.1" }: ChampionCardProps) => {
+  // WICHTIG: Riot nutzt für Bilder IMMER die ID (z.B. "MonkeyKing"), nie den Namen ("Wukong").
+  // Wir nutzen die ID auch für die URL, um Encoding-Probleme (Leerzeichen, Apostrophe) zu vermeiden.
 
   return (
-    <div className="flex flex-col items-center p-2 border border-slate-700 bg-slate-900 rounded-lg hover:border-blue-500 transition-all">
-      <div className="relative w-16 h-16 mb-2">
-        <img 
-          src={imageUrl} 
-          alt={championName}
-          className="rounded-full border-2 border-slate-600"
-          // Fallback, falls Bild nicht lädt (z.B. neuer Champ)
+    <Link
+      href={`/champion/${champion.id}`}
+      className="block group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 hover:border-[#1E90FF] transition-all duration-300 hover:shadow-[0_0_20px_rgba(30,144,255,0.3)] hover:-translate-y-1"
+    >
+      {/* Image Container */}
+      <div className="aspect-square w-full overflow-hidden relative">
+        <img
+          src={getChampionImageUrl(champion.id, version)}
+          alt={champion.name}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+          // Fallback falls Bild kaputt ist
           onError={(e) => {
-            (e.target as HTMLImageElement).src = '/fallback-icon.png';
+            (e.target as HTMLImageElement).src = "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Poro_0.jpg";
           }}
         />
+
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+
+        {/* Name Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-3">
+          <h3 className="text-white font-bold text-lg tracking-wide group-hover:text-[#1E90FF] transition-colors truncate">
+            {champion.name}
+          </h3>
+          <p className="text-xs text-slate-400 truncate">
+            {champion.title}
+          </p>
+        </div>
       </div>
-      <span className="text-xs font-bold text-slate-200">{championName}</span>
-    </div>
+    </Link>
   );
 };
