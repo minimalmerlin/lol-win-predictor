@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
+// Fonts are loaded via Google Fonts CDN in globals.css
+// Chakra Petch for headings, Inter for body text
 
 export const metadata: Metadata = {
   title: "LoL Coach - AI-Powered Win Prediction",
@@ -23,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body
-        className={`${inter.variable} antialiased font-sans`}
+        className="antialiased"
         suppressHydrationWarning
       >
         {children}
