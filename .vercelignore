@@ -1,12 +1,10 @@
 # Vercel Ignore - Exclude Python backend files (not needed for Next.js deployment)
-api/
 __pycache__/
 *.pyc
 .env
 .DS_Store
 *.log
 models/
-data/
 *.pkl
 *.joblib
 requirements*.txt
@@ -16,3 +14,9 @@ tests/
 runtime.txt
 DEPLOYMENT_GUIDE.md
 VERCEL_DEPLOYMENT.md
+
+# Exclude large data files but keep champion data JSONs
+data/*.csv
+data/*.txt
+data/crawler_state/
+data/champion_data/champion_matches_*.json
