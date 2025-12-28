@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { ArrowLeft, TrendingUp, Users, AlertTriangle, Target, ShoppingBag, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getChampionImageUrl, getItemImageUrl, ITEM_NAMES } from '@/lib/riot-assets';
+import { getChampionImageUrl, getItemImageUrl, getItemNameSync } from '@/lib/riot-data';
 import ChampionSearch from '@/components/ChampionSearch';
 import {
   Select,
@@ -514,7 +514,7 @@ export default function DraftAssistantPage() {
                       <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-green-500/50 bg-slate-700">
                         <Image
                           src={getItemImageUrl(itemId)}
-                          alt={ITEM_NAMES[itemId] || `Item ${itemId}`}
+                          alt={getItemNameSync(itemId)}
                           width={64}
                           height={64}
                           className="object-cover"
@@ -522,7 +522,7 @@ export default function DraftAssistantPage() {
                         />
                       </div>
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                        {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                        {getItemNameSync(itemId)}
                       </div>
                     </div>
                   ))}
@@ -548,7 +548,7 @@ export default function DraftAssistantPage() {
                           />
                         </div>
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                          {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                          {getItemNameSync(itemId)}
                         </div>
                       </div>
                     ))}
@@ -572,7 +572,7 @@ export default function DraftAssistantPage() {
                           />
                         </div>
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                          {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                          {getItemNameSync(itemId)}
                         </div>
                       </div>
                     ))}
@@ -596,7 +596,7 @@ export default function DraftAssistantPage() {
                           />
                         </div>
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                          {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                          {getItemNameSync(itemId)}
                         </div>
                       </div>
                     ))}
@@ -626,7 +626,7 @@ export default function DraftAssistantPage() {
                                 />
                               </div>
                               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                                {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                {getItemNameSync(itemId)}
                               </div>
                             </div>
                           ))}
@@ -651,7 +651,7 @@ export default function DraftAssistantPage() {
                                 />
                               </div>
                               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                                {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                {getItemNameSync(itemId)}
                               </div>
                             </div>
                           ))}
@@ -676,7 +676,7 @@ export default function DraftAssistantPage() {
                                 />
                               </div>
                               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                                {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                {getItemNameSync(itemId)}
                               </div>
                             </div>
                           ))}
@@ -701,7 +701,7 @@ export default function DraftAssistantPage() {
                                 />
                               </div>
                               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                                {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                {getItemNameSync(itemId)}
                               </div>
                             </div>
                           ))}
@@ -726,7 +726,7 @@ export default function DraftAssistantPage() {
                                 />
                               </div>
                               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                                {ITEM_NAMES[itemId] || `Item ${itemId}`}
+                                {getItemNameSync(itemId)}
                               </div>
                             </div>
                           ))}

@@ -12,8 +12,8 @@ import {
   getChampionImageUrl,
   getChampionSplashUrl,
   getItemImageUrl,
-  getItemName
-} from '@/lib/riot-assets';
+  getItemNameSync
+} from '@/lib/riot-data';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
@@ -269,12 +269,12 @@ export default function ChampionDetailPage() {
                             <div
                               key={itemIdx}
                               className="relative group"
-                              title={getItemName(itemId)}
+                              title={getItemNameSync(itemId)}
                             >
                               <div className="w-12 h-12 rounded border-2 border-slate-600 overflow-hidden hover:border-blue-500 transition-colors">
                                 <Image
                                   src={getItemImageUrl(itemId)}
-                                  alt={getItemName(itemId)}
+                                  alt={getItemNameSync(itemId)}
                                   width={48}
                                   height={48}
                                   className="object-cover"
@@ -287,7 +287,7 @@ export default function ChampionDetailPage() {
                               </div>
                               {/* Tooltip */}
                               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
-                                {getItemName(itemId)}
+                                {getItemNameSync(itemId)}
                               </div>
                             </div>
                           ))}

@@ -8,25 +8,40 @@
 - ✅ **NO local image files** - everything from Riot Data Dragon API
 - ✅ **NO outdated Mythic items** - always shows current items
 - ✅ **Cached for performance** - 1 hour cache to reduce API calls
+- ✅ **Single source of truth** - `lib/riot-data.ts` handles everything
 
-## Two-Layer Architecture
+## Single Source: `lib/riot-data.ts`
 
-### 1. Core Dynamic API: `lib/riot-data.ts`
-
-The intelligent layer that **automatically** fetches data from Riot:
+The **only** file that defines image URLs and Riot API integration:
 
 ```typescript
-import { getLatestChampionData, getLatestItemData, getLatestVersion } from '@/lib/riot-data';
+import {
+  getLatestChampionData,
+  getLatestItemData,
+  getLatestVersion,
+  getChampionImageUrl,
+  getItemImageUrl,
+  getItemNameSync
+} from '@/lib/riot-data';
 
-// Fetch latest patch version (e.g., "14.24.1")
+// Async: Fetch latest patch version (e.g., "14.24.1")
 const version = await getLatestVersion();
 
-// Fetch ALL champions with correct IDs
+// Async: Fetch ALL champions with correct IDs
 const { champions } = await getLatestChampionData();
 // Returns: [{ id: "MonkeyKing", name: "Wukong", ... }, ...]
 
-// Fetch ALL items (no outdated Mythics!)
+// Async: Fetch ALL items (no outdated Mythics!)
 const { items } = await getLatestItemData();
+
+// Sync: Get champion image URL (uses cached version)
+const champUrl = getChampionImageUrl("Thresh");
+
+// Sync: Get item image URL (uses cached version)
+const itemUrl = getItemImageUrl(3157);
+
+// Sync: Get item name (uses cached data)
+const itemName = getItemNameSync(3157);
 ```
 
 **Benefits:**
@@ -34,24 +49,39 @@ const { items } = await getLatestItemData();
 - Solves "Wukong vs MonkeyKing" problem automatically
 - New champions work immediately
 - Never recommends removed items
-
-### 2. Compatibility Wrapper: `lib/riot-assets.ts`
-
-Backward-compatible wrapper for existing components:
-
-```typescript
-import { getChampionImageUrl, getItemImageUrl } from '@/lib/riot-assets';
-
-// Simple synchronous calls (uses cached version)
-const url = getChampionImageUrl("Thresh");
-const itemUrl = getItemImageUrl(3157);
-```
+- Single file to maintain
 
 ## Usage Examples
 
-### For New Code (Recommended)
+### Simple Synchronous Usage
 
-Use the dynamic API directly:
+For most components, use the synchronous helpers:
+
+```tsx
+import { getChampionImageUrl, getItemImageUrl, getItemNameSync } from '@/lib/riot-data';
+
+// Champion image
+<Image
+  src={getChampionImageUrl("Thresh")}
+  alt="Thresh"
+  width={64}
+  height={64}
+  unoptimized
+/>
+
+// Item image with name
+<Image
+  src={getItemImageUrl(3157)}
+  alt={getItemNameSync(3157)}
+  width={48}
+  height={48}
+  unoptimized
+/>
+```
+
+### Advanced: Async Data Fetching
+
+For components that need the full dataset:
 
 ```tsx
 'use client';
@@ -59,25 +89,22 @@ import { useEffect, useState } from 'react';
 import { getLatestChampionData, getChampionImageUrl } from '@/lib/riot-data';
 
 export default function ChampionList() {
-  const [version, setVersion] = useState('');
   const [champions, setChampions] = useState([]);
 
   useEffect(() => {
     async function load() {
-      const data = await getLatestChampionData();
-      setVersion(data.version);
-      setChampions(data.champions);
+      const { champions } = await getLatestChampionData();
+      setChampions(champions);
     }
     load();
   }, []);
 
   return (
     <div>
-      <p>Patch {version}</p>
       {champions.map(champ => (
         <img
           key={champ.id}
-          src={getChampionImageUrl(champ.id, version)}
+          src={getChampionImageUrl(champ.name)}
           alt={champ.name}
         />
       ))}
@@ -86,25 +113,9 @@ export default function ChampionList() {
 }
 ```
 
-### For Existing Code (Backward Compatible)
-
-Keep using the simple API:
-
-```tsx
-import { getChampionImageUrl, getItemImageUrl } from '@/lib/riot-assets';
-
-<Image
-  src={getChampionImageUrl("Thresh")}
-  alt="Thresh"
-  width={64}
-  height={64}
-  unoptimized
-/>
-```
-
 ## Key Functions
 
-### Dynamic API (`riot-data.ts`)
+### Async Functions (Data Fetching)
 
 | Function | Description | Returns |
 |----------|-------------|---------|
@@ -113,16 +124,16 @@ import { getChampionImageUrl, getItemImageUrl } from '@/lib/riot-assets';
 | `getLatestItemData()` | Get all items + version | `Promise<{ version, items }>` |
 | `getChampionIdByName(name)` | Find champion ID by name | `Promise<string \| null>` |
 | `getItemName(itemId)` | Get item name (always current) | `Promise<string>` |
-| `clearCache()` | Force refresh data | `void` |
 
-### Wrapper API (`riot-assets.ts`)
+### Sync Functions (URL Helpers)
 
 | Function | Description | Returns |
 |----------|-------------|---------|
 | `getChampionImageUrl(name)` | Champion portrait URL | `string` |
 | `getChampionSplashUrl(name)` | Splash art URL | `string` |
 | `getItemImageUrl(itemId)` | Item icon URL | `string` |
-| `getItemName(itemId)` | Item name (async) | `Promise<string>` |
+| `getItemNameSync(itemId)` | Item name (from cache) | `string` |
+| `clearCache()` | Force refresh all cached data | `void` |
 
 ## Caching Strategy
 
@@ -199,30 +210,12 @@ images: {
 }
 ```
 
-## Migration Path
+## Important Notes
 
-Existing code using `riot-assets.ts` will continue to work.
-
-**To migrate to dynamic API:**
-
-1. Replace imports:
-```typescript
-// Before
-import { getChampionImageUrl } from '@/lib/riot-assets';
-
-// After
-import { getLatestChampionData, getChampionImageUrl } from '@/lib/riot-data';
-```
-
-2. Fetch data on component mount:
-```typescript
-const { version, champions } = await getLatestChampionData();
-```
-
-3. Use version in URL generation:
-```typescript
-getChampionImageUrl(champion.id, version)
-```
+- **Single source of truth**: Only `lib/riot-data.ts` exists - `riot-assets.ts` has been removed
+- **Auto-updates**: Version is fetched automatically on module load and cached for 1 hour
+- **Name variations**: Champion name mapping (e.g., "Wukong" → "MonkeyKing") is handled automatically
+- **Fallback**: If cache is empty, uses fallback version "14.24.1"
 
 ## Components Using Images
 

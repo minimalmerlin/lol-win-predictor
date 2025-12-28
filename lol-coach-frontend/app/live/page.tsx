@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { ArrowLeft, Activity, TrendingUp, Clock, Trophy, Zap, AlertCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getChampionImageUrl } from '@/lib/riot-assets';
+import { getChampionImageUrl } from '@/lib/riot-data';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 

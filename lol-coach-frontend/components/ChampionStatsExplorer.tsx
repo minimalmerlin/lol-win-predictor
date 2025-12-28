@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { api, type Champion } from '@/lib/api';
 import { ExternalLink } from 'lucide-react';
-import { getChampionImageUrl } from '@/lib/riot-assets';
+import { getChampionImageUrl } from '@/lib/riot-data';
 
 export default function ChampionStatsExplorer() {
   const router = useRouter();

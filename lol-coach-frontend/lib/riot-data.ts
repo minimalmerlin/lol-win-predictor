@@ -147,18 +147,76 @@ export async function getChampionIdByName(name: string): Promise<string | null> 
 }
 
 /**
- * URL Helpers (use dynamic version)
+ * URL Helpers
  */
-export function getChampionImageUrl(championId: string, version: string): string {
-  return `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championId}.png`;
+
+// Synchronous cached version for immediate use
+let syncCachedVersion = '14.24.1';
+
+// Update sync cache when version is fetched
+getLatestVersion().then(v => {
+  syncCachedVersion = v;
+  console.log(`🎮 Riot Data Dragon v${v} loaded`);
+});
+
+// Champion name mapping for common variations
+const CHAMPION_NAME_MAP: Record<string, string> = {
+  'MissFortune': 'MissFortune',
+  'Miss Fortune': 'MissFortune',
+  'DrMundo': 'DrMundo',
+  'Dr. Mundo': 'DrMundo',
+  'Dr Mundo': 'DrMundo',
+  'JarvanIV': 'JarvanIV',
+  'Jarvan IV': 'JarvanIV',
+  'KhaZix': 'Khazix',
+  "Kha'Zix": 'Khazix',
+  'KogMaw': 'KogMaw',
+  "Kog'Maw": 'KogMaw',
+  'LeBlanc': 'Leblanc',
+  'LeeSin': 'LeeSin',
+  'Lee Sin': 'LeeSin',
+  'MasterYi': 'MasterYi',
+  'Master Yi': 'MasterYi',
+  'MonkeyKing': 'MonkeyKing',
+  'Wukong': 'MonkeyKing',
+  'RekSai': 'RekSai',
+  "Rek'Sai": 'RekSai',
+  'TahmKench': 'TahmKench',
+  'Tahm Kench': 'TahmKench',
+  'TwistedFate': 'TwistedFate',
+  'Twisted Fate': 'TwistedFate',
+  'VelKoz': 'Velkoz',
+  "Vel'Koz": 'Velkoz',
+  'XinZhao': 'XinZhao',
+  'Xin Zhao': 'XinZhao',
+  "Cho'Gath": 'Chogath',
+  'ChoGath': 'Chogath',
+  'AurelionSol': 'AurelionSol',
+  'Aurelion Sol': 'AurelionSol',
+};
+
+/**
+ * Get champion image URL (synchronous - uses cached version)
+ * Handles name variations automatically
+ */
+export function getChampionImageUrl(championName: string): string {
+  const mappedName = CHAMPION_NAME_MAP[championName] || championName.replace(/\s/g, '');
+  return `https://ddragon.leagueoflegends.com/cdn/${syncCachedVersion}/img/champion/${mappedName}.png`;
 }
 
-export function getChampionSplashUrl(championId: string): string {
-  return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championId}_0.jpg`;
+/**
+ * Get champion splash art URL (synchronous)
+ */
+export function getChampionSplashUrl(championName: string): string {
+  const mappedName = CHAMPION_NAME_MAP[championName] || championName.replace(/\s/g, '');
+  return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mappedName}_0.jpg`;
 }
 
-export function getItemImageUrl(itemId: number | string, version: string): string {
-  return `https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${itemId}.png`;
+/**
+ * Get item image URL (synchronous - uses cached version)
+ */
+export function getItemImageUrl(itemId: number | string): string {
+  return `https://ddragon.leagueoflegends.com/cdn/${syncCachedVersion}/img/item/${itemId}.png`;
 }
 
 /**
@@ -168,6 +226,17 @@ export async function getItemName(itemId: number | string): Promise<string> {
   const { items } = await getLatestItemData();
   const item = items.get(String(itemId));
   return item?.name || `Item ${itemId}`;
+}
+
+/**
+ * Get item name synchronously (may not have latest data immediately)
+ */
+export function getItemNameSync(itemId: number | string): string {
+  if (cachedItems) {
+    const item = cachedItems.get(String(itemId));
+    if (item) return item.name;
+  }
+  return `Item ${itemId}`;
 }
 
 /**
