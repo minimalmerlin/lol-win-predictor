@@ -34,7 +34,7 @@ export default function Home() {
                 />
               </div>
               <h1 className="text-xl font-bold cortana-glow" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                UNSC Tactical Command
+                GAMING WAR ROOM
               </h1>
             </div>
 
@@ -47,7 +47,7 @@ export default function Home() {
                 className="btn-primary h-9 px-4"
               >
                 <Target className="mr-2 h-4 w-4" />
-                DRAFT
+                WAR DRAFT
               </Button>
               <Button
                 variant="ghost"
@@ -55,7 +55,7 @@ export default function Home() {
                 className="btn-primary h-9 px-4"
               >
                 <Activity className="mr-2 h-4 w-4" />
-                LIVE
+                LIVE COMBAT
               </Button>
             </nav>
           </div>
@@ -67,7 +67,7 @@ export default function Home() {
       <section className="relative overflow-hidden py-20 sm:py-32">
         {/* Grid overlay effect - Halo tactical grid */}
         <div className="absolute inset-0 opacity-10 scan-lines" style={{
-          backgroundImage: 'linear-gradient(rgba(76,201,240,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(76,201,240,0.1) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(30,144,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(30,144,255,0.12) 1px, transparent 1px)',
           backgroundSize: '50px 50px'
         }} />
         
@@ -77,7 +77,7 @@ export default function Home() {
             <div className="mb-8 flex justify-center">
               <div className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-card/50 px-4 py-2 backdrop-blur-sm">
                 <div className="hex-point" />
-                <span className="stat-label">System Active</span>
+                <span className="stat-label">Systems Online</span>
                 <div className="h-2 w-2 rounded-full bg-[rgb(0,230,118)]" style={{
                   boxShadow: '0 0 10px rgba(0,230,118,0.8)'
                 }} />
@@ -87,28 +87,28 @@ export default function Home() {
             {/* Main Heading */}
             <div className="text-center space-y-6">
               <h2 className="text-6xl sm:text-8xl font-bold leading-none" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                <span className="cortana-glow">TACTICAL WARFARE</span>
+                <span className="cortana-glow">VICTORY AI</span>
                 <br />
-                <span className="text-foreground">WIN PREDICTION</span>
+                <span className="text-foreground">PREDICTION ENGINE</span>
               </h2>
-              
+
               <p className="text-lg sm:text-xl text-card-foreground max-w-2xl mx-auto">
-                UNSC Strategic Command - Real-time battlefield intelligence for superior tactical advantage
+                Advanced AI analytics - Real-time match intelligence for competitive gaming supremacy
               </p>
 
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto pt-8">
                 <div className="text-center">
                   <div className="stat-value">90.9%</div>
-                  <div className="stat-label">Accuracy</div>
+                  <div className="stat-label">Win Accuracy</div>
                 </div>
                 <div className="text-center">
                   <div className="stat-value">360K+</div>
                   <div className="stat-label">Matches</div>
                 </div>
                 <div className="text-center">
-                  <div className="stat-value">Real-Time</div>
-                  <div className="stat-label">Analysis</div>
+                  <div className="stat-value">Live</div>
+                  <div className="stat-label">Game Feed</div>
                 </div>
               </div>
               
@@ -120,17 +120,17 @@ export default function Home() {
                   className="btn-primary h-14 px-10 text-base"
                 >
                   <Cpu className="mr-2 h-5 w-5" />
-                  INITIATE TACTICAL SCAN
+                  START ANALYSIS
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   onClick={() => router.push('/live')}
-                  className="h-14 px-10 text-base border-[rgba(0,150,199,0.4)] text-[rgb(0,150,199)] hover:bg-[rgba(0,150,199,0.2)]"
-                  style={{textShadow: '0 0 8px rgba(0,150,199,0.6)'}}
+                  className="h-14 px-10 text-base border-[rgba(0,100,180,0.4)] text-[rgb(0,100,180)] hover:bg-[rgba(0,100,180,0.2)]"
+                  style={{textShadow: '0 0 10px rgba(0,100,180,0.7)'}}
                 >
                   <Activity className="mr-2 h-5 w-5" />
-                  LIVE BATTLEFIELD MONITOR
+                  LIVE GAME FEED
                 </Button>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-              <span className="text-foreground">TACTICAL WARFARE SYSTEMS</span>
+              <span className="text-foreground">ANALYSIS MODULES</span>
             </h2>
             <div className="terminal-line w-64 mx-auto" />
           </div>
@@ -155,8 +155,8 @@ export default function Home() {
                 className="hud-card data-[state=active]:border-primary/60 rounded-lg py-6 px-4"
               >
                 <div className="flex flex-col items-center gap-2">
-                  <Cpu className="h-8 w-8 text-primary" style={{filter: 'drop-shadow(0 0 6px rgba(76,201,240,0.8))'}} />
-                  <div className="stat-label">Win Predictor</div>
+                  <Cpu className="h-8 w-8 text-primary" style={{filter: 'drop-shadow(0 0 8px rgba(30,144,255,0.9))'}} />
+                  <div className="stat-label">Victory AI</div>
                   <div className="text-xs text-card-foreground/60">90.9% Accuracy</div>
                 </div>
               </TabsTrigger>
@@ -165,8 +165,8 @@ export default function Home() {
                 className="hud-card data-[state=active]:border-primary/60 rounded-lg py-6 px-4"
               >
                 <div className="flex flex-col items-center gap-2">
-                  <TrendingUp className="h-8 w-8 text-primary" style={{filter: 'drop-shadow(0 0 6px rgba(76,201,240,0.8))'}} />
-                  <div className="stat-label">Champion Analytics</div>
+                  <TrendingUp className="h-8 w-8 text-primary" style={{filter: 'drop-shadow(0 0 8px rgba(30,144,255,0.9))'}} />
+                  <div className="stat-label">Player Analytics</div>
                   <div className="text-xs text-card-foreground/60">Deep Stats</div>
                 </div>
               </TabsTrigger>
@@ -175,9 +175,9 @@ export default function Home() {
                 className="hud-card data-[state=active]:border-accent/60 rounded-lg py-6 px-4"
               >
                 <div className="flex flex-col items-center gap-2">
-                  <Activity className="h-8 w-8 text-accent" style={{filter: 'drop-shadow(0 0 6px rgba(0,150,199,0.8))'}} />
-                  <div className="stat-label">Tactical Builds</div>
-                  <div className="text-xs text-card-foreground/60">Adaptive</div>
+                  <Activity className="h-8 w-8 text-accent" style={{filter: 'drop-shadow(0 0 8px rgba(0,100,180,0.9))'}} />
+                  <div className="stat-label">Build Optimizer</div>
+                  <div className="text-xs text-card-foreground/60">Adaptive Builds</div>
                 </div>
               </TabsTrigger>
             </TabsList>
@@ -189,10 +189,10 @@ export default function Home() {
                     <div className="hex-point" />
                     <div>
                       <h3 className="text-2xl font-bold" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                        VICTORY PREDICTION ENGINE
+                        AI VICTORY PREDICTOR
                       </h3>
                       <p className="text-sm text-card-foreground/70">
-                        Real-time tactical probability analysis based on team composition
+                        Machine learning win prediction - Analyze team composition for competitive advantage
                       </p>
                     </div>
                   </div>
@@ -206,10 +206,10 @@ export default function Home() {
                     <div className="hex-point" />
                     <div>
                       <h3 className="text-2xl font-bold" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                        OPERATIVE ANALYTICS
+                        CHAMPION DATABASE
                       </h3>
                       <p className="text-sm text-card-foreground/70">
-                        Combat performance metrics and battlefield statistics
+                        Complete player stats - Win rates, performance metrics, and competitive effectiveness
                       </p>
                     </div>
                   </div>
@@ -220,13 +220,13 @@ export default function Home() {
               <TabsContent value="items" className="m-0">
                 <div className="hud-card rounded-lg p-6">
                   <div className="flex items-center gap-3 mb-6 pb-4 border-b border-accent/30">
-                    <div className="hex-point" style={{background: 'rgb(0,150,199)', boxShadow: '0 0 10px rgba(0,150,199,0.8)'}} />
+                    <div className="hex-point" style={{background: 'rgb(0,100,180)', boxShadow: '0 0 12px rgba(0,100,180,0.9)'}} />
                     <div>
                       <h3 className="text-2xl font-bold" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                        TACTICAL EQUIPMENT LOADOUTS
+                        ADAPTIVE BUILD SYSTEM
                       </h3>
                       <p className="text-sm text-card-foreground/70">
-                        Adaptive weapon systems based on battlefield conditions
+                        Dynamic item recommendations - Optimized builds adapted to enemy matchups
                       </p>
                     </div>
                   </div>
@@ -245,10 +245,10 @@ export default function Home() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 mb-4">
                 <Search className="h-5 w-5 text-primary" />
-                <span className="stat-label">Quick Access</span>
+                <span className="stat-label">Fast Deploy</span>
               </div>
               <h2 className="text-3xl font-bold" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                OPERATIVE DATABASE
+                CHAMPION ROSTER
               </h2>
             </div>
             <div className="hud-card rounded-lg p-8">
@@ -266,33 +266,33 @@ export default function Home() {
             <div className="flex items-center justify-center gap-3">
               <Image
                 src="/logo.png"
-                alt="LoL Coach"
+                alt="War Room"
                 width={32}
                 height={32}
-                className="drop-shadow-[0_0_12px_rgba(76,201,240,0.8)]"
+                className="drop-shadow-[0_0_15px_rgba(30,144,255,0.9)]"
               />
               <span className="text-xl font-bold cortana-glow" style={{fontFamily: "'Rajdhani', sans-serif"}}>
-                UNSC TACTICAL COMMAND
+                GAMING WAR ROOM
               </span>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
               <div className="stat-label">
                 <div className="text-primary text-sm mb-1">◆</div>
-                Advanced AI Analysis
+                Neural AI Engine
               </div>
               <div className="stat-label">
                 <div className="text-accent text-sm mb-1">◆</div>
-                Real-Time Battlefield Intel
+                Live Match Analytics
               </div>
               <div className="stat-label">
-                <div className="text-[rgb(6,214,160)] text-sm mb-1">◆</div>
-                90.9% Combat Accuracy
+                <div className="text-[rgb(0,200,140)] text-sm mb-1">◆</div>
+                90.9% Win Accuracy
               </div>
             </div>
-            
+
             <div className="text-xs text-card-foreground/50 pt-4 border-t border-primary/10">
-              CLASSIFIED SPARTAN PROGRAM • 360,000+ Combat Simulations Analyzed • Neural Network Warfare Engine
+              ADVANCED GAMING INTELLIGENCE • 360,000+ Match Simulations • AI-Powered Victory Network
             </div>
           </div>
         </div>

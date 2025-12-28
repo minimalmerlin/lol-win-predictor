@@ -5,8 +5,8 @@ import "./globals.css";
 // Rajdhani for headings (military-tech style), Inter for body text
 
 export const metadata: Metadata = {
-  title: "UNSC Tactical Command - Halo-Inspired LoL Strategy",
-  description: "Military-grade tactical intelligence system - Real-time win prediction, operative analytics, and strategic loadout recommendations",
+  title: "GAMING WAR ROOM - AI Victory System",
+  description: "Elite gaming intelligence platform - Deploy AI-powered match analytics, player intel, and adaptive build strategies for competitive domination",
   icons: {
     icon: "/favicon.png",
     apple: "/logo.png",

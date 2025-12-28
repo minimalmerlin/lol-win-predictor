@@ -48,57 +48,57 @@
   --radius-4xl: 24px;
 }
 
-/* Halo-Inspired Strategic Interface - Dark Mode Design */
+/* Halo-Inspired Strategic Interface - Ultra Dark Mode Design */
 :root {
   --radius: 4px;
 
-  /* The Void - Backgrounds */
-  --background: 0 8 20;             /* Deep Space Black #000814 */
-  --card: 0 29 61;                  /* UNSC Navy #001D3D */
-  --popover: 0 29 61;
+  /* The Void - Ultra Dark Backgrounds */
+  --background: 0 3 12;             /* Ultra Deep Space Black #00030C */
+  --card: 0 15 35;                  /* Dark UNSC Navy #000F23 */
+  --popover: 0 15 35;
 
-  /* Holographic Elements - Primary Colors */
-  --primary: 76 201 240;            /* Cortana Blue #4CC9F0 */
-  --accent: 0 150 199;              /* Shield Blue #0096C7 */
+  /* Holographic Elements - Deep Blue Primary Colors */
+  --primary: 30 144 255;            /* Deep Tactical Blue #1E90FF */
+  --accent: 0 100 180;              /* Deep Shield Blue #0064B4 */
 
   /* Text Colors */
-  --foreground: 232 241 245;        /* Tech White #E8F1F5 */
-  --card-foreground: 144 184 216;   /* Tactical Grey #90B8D8 */
-  --popover-foreground: 144 184 216;
+  --foreground: 200 220 240;        /* Bright Tech White #C8DCF0 */
+  --card-foreground: 100 150 200;   /* Deep Tactical Grey #6496C8 */
+  --popover-foreground: 100 150 200;
 
   /* UI Elements */
-  --primary-foreground: 0 8 20;
-  --accent-foreground: 0 8 20;
-  --secondary: 0 53 102;            /* Tactical Blue #003566 */
-  --secondary-foreground: 144 184 216;
-  --muted: 0 53 102;
-  --muted-foreground: 144 184 216;
+  --primary-foreground: 0 3 12;
+  --accent-foreground: 0 3 12;
+  --secondary: 0 30 70;             /* Deep Tactical Blue #001E46 */
+  --secondary-foreground: 100 150 200;
+  --muted: 0 20 50;
+  --muted-foreground: 100 150 200;
 
   /* Borders */
-  --border: 76 201 240 / 0.4;       /* Cortana Blue with transparency */
-  --input: 76 201 240 / 0.3;
-  --ring: 76 201 240;
+  --border: 30 144 255 / 0.35;      /* Deep Blue with transparency */
+  --input: 30 144 255 / 0.25;
+  --ring: 30 144 255;
 
   /* Semantic Colors */
-  --destructive: 239 71 111;        /* Danger Red #EF476F */
+  --destructive: 220 40 90;         /* Deep Danger Red #DC285A */
   --destructive-foreground: 255 255 255;
 
   /* Charts - Halo Palette */
-  --chart-1: 76 201 240;            /* Cortana Blue */
-  --chart-2: 0 150 199;             /* Shield Blue */
-  --chart-3: 6 214 160;             /* Success Green */
-  --chart-4: 255 183 3;             /* Alert Orange */
-  --chart-5: 239 71 111;            /* Danger Red */
+  --chart-1: 30 144 255;            /* Deep Tactical Blue */
+  --chart-2: 0 100 180;             /* Deep Shield Blue */
+  --chart-3: 0 200 140;             /* Success Green */
+  --chart-4: 255 165 0;             /* Alert Orange */
+  --chart-5: 220 40 90;             /* Danger Red */
 
   /* Sidebar */
-  --sidebar: 0 8 20;
-  --sidebar-foreground: 144 184 216;
-  --sidebar-primary: 76 201 240;
-  --sidebar-primary-foreground: 0 8 20;
-  --sidebar-accent: 0 29 61;
-  --sidebar-accent-foreground: 144 184 216;
-  --sidebar-border: 76 201 240 / 0.4;
-  --sidebar-ring: 76 201 240;
+  --sidebar: 0 3 12;
+  --sidebar-foreground: 100 150 200;
+  --sidebar-primary: 30 144 255;
+  --sidebar-primary-foreground: 0 3 12;
+  --sidebar-accent: 0 15 35;
+  --sidebar-accent-foreground: 100 150 200;
+  --sidebar-border: 30 144 255 / 0.35;
+  --sidebar-ring: 30 144 255;
 }
 
 @layer base {
@@ -141,31 +141,31 @@
 
 /* Holographic Glow Effects - Halo Style */
 .holo-glow {
-  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8),
-               0 0 20px rgba(76, 201, 240, 0.4);
+  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9),
+               0 0 24px rgba(30, 144, 255, 0.5);
 }
 
 .cortana-glow {
-  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8),
-               0 0 20px rgba(76, 201, 240, 0.4);
+  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9),
+               0 0 24px rgba(30, 144, 255, 0.5);
 }
 
 .box-glow {
-  box-shadow: 0 0 20px rgba(76, 201, 240, 0.3),
-              inset 0 0 30px rgba(76, 201, 240, 0.05);
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.4),
+              inset 0 0 35px rgba(30, 144, 255, 0.08);
 }
 
 .shield-glow {
-  box-shadow: 0 0 20px rgba(0, 150, 199, 0.3),
-              inset 0 0 30px rgba(0, 150, 199, 0.05);
+  box-shadow: 0 0 25px rgba(0, 100, 180, 0.4),
+              inset 0 0 35px rgba(0, 100, 180, 0.08);
 }
 
 /* UNSC Terminal UI Elements */
 .hud-card {
   position: relative;
-  background: rgba(0, 29, 61, 0.7);
-  border: 2px solid rgba(76, 201, 240, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 15, 35, 0.8);
+  border: 2px solid rgba(30, 144, 255, 0.35);
+  backdrop-filter: blur(12px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 4px;
 }
@@ -177,9 +177,9 @@
   left: 0;
   width: 10px;
   height: 10px;
-  border-top: 2px solid rgb(76, 201, 240);
-  border-left: 2px solid rgb(76, 201, 240);
-  opacity: 0.8;
+  border-top: 2px solid rgb(30, 144, 255);
+  border-left: 2px solid rgb(30, 144, 255);
+  opacity: 0.9;
 }
 
 .hud-card::after {
@@ -189,15 +189,15 @@
   right: 0;
   width: 10px;
   height: 10px;
-  border-bottom: 2px solid rgb(76, 201, 240);
-  border-right: 2px solid rgb(76, 201, 240);
-  opacity: 0.8;
+  border-bottom: 2px solid rgb(30, 144, 255);
+  border-right: 2px solid rgb(30, 144, 255);
+  opacity: 0.9;
 }
 
 .hud-card:hover {
-  border-color: rgba(76, 201, 240, 0.7);
-  box-shadow: 0 0 20px rgba(76, 201, 240, 0.3),
-              inset 0 0 30px rgba(76, 201, 240, 0.05);
+  border-color: rgba(30, 144, 255, 0.6);
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.4),
+              inset 0 0 35px rgba(30, 144, 255, 0.08);
 }
 
 /* Terminal/HUD Lines */
@@ -205,10 +205,10 @@
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(76, 201, 240, 0.6) 50%,
+    rgba(30, 144, 255, 0.7) 50%,
     transparent 100%
   );
-  box-shadow: 0 0 8px rgba(76, 201, 240, 0.4);
+  box-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
 }
 
 /* Buttons - Halo Terminal Style */
@@ -229,32 +229,32 @@ button:active:not(:disabled) {
 
 .btn-primary {
   background: transparent;
-  border: 2px solid rgb(76, 201, 240);
-  color: rgb(76, 201, 240);
-  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8);
+  border: 2px solid rgb(30, 144, 255);
+  color: rgb(30, 144, 255);
+  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9);
 }
 
 .btn-primary:hover {
-  background: rgba(76, 201, 240, 0.2);
-  box-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
+  background: rgba(30, 144, 255, 0.2);
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.6);
 }
 
 /* Data Visualization - Halo Style */
 .chart-line-primary {
-  stroke: rgb(76, 201, 240);
-  filter: drop-shadow(0 0 4px rgba(76, 201, 240, 0.8));
+  stroke: rgb(30, 144, 255);
+  filter: drop-shadow(0 0 5px rgba(30, 144, 255, 0.9));
 }
 
 .chart-line-secondary {
-  stroke: rgb(0, 150, 199);
-  filter: drop-shadow(0 0 4px rgba(0, 150, 199, 0.8));
+  stroke: rgb(0, 100, 180);
+  filter: drop-shadow(0 0 5px rgba(0, 100, 180, 0.9));
 }
 
 .chart-point {
-  fill: rgb(76, 201, 240);
-  stroke: rgb(0, 8, 20);
+  fill: rgb(30, 144, 255);
+  stroke: rgb(0, 3, 12);
   stroke-width: 2;
-  filter: drop-shadow(0 0 6px rgba(76, 201, 240, 1));
+  filter: drop-shadow(0 0 8px rgba(30, 144, 255, 1));
 }
 
 /* Scanning Animation (HUD Effect) */
@@ -270,33 +270,33 @@ button:active:not(:disabled) {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(76, 201, 240, 0.8), transparent);
-  box-shadow: 0 0 10px rgba(76, 201, 240, 0.6);
+  background: linear-gradient(90deg, transparent, rgba(30, 144, 255, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(30, 144, 255, 0.7);
   animation: scan 3s ease-in-out infinite;
 }
 
 /* Success/Error States - Halo Colors */
 .state-success {
-  color: rgb(6, 214, 160);
-  text-shadow: 0 0 10px rgba(6, 214, 160, 0.6);
+  color: rgb(0, 200, 140);
+  text-shadow: 0 0 12px rgba(0, 200, 140, 0.7);
 }
 
 .state-warning {
-  color: rgb(255, 183, 3);
-  text-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
+  color: rgb(255, 165, 0);
+  text-shadow: 0 0 12px rgba(255, 165, 0, 0.7);
 }
 
 .state-error {
-  color: rgb(239, 71, 111);
-  text-shadow: 0 0 10px rgba(239, 71, 111, 0.6);
+  color: rgb(220, 40, 90);
+  text-shadow: 0 0 12px rgba(220, 40, 90, 0.7);
 }
 
 /* Glass effect for overlays - UNSC Terminal Style */
 .glass-overlay {
-  background: rgba(0, 8, 20, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 2px solid rgba(76, 201, 240, 0.3);
+  background: rgba(0, 3, 12, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 2px solid rgba(30, 144, 255, 0.25);
 }
 
 /* Loading/Processing Indicator - Cortana Style */
@@ -307,8 +307,8 @@ button:active:not(:disabled) {
 
 .processing {
   animation: pulse-cortana 2s ease-in-out infinite;
-  color: rgb(76, 201, 240);
-  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8);
+  color: rgb(30, 144, 255);
+  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9);
 }
 
 /* Stats Display - Tactical HUD Style */
@@ -316,9 +316,9 @@ button:active:not(:disabled) {
   font-family: 'Rajdhani', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: rgb(76, 201, 240);
-  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8),
-               0 0 20px rgba(76, 201, 240, 0.4);
+  color: rgb(30, 144, 255);
+  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9),
+               0 0 24px rgba(30, 144, 255, 0.5);
   text-transform: uppercase;
 }
 
@@ -327,16 +327,16 @@ button:active:not(:disabled) {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgb(144, 184, 216);
+  color: rgb(100, 150, 200);
 }
 
 /* Hexagon accent (like in logo) */
 .hex-point {
   width: 6px;
   height: 6px;
-  background: rgb(76, 201, 240);
+  background: rgb(30, 144, 255);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  box-shadow: 0 0 10px rgba(76, 201, 240, 1);
+  box-shadow: 0 0 12px rgba(30, 144, 255, 1);
 }
 
 /* Scan Lines Effect (Halo Terminal) */
@@ -344,8 +344,8 @@ button:active:not(:disabled) {
   position: relative;
   background-image: repeating-linear-gradient(
     0deg,
-    rgba(76, 201, 240, 0.03),
-    rgba(76, 201, 240, 0.03) 1px,
+    rgba(30, 144, 255, 0.04),
+    rgba(30, 144, 255, 0.04) 1px,
     transparent 1px,
     transparent 2px
   );
