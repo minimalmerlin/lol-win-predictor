@@ -1,5 +1,6 @@
 import { getChampionDetailByName, getLatestVersion, getSpellImageUrl, getPassiveImageUrl } from '@/lib/riot-data';
 import { SynergyWidget } from '@/components/SynergyWidget';
+import ChampionBuilds from '@/components/ChampionBuilds';
 import Link from 'next/link';
 
 // Helper für Data Fetching
@@ -86,23 +87,8 @@ export default async function ChampionPage({ params }: { params: Promise<{ name:
             </ul>
           </section>
 
-          {/* 4. BUILD PLACEHOLDER */}
-          <section className="bg-slate-900 border border-slate-800 p-6 rounded-xl opacity-70">
-             <div className="flex justify-between items-center mb-6">
-                <h3 className="text-orange-400 font-bold text-sm tracking-widest uppercase">Recommended Build</h3>
-                <span className="px-2 py-1 bg-orange-500/10 text-orange-500 text-xs border border-orange-500/20 rounded">CRAWLER UPDATE NEEDED</span>
-             </div>
-             <div className="flex gap-4">
-                {[1,2,3,4,5,6].map(i => (
-                  <div key={i} className="w-16 h-16 bg-slate-950 border border-slate-800 rounded flex items-center justify-center">
-                    <span className="text-slate-700 text-xs">Item {i}</span>
-                  </div>
-                ))}
-             </div>
-             <p className="mt-4 text-sm text-slate-500">
-               Die Item-Daten werden im nächsten System-Update aus den 50k Matches extrahiert.
-             </p>
-          </section>
+          {/* 4. CHAMPION BUILDS */}
+          <ChampionBuilds champName={champion.name} />
         </div>
 
         {/* RIGHT COLUMN (4 cols) */}
