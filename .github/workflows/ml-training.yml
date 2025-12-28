@@ -159,7 +159,13 @@ jobs:
       - name: 🔍 Check for Data/Model Changes
         id: check_changes
         run: |
-          # Check if there are changes in data or model directories
+          # CRITICAL: Force-add files that are normally gitignored
+          # This ensures pipeline-generated data is preserved
+          echo "Force-adding pipeline outputs (override .gitignore)..."
+          git add -f data/clean_training_data_items.csv 2>/dev/null || true
+          git add -f data/clean_training_data_massive.csv 2>/dev/null || true
+
+          # Add other data/model changes normally
           git add -N data/ models/ lol-coach-frontend/public/data/ 2>/dev/null || true
 
           if git diff --quiet data/ models/ lol-coach-frontend/public/data/ 2>/dev/null; then
@@ -184,7 +190,9 @@ jobs:
           git config --global user.name "Victory AI Bot"
           git config --global user.email "actions@github.com"
 
-          # Stage changes
+          # Stage changes (force-add gitignored training data)
+          git add -f data/clean_training_data_items.csv 2>/dev/null || true
+          git add -f data/clean_training_data_massive.csv 2>/dev/null || true
           git add data/ models/ lol-coach-frontend/public/data/ 2>/dev/null || true
 
           # Create commit with timestamp and details
