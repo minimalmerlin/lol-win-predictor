@@ -1,269 +1,173 @@
-"""
-Riot API Match Crawler with Item Data
-Fetches match data including items (item0-item6) for each participant.
-Saves to data/clean_training_data_items.csv
-"""
-
 import requests
+import pandas as pd
 import time
-import csv
 import os
-from datetime import datetime
 
-# ==================== CONFIGURATION ====================
-API_KEY = "YOUR_RIOT_API_KEY_HERE"  # REPLACE WITH YOUR API KEY
-REGION = "europe"  # Match-V5 Region (europe, americas, asia, sea)
-PLATFORM = "euw1"  # Platform for Summoner-V4 (euw1, na1, kr, etc.)
+# ================= CONFIGURATION =================
+# PLATZHALTER: User muss den Key manuell einfügen
+API_KEY = "RGAPI-99f0dd8c-40a0-42d6-8dda-03f6faaa9779"
 
-# Rate limiting: 20 requests per second, 100 requests per 2 minutes
-REQUESTS_PER_SECOND = 20
-REQUESTS_PER_2_MIN = 100
-
-# Output file
+REGION_ROUTING = "europe"   # Für Match-V5 (europe, americas, asia)
+START_PLAYER_NAME = "Agurin" # Seed Player (High Elo Jungler)
+START_PLAYER_TAG = "EUW"
+TARGET_MATCHES = 5000       # Zielanzahl
 OUTPUT_FILE = "data/clean_training_data_items.csv"
-HEADERS = {
+# =================================================
+
+headers = {
     "X-Riot-Token": API_KEY
 }
 
-# ==================== RATE LIMITER ====================
-class RateLimiter:
-    def __init__(self, per_second=20, per_2min=100):
-        self.per_second = per_second
-        self.per_2min = per_2min
-        self.last_request_time = 0
-        self.request_times_2min = []
+def get_puuid(game_name, tag_line):
+    """Holt die PUUID via Account-V1 (Modern Way)"""
+    url = f"https://{REGION_ROUTING}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{game_name}/{tag_line}"
+    resp = requests.get(url, headers=headers)
+    if resp.status_code == 200:
+        return resp.json()['puuid']
+    print(f"❌ Fehler bei PUUID Fetch ({game_name}#{tag_line}): {resp.status_code}")
+    return None
 
-    def wait(self):
-        """Wait to respect rate limits"""
-        now = time.time()
+def get_match_ids(puuid, count=20):
+    """Holt Match IDs via Match-V5"""
+    # queue=420 ist Ranked Solo/Duo
+    url = f"https://{REGION_ROUTING}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?queue=420&start=0&count={count}"
+    resp = requests.get(url, headers=headers)
+    if resp.status_code == 200:
+        return resp.json()
+    return []
 
-        # Per-second limit
-        time_since_last = now - self.last_request_time
-        if time_since_last < 1.0 / self.per_second:
-            time.sleep(1.0 / self.per_second - time_since_last)
+def get_match_details(match_id):
+    """Lädt Details eines Matches"""
+    url = f"https://{REGION_ROUTING}.api.riotgames.com/lol/match/v5/matches/{match_id}"
+    resp = requests.get(url, headers=headers)
 
-        # Per-2-minute limit
-        self.request_times_2min = [t for t in self.request_times_2min if now - t < 120]
-        if len(self.request_times_2min) >= self.per_2min:
-            sleep_time = 120 - (now - self.request_times_2min[0])
-            if sleep_time > 0:
-                print(f"⏳ Rate limit: Sleeping {sleep_time:.1f}s")
-                time.sleep(sleep_time)
-
-        self.last_request_time = time.time()
-        self.request_times_2min.append(self.last_request_time)
-
-limiter = RateLimiter(REQUESTS_PER_SECOND, REQUESTS_PER_2_MIN)
-
-# ==================== API FUNCTIONS ====================
-
-def get_challenger_summoners(platform=PLATFORM, count=50):
-    """Get top Challenger summoner IDs"""
-    url = f"https://{platform}.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5"
-    limiter.wait()
-
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            summoner_ids = [entry['summonerId'] for entry in data['entries'][:count]]
-            print(f"✅ Fetched {len(summoner_ids)} Challenger summoners")
-            return summoner_ids
-        elif response.status_code == 429:
-            print("⚠️  Rate limited (429). Retrying in 120s...")
-            time.sleep(120)
-            return get_challenger_summoners(platform, count)
-        else:
-            print(f"❌ Error fetching Challengers: {response.status_code}")
-            return []
-    except Exception as e:
-        print(f"❌ Exception: {e}")
-        return []
-
-
-def get_puuid_from_summoner_id(summoner_id, platform=PLATFORM):
-    """Convert Summoner ID to PUUID"""
-    url = f"https://{platform}.api.riotgames.com/lol/summoner/v4/summoners/{summoner_id}"
-    limiter.wait()
-
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=10)
-        if response.status_code == 200:
-            return response.json()['puuid']
-        elif response.status_code == 429:
-            print("⚠️  Rate limited (429). Retrying in 120s...")
-            time.sleep(120)
-            return get_puuid_from_summoner_id(summoner_id, platform)
-        else:
-            print(f"❌ Error fetching PUUID for {summoner_id}: {response.status_code}")
-            return None
-    except Exception as e:
-        print(f"❌ Exception: {e}")
+    if resp.status_code == 200:
+        return resp.json()
+    elif resp.status_code == 429:
+        print("⚠️ Rate Limit! Warte 10 Sekunden...")
+        time.sleep(10)
+        return get_match_details(match_id) # Retry
+    elif resp.status_code == 404:
         return None
+    return None
 
+def process_match(data):
+    """Extrahiert Champions, Win und ITEMS (0-6)"""
+    info = data['info']
+    row = {'match_id': data['metadata']['matchId']}
 
-def get_match_ids(puuid, region=REGION, count=20):
-    """Get recent ranked match IDs for a PUUID"""
-    url = f"https://{region}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids"
-    params = {
-        "type": "ranked",
-        "start": 0,
-        "count": count
-    }
-    limiter.wait()
+    blue_team = []
+    red_team = []
 
-    try:
-        response = requests.get(url, headers=HEADERS, params=params, timeout=10)
-        if response.status_code == 200:
-            return response.json()
-        elif response.status_code == 429:
-            print("⚠️  Rate limited (429). Retrying in 120s...")
-            time.sleep(120)
-            return get_match_ids(puuid, region, count)
-        else:
-            print(f"❌ Error fetching match IDs: {response.status_code}")
-            return []
-    except Exception as e:
-        print(f"❌ Exception: {e}")
-        return []
-
-
-def get_match_data(match_id, region=REGION):
-    """Fetch full match data including items"""
-    url = f"https://{region}.api.riotgames.com/lol/match/v5/matches/{match_id}"
-    limiter.wait()
-
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=10)
-        if response.status_code == 200:
-            return response.json()
-        elif response.status_code == 429:
-            print("⚠️  Rate limited (429). Retrying in 120s...")
-            time.sleep(120)
-            return get_match_data(match_id, region)
-        else:
-            print(f"❌ Error fetching match {match_id}: {response.status_code}")
-            return None
-    except Exception as e:
-        print(f"❌ Exception: {e}")
-        return None
-
-
-# ==================== DATA PROCESSING ====================
-
-def extract_match_rows(match_data):
-    """Extract participant rows with item data from match JSON"""
-    if not match_data or 'info' not in match_data:
-        return []
-
-    info = match_data['info']
-    participants = info.get('participants', [])
-
-    if len(participants) != 10:
-        return []  # Only 5v5 matches
-
-    rows = []
-    for participant in participants:
-        row = {
-            'match_id': match_data['metadata']['matchId'],
-            'game_duration': info.get('gameDuration', 0),
-            'champion_id': participant.get('championId', 0),
-            'team_id': participant.get('teamId', 0),
-            'win': 1 if participant.get('win', False) else 0,
-            'kills': participant.get('kills', 0),
-            'deaths': participant.get('deaths', 0),
-            'assists': participant.get('assists', 0),
-            'gold_earned': participant.get('goldEarned', 0),
-            'total_damage': participant.get('totalDamageDealtToChampions', 0),
-            'vision_score': participant.get('visionScore', 0),
-            'item0': participant.get('item0', 0),
-            'item1': participant.get('item1', 0),
-            'item2': participant.get('item2', 0),
-            'item3': participant.get('item3', 0),
-            'item4': participant.get('item4', 0),
-            'item5': participant.get('item5', 0),
-            'item6': participant.get('item6', 0),
+    for p in info['participants']:
+        # Daten pro Spieler extrahieren
+        p_data = {
+            'championId': p['championId'],
+            'win': p['win'],
+            'item0': p.get('item0', 0),
+            'item1': p.get('item1', 0),
+            'item2': p.get('item2', 0),
+            'item3': p.get('item3', 0),
+            'item4': p.get('item4', 0),
+            'item5': p.get('item5', 0),
+            'item6': p.get('item6', 0)
         }
-        rows.append(row)
+        if p['teamId'] == 100:
+            blue_team.append(p_data)
+        else:
+            red_team.append(p_data)
 
-    return rows
+    # Wer hat gewonnen?
+    row['blue_win'] = 1 if blue_team[0]['win'] else 0
 
+    # Blue Team Spalten
+    for i, p in enumerate(blue_team):
+        idx = i + 1
+        row[f'blue_champ_{idx}'] = p['championId']
+        for item_idx in range(7):
+            row[f'blue_item_{idx}_{item_idx}'] = p[f'item{item_idx}']
 
-def save_to_csv(rows, filepath=OUTPUT_FILE):
-    """Append rows to CSV file"""
-    file_exists = os.path.isfile(filepath)
+    # Red Team Spalten
+    for i, p in enumerate(red_team):
+        idx = i + 1
+        row[f'red_champ_{idx}'] = p['championId']
+        for item_idx in range(7):
+            row[f'red_item_{idx}_{item_idx}'] = p[f'item{item_idx}']
 
-    os.makedirs(os.path.dirname(filepath), exist_ok=True)
-
-    with open(filepath, 'a', newline='', encoding='utf-8') as f:
-        fieldnames = ['match_id', 'game_duration', 'champion_id', 'team_id', 'win',
-                      'kills', 'deaths', 'assists', 'gold_earned', 'total_damage',
-                      'vision_score', 'item0', 'item1', 'item2', 'item3', 'item4',
-                      'item5', 'item6']
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-        if not file_exists:
-            writer.writeheader()
-
-        writer.writerows(rows)
-
-
-# ==================== MAIN CRAWLER ====================
+    return row
 
 def main():
-    """Main crawler loop"""
-    print("🚀 Starting Riot Match Crawler with Item Data")
-    print(f"📁 Output: {OUTPUT_FILE}")
-    print(f"⚙️  Rate limits: {REQUESTS_PER_SECOND}/s, {REQUESTS_PER_2_MIN}/2min\n")
+    print(f"🚀 Starte Crawler mit Seed: {START_PLAYER_NAME}#{START_PLAYER_TAG}")
 
-    if API_KEY == "YOUR_RIOT_API_KEY_HERE":
-        print("❌ ERROR: Please set your Riot API key in the API_KEY variable!")
+    # Sicherstellen, dass Ordner existiert
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+
+    # 1. Seed PUUID holen
+    seed_puuid = get_puuid(START_PLAYER_NAME, START_PLAYER_TAG)
+    if not seed_puuid:
+        print("❌ Seed-Player nicht gefunden. Prüfe API Key.")
         return
 
-    # Step 1: Get Challenger summoners
-    summoner_ids = get_challenger_summoners(PLATFORM, count=50)
-    if not summoner_ids:
-        print("❌ No summoners found. Exiting.")
-        return
+    processed_matches = set()
 
-    total_matches = 0
-    processed_match_ids = set()
+    # Vorhandene Daten laden um Duplikate zu vermeiden
+    if os.path.exists(OUTPUT_FILE):
+        try:
+            df_exist = pd.read_csv(OUTPUT_FILE)
+            processed_matches = set(df_exist['match_id'].unique())
+            print(f"ℹ️ Bereits {len(processed_matches)} Matches vorhanden.")
+        except:
+            pass
 
-    # Step 2: For each summoner, get their PUUIDs and matches
-    for idx, summoner_id in enumerate(summoner_ids, 1):
-        print(f"\n[{idx}/{len(summoner_ids)}] Processing summoner: {summoner_id}")
+    # Pool von Spielern, die wir noch scannen wollen
+    puuid_pool = [seed_puuid]
+    batch_rows = []
 
-        # Get PUUID
-        puuid = get_puuid_from_summoner_id(summoner_id, PLATFORM)
-        if not puuid:
-            print(f"⚠️  Skipping (no PUUID)")
-            continue
+    while len(processed_matches) < TARGET_MATCHES and puuid_pool:
+        current_puuid = puuid_pool.pop(0)
+        match_ids = get_match_ids(current_puuid, count=20)
 
-        # Get match IDs
-        match_ids = get_match_ids(puuid, REGION, count=20)
-        print(f"  📊 Found {len(match_ids)} matches")
-
-        # Fetch each match
-        for match_id in match_ids:
-            if match_id in processed_match_ids:
+        for mid in match_ids:
+            if mid in processed_matches:
                 continue
+            if len(processed_matches) >= TARGET_MATCHES:
+                break
 
-            match_data = get_match_data(match_id, REGION)
-            if not match_data:
-                continue
+            data = get_match_details(mid)
+            if not data: continue
 
-            rows = extract_match_rows(match_data)
-            if rows:
-                save_to_csv(rows)
-                processed_match_ids.add(match_id)
-                total_matches += 1
-                print(f"  ✅ Match {match_id}: {len(rows)} rows saved (Total: {total_matches})")
-            else:
-                print(f"  ⚠️  Match {match_id}: No valid data")
+            try:
+                row = process_match(data)
+                batch_rows.append(row)
+                processed_matches.add(mid)
+                print(f"✅ Match gespeichert ({len(processed_matches)}/{TARGET_MATCHES})")
 
-    print(f"\n🎉 Crawling complete! Total matches: {total_matches}")
-    print(f"📁 Data saved to: {OUTPUT_FILE}")
+                # Snowballing: Nimm 2 Spieler aus diesem Match in den Pool auf
+                parts = data['metadata']['participants']
+                for p_uuid in parts[:2]:
+                    if p_uuid not in puuid_pool:
+                        puuid_pool.append(p_uuid)
 
+            except Exception as e:
+                print(f"Fehler: {e}")
+
+            # Batch Save alle 10 Matches
+            if len(batch_rows) >= 10:
+                df = pd.DataFrame(batch_rows)
+                header = not os.path.exists(OUTPUT_FILE)
+                df.to_csv(OUTPUT_FILE, mode='a', header=header, index=False)
+                batch_rows = []
+                print("💾 Batch gesichert.")
+
+        time.sleep(0.5) # Schonung der API
+
+    # Rest speichern
+    if batch_rows:
+        df = pd.DataFrame(batch_rows)
+        header = not os.path.exists(OUTPUT_FILE)
+        df.to_csv(OUTPUT_FILE, mode='a', header=header, index=False)
+
+    print("🏁 Crawling fertig.")
 
 if __name__ == "__main__":
     main()
