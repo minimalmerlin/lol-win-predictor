@@ -96,20 +96,39 @@ export default function Home() {
                 Advanced AI analytics - Real-time match intelligence for competitive gaming supremacy
               </p>
 
-              {/* Stats Grid */}
-              <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto pt-8">
-                <div className="text-center">
-                  <div className="stat-value">90.9%</div>
-                  <div className="stat-label">Win Accuracy</div>
+              {/* STATS GRID */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-20">
+
+                {/* STAT 1: MODEL ACCURACY */}
+                <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm">
+                  <div className="text-4xl font-black text-[#1E90FF] mb-2 drop-shadow-[0_0_10px_rgba(30,144,255,0.5)]">
+                    52.6%
+                  </div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    BASELINE MODEL ACCURACY
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="stat-value">360K+</div>
-                  <div className="stat-label">Matches</div>
+
+                {/* STAT 2: DATA VOLUME */}
+                <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm">
+                  <div className="text-4xl font-black text-[#1E90FF] mb-2 drop-shadow-[0_0_10px_rgba(30,144,255,0.5)]">
+                    50,000+
+                  </div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    MATCHES ANALYZED
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="stat-value">Live</div>
-                  <div className="stat-label">Game Feed</div>
+
+                {/* STAT 3: ARCHITECTURE */}
+                <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm">
+                  <div className="text-4xl font-black text-[#1E90FF] mb-2 drop-shadow-[0_0_10px_rgba(30,144,255,0.5)]">
+                    V.2.1
+                  </div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    SYSTEM ARCHITECTURE
+                  </div>
                 </div>
+
               </div>
 
               {/* CTAs */}
@@ -157,7 +176,7 @@ export default function Home() {
                 <div className="flex flex-col items-center gap-2">
                   <Cpu className="h-8 w-8 text-primary" style={{filter: 'drop-shadow(0 0 8px rgba(30,144,255,0.9))'}} />
                   <div className="stat-label">Victory AI</div>
-                  <div className="text-xs text-card-foreground/60">90.9% Accuracy</div>
+                  <div className="text-xs text-card-foreground/60">52.6% Accuracy</div>
                 </div>
               </TabsTrigger>
               <TabsTrigger
@@ -287,12 +306,12 @@ export default function Home() {
               </div>
               <div className="stat-label">
                 <div className="text-[rgb(0,200,140)] text-sm mb-1">◆</div>
-                90.9% Win Accuracy
+                52.6% Baseline Accuracy
               </div>
             </div>
 
             <div className="text-xs text-card-foreground/50 pt-4 border-t border-primary/10">
-              ADVANCED GAMING INTELLIGENCE • 360,000+ Match Simulations • AI-Powered Victory Network
+              ADVANCED GAMING INTELLIGENCE • 50,000+ Match Analysis • AI-Powered Victory Network V.2.1
             </div>
           </div>
         </div>
