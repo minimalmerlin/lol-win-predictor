@@ -23,16 +23,16 @@ export default function Home() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 flex items-center justify-center shimmer">
-                <Image 
-                  src="/logo.svg" 
-                  alt="LoL Coach" 
-                  width={40} 
-                  height={40}
-                  className="drop-shadow-[0_0_8px_rgba(167,139,250,0.6)]"
+              <div className="relative w-12 h-12 flex items-center justify-center">
+                <Image
+                  src="/logo.png"
+                  alt="LoL Coach"
+                  width={48}
+                  height={48}
+                  className="drop-shadow-[0_0_12px_rgba(6,182,212,0.8)]"
                 />
               </div>
-              <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-primary to-pink-500 bg-clip-text text-transparent">
                 LoL Coach
               </h1>
             </div>
@@ -258,14 +258,14 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <Image 
-                src="/logo.svg" 
-                alt="LoL Coach" 
-                width={32} 
-                height={32}
-                className="drop-shadow-[0_0_8px_rgba(167,139,250,0.6)]"
+              <Image
+                src="/logo.png"
+                alt="LoL Coach"
+                width={40}
+                height={40}
+                className="drop-shadow-[0_0_12px_rgba(6,182,212,0.8)]"
               />
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-primary to-pink-500 bg-clip-text text-transparent">
                 LoL Coach
               </span>
             </div>
