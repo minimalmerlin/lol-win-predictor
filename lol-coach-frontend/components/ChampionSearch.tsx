@@ -2,14 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { getLatestChampionData, ChampionDto, getChampionImageUrl } from '@/lib/riot-data';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // WICHTIG: next/navigation für App Router
 import { Search, X } from 'lucide-react';
 
-interface ChampionSearchProps {
-  onSelect?: (championName: string) => void;
-}
-
-export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
+export default function ChampionSearch() {
+  const router = useRouter();
   const [champions, setChampions] = useState<ChampionDto[]>([]);
   const [filtered, setFiltered] = useState<ChampionDto[]>([]);
   const [version, setVersion] = useState("14.24.1");
@@ -35,6 +32,7 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
     ));
   }, [search, champions]);
 
+  // Click Outside Handler
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
@@ -45,13 +43,20 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Handler für Klick auf Ergebnis
+  const handleSelect = (id: string) => {
+    setIsOpen(false);
+    setSearch(""); // Suche zurücksetzen (optional)
+    router.push(`/champion/${id}`);
+  };
+
   return (
     <div ref={wrapperRef} className="relative w-full max-w-xl mx-auto z-50">
       <div className="relative">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5" />
         <input
           type="text"
-          placeholder="Suche Champion..."
+          placeholder="Champion suchen..."
           className="w-full bg-slate-900 border border-slate-700 rounded-lg py-3 pl-12 pr-10 text-white focus:outline-none focus:border-[#1E90FF] focus:ring-1 focus:ring-[#1E90FF] transition-all"
           value={search}
           onFocus={() => setIsOpen(true)}
@@ -68,53 +73,24 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
         <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-lg shadow-xl max-h-[400px] overflow-y-auto custom-scrollbar">
           {filtered.length > 0 ? (
             <div className="py-2">
-              {filtered.map((champ) => {
-                const handleClick = () => {
-                  if (onSelect) {
-                    onSelect(champ.name);
-                  }
-                  setIsOpen(false);
-                };
-
-                const itemContent = (
-                  <>
-                    <img
-                      src={getChampionImageUrl(champ.id, version)}
-                      alt={champ.name}
-                      className="w-10 h-10 rounded-full border border-slate-700"
-                    />
-                    <div>
-                      <div className="text-slate-200 font-bold group-hover:text-white">{champ.name}</div>
-                      <div className="text-xs text-slate-500">{champ.title}</div>
-                    </div>
-                  </>
-                );
-
-                if (onSelect) {
-                  // Draft mode: Use button for selection
-                  return (
-                    <button
-                      key={champ.key}
-                      onClick={handleClick}
-                      className="w-full flex items-center gap-4 px-4 py-3 hover:bg-[#1E90FF]/10 border-l-4 border-transparent hover:border-[#1E90FF] transition-all group"
-                    >
-                      {itemContent}
-                    </button>
-                  );
-                } else {
-                  // Navigation mode: Use Link
-                  return (
-                    <Link
-                      key={champ.key}
-                      href={`/champion/${champ.id}`}
-                      onClick={handleClick}
-                      className="flex items-center gap-4 px-4 py-3 hover:bg-[#1E90FF]/10 border-l-4 border-transparent hover:border-[#1E90FF] transition-all group"
-                    >
-                      {itemContent}
-                    </Link>
-                  );
-                }
-              })}
+              {filtered.map((champ) => (
+                <div
+                  key={champ.key}
+                  // onMouseDown feuert VOR onBlur/Click-Outside. Das ist der Trick.
+                  onMouseDown={() => handleSelect(champ.id)}
+                  className="flex items-center gap-4 px-4 py-3 hover:bg-[#1E90FF]/10 border-l-4 border-transparent hover:border-[#1E90FF] transition-all group cursor-pointer"
+                >
+                  <img
+                    src={getChampionImageUrl(champ.id, version)}
+                    alt={champ.name}
+                    className="w-10 h-10 rounded-full border border-slate-700"
+                  />
+                  <div>
+                    <div className="text-slate-200 font-bold group-hover:text-white">{champ.name}</div>
+                    <div className="text-xs text-slate-500">{champ.title}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : (
             <div className="p-4 text-center text-slate-500 text-sm">Keine Treffer.</div>
