@@ -1,5 +1,6 @@
 // API Configuration and Client
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+// Empty string uses relative paths (same domain), perfect for Next.js API routes
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export interface Champion {
   name: string;
