@@ -32,7 +32,7 @@ export default async function ChampionPage({ params }: { params: Promise<{ name:
           <div className="max-w-7xl mx-auto">
             <h1 className="text-7xl font-black text-white uppercase tracking-tighter mb-2">{champion.name}</h1>
             <p className="text-2xl text-[#1E90FF] italic font-serif mb-6">{champion.title}</p>
-            <p className="max-w-3xl text-lg text-slate-300 leading-relaxed border-l-4 border-[#1E90FF] pl-6">
+            <p className="max-w-3xl text-lg text-slate-300 leading-relaxed border-l-4 border-[#1E90FF] pl-6 mb-12">
               {champion.lore}
             </p>
           </div>

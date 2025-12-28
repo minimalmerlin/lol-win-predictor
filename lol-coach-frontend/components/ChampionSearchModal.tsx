@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
@@ -8,6 +9,12 @@ import ChampionSearch from './ChampionSearch';
 
 export default function ChampionSearchModal() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const handleChampionSelect = (championId: string) => {
+    setOpen(false);
+    router.push(`/champion/${championId}`);
+  };
 
   return (
     <>
@@ -29,7 +36,7 @@ export default function ChampionSearchModal() {
             </DialogTitle>
           </DialogHeader>
           <div className="py-4">
-            <ChampionSearch onSelect={() => setOpen(false)} />
+            <ChampionSearch onSelect={handleChampionSelect} />
           </div>
         </DialogContent>
       </Dialog>
