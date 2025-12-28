@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-heading: 'Chakra Petch', sans-serif;
+  --font-heading: 'Rajdhani', sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Monaco, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -48,57 +48,57 @@
   --radius-4xl: 24px;
 }
 
-/* NeuroPlay Analytics - Dark Mode Design */
+/* Halo-Inspired Strategic Interface - Dark Mode Design */
 :root {
-  --radius: 8px;
-  
+  --radius: 4px;
+
   /* The Void - Backgrounds */
-  --background: 10 14 23;           /* Deep Space Navy #0A0E17 */
-  --card: 22 27 40;                 /* Interface Grey #161B28 */
-  --popover: 22 27 40;
-  
-  /* The Neon Glow - Primary Colors */
-  --primary: 0 255 255;             /* Cyber Cyan #00FFFF */
-  --accent: 225 0 255;              /* Electric Magenta #E100FF */
-  
+  --background: 0 8 20;             /* Deep Space Black #000814 */
+  --card: 0 29 61;                  /* UNSC Navy #001D3D */
+  --popover: 0 29 61;
+
+  /* Holographic Elements - Primary Colors */
+  --primary: 76 201 240;            /* Cortana Blue #4CC9F0 */
+  --accent: 0 150 199;              /* Shield Blue #0096C7 */
+
   /* Text Colors */
-  --foreground: 255 255 255;        /* Tech White */
-  --card-foreground: 176 184 200;   /* HUD Grey #B0B8C8 */
-  --popover-foreground: 176 184 200;
-  
+  --foreground: 232 241 245;        /* Tech White #E8F1F5 */
+  --card-foreground: 144 184 216;   /* Tactical Grey #90B8D8 */
+  --popover-foreground: 144 184 216;
+
   /* UI Elements */
-  --primary-foreground: 10 14 23;
-  --accent-foreground: 10 14 23;
-  --secondary: 30 35 48;
-  --secondary-foreground: 176 184 200;
-  --muted: 30 35 48;
-  --muted-foreground: 176 184 200;
-  
+  --primary-foreground: 0 8 20;
+  --accent-foreground: 0 8 20;
+  --secondary: 0 53 102;            /* Tactical Blue #003566 */
+  --secondary-foreground: 144 184 216;
+  --muted: 0 53 102;
+  --muted-foreground: 144 184 216;
+
   /* Borders */
-  --border: 0 255 255 / 0.2;        /* Cyber Cyan with transparency */
-  --input: 0 255 255 / 0.3;
-  --ring: 0 255 255;
-  
+  --border: 76 201 240 / 0.4;       /* Cortana Blue with transparency */
+  --input: 76 201 240 / 0.3;
+  --ring: 76 201 240;
+
   /* Semantic Colors */
-  --destructive: 255 23 68;         /* Warning Red #FF1744 */
+  --destructive: 239 71 111;        /* Danger Red #EF476F */
   --destructive-foreground: 255 255 255;
-  
-  /* Charts - Neon Palette */
-  --chart-1: 0 255 255;             /* Cyber Cyan */
-  --chart-2: 225 0 255;             /* Electric Magenta */
-  --chart-3: 0 230 118;             /* Success Green */
-  --chart-4: 255 23 68;             /* Warning Red */
-  --chart-5: 138 43 226;            /* Purple */
-  
+
+  /* Charts - Halo Palette */
+  --chart-1: 76 201 240;            /* Cortana Blue */
+  --chart-2: 0 150 199;             /* Shield Blue */
+  --chart-3: 6 214 160;             /* Success Green */
+  --chart-4: 255 183 3;             /* Alert Orange */
+  --chart-5: 239 71 111;            /* Danger Red */
+
   /* Sidebar */
-  --sidebar: 10 14 23;
-  --sidebar-foreground: 176 184 200;
-  --sidebar-primary: 0 255 255;
-  --sidebar-primary-foreground: 10 14 23;
-  --sidebar-accent: 22 27 40;
-  --sidebar-accent-foreground: 176 184 200;
-  --sidebar-border: 0 255 255 / 0.2;
-  --sidebar-ring: 0 255 255;
+  --sidebar: 0 8 20;
+  --sidebar-foreground: 144 184 216;
+  --sidebar-primary: 76 201 240;
+  --sidebar-primary-foreground: 0 8 20;
+  --sidebar-accent: 0 29 61;
+  --sidebar-accent-foreground: 144 184 216;
+  --sidebar-border: 76 201 240 / 0.4;
+  --sidebar-ring: 76 201 240;
 }
 
 @layer base {
@@ -117,10 +117,11 @@
     scroll-behavior: smooth;
   }
 
-  /* Chakra Petch for headings & numbers */
+  /* Rajdhani for headings & numbers - Military Tech Style */
   h1, h2, h3, h4, h5, h6, .stat-number {
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     @apply font-bold tracking-tight text-foreground;
+    text-transform: uppercase;
   }
 
   h1 {
@@ -138,38 +139,35 @@
   }
 }
 
-/* Neon Glow Effects */
-.neon-cyan {
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 
-               0 0 20px rgba(0, 255, 255, 0.3),
-               0 0 30px rgba(0, 255, 255, 0.2);
+/* Holographic Glow Effects - Halo Style */
+.holo-glow {
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8),
+               0 0 20px rgba(76, 201, 240, 0.4);
 }
 
-.neon-magenta {
-  text-shadow: 0 0 10px rgba(225, 0, 255, 0.5),
-               0 0 20px rgba(225, 0, 255, 0.3),
-               0 0 30px rgba(225, 0, 255, 0.2);
+.cortana-glow {
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8),
+               0 0 20px rgba(76, 201, 240, 0.4);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3),
-              0 0 20px rgba(0, 255, 255, 0.2),
-              inset 0 0 10px rgba(0, 255, 255, 0.1);
+.box-glow {
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.3),
+              inset 0 0 30px rgba(76, 201, 240, 0.05);
 }
 
-.glow-magenta {
-  box-shadow: 0 0 10px rgba(225, 0, 255, 0.3),
-              0 0 20px rgba(225, 0, 255, 0.2),
-              inset 0 0 10px rgba(225, 0, 255, 0.1);
+.shield-glow {
+  box-shadow: 0 0 20px rgba(0, 150, 199, 0.3),
+              inset 0 0 30px rgba(0, 150, 199, 0.05);
 }
 
-/* HUD/Cyberpunk UI Elements */
+/* UNSC Terminal UI Elements */
 .hud-card {
   position: relative;
-  background: rgba(22, 27, 40, 0.7);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  background: rgba(0, 29, 61, 0.7);
+  border: 2px solid rgba(76, 201, 240, 0.4);
   backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
 }
 
 .hud-card::before {
@@ -177,11 +175,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 8px;
-  height: 8px;
-  border-top: 2px solid rgb(0, 255, 255);
-  border-left: 2px solid rgb(0, 255, 255);
-  opacity: 0.6;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid rgb(76, 201, 240);
+  border-left: 2px solid rgb(76, 201, 240);
+  opacity: 0.8;
 }
 
 .hud-card::after {
@@ -189,33 +187,35 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 8px;
-  height: 8px;
-  border-bottom: 2px solid rgb(0, 255, 255);
-  border-right: 2px solid rgb(0, 255, 255);
-  opacity: 0.6;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid rgb(76, 201, 240);
+  border-right: 2px solid rgb(76, 201, 240);
+  opacity: 0.8;
 }
 
 .hud-card:hover {
-  border-color: rgba(0, 255, 255, 0.6);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2),
-              inset 0 0 20px rgba(0, 255, 255, 0.05);
+  border-color: rgba(76, 201, 240, 0.7);
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.3),
+              inset 0 0 30px rgba(76, 201, 240, 0.05);
 }
 
 /* Terminal/HUD Lines */
 .terminal-line {
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(0, 255, 255, 0.4) 50%, 
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(76, 201, 240, 0.6) 50%,
     transparent 100%
   );
+  box-shadow: 0 0 8px rgba(76, 201, 240, 0.4);
 }
 
-/* Buttons - Neon Style */
+/* Buttons - Halo Terminal Style */
 button {
-  font-family: 'Chakra Petch', sans-serif;
-  font-weight: 500;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -229,32 +229,32 @@ button:active:not(:disabled) {
 
 .btn-primary {
   background: transparent;
-  border: 1px solid rgb(0, 255, 255);
-  color: rgb(0, 255, 255);
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  border: 2px solid rgb(76, 201, 240);
+  color: rgb(76, 201, 240);
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8);
 }
 
 .btn-primary:hover {
-  background: rgba(0, 255, 255, 0.1);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  background: rgba(76, 201, 240, 0.2);
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
 }
 
-/* Data Visualization */
-.chart-line-cyan {
-  stroke: rgb(0, 255, 255);
-  filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.6));
+/* Data Visualization - Halo Style */
+.chart-line-primary {
+  stroke: rgb(76, 201, 240);
+  filter: drop-shadow(0 0 4px rgba(76, 201, 240, 0.8));
 }
 
-.chart-line-magenta {
-  stroke: rgb(225, 0, 255);
-  filter: drop-shadow(0 0 3px rgba(225, 0, 255, 0.6));
+.chart-line-secondary {
+  stroke: rgb(0, 150, 199);
+  filter: drop-shadow(0 0 4px rgba(0, 150, 199, 0.8));
 }
 
 .chart-point {
-  fill: rgb(0, 255, 255);
-  stroke: rgb(10, 14, 23);
+  fill: rgb(76, 201, 240);
+  stroke: rgb(0, 8, 20);
   stroke-width: 2;
-  filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8));
+  filter: drop-shadow(0 0 6px rgba(76, 201, 240, 1));
 }
 
 /* Scanning Animation (HUD Effect) */
@@ -270,47 +270,56 @@ button:active:not(:disabled) {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(76, 201, 240, 0.8), transparent);
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.6);
   animation: scan 3s ease-in-out infinite;
 }
 
-/* Success/Error States */
+/* Success/Error States - Halo Colors */
 .state-success {
-  color: rgb(0, 230, 118);
-  text-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
+  color: rgb(6, 214, 160);
+  text-shadow: 0 0 10px rgba(6, 214, 160, 0.6);
+}
+
+.state-warning {
+  color: rgb(255, 183, 3);
+  text-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
 }
 
 .state-error {
-  color: rgb(255, 23, 68);
-  text-shadow: 0 0 8px rgba(255, 23, 68, 0.5);
+  color: rgb(239, 71, 111);
+  text-shadow: 0 0 10px rgba(239, 71, 111, 0.6);
 }
 
-/* Glass effect for overlays */
+/* Glass effect for overlays - UNSC Terminal Style */
 .glass-overlay {
-  background: rgba(10, 14, 23, 0.85);
+  background: rgba(0, 8, 20, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  border: 2px solid rgba(76, 201, 240, 0.3);
 }
 
-/* Loading/Processing Indicator */
-@keyframes pulse-cyan {
-  0%, 100% { opacity: 0.3; }
+/* Loading/Processing Indicator - Cortana Style */
+@keyframes pulse-cortana {
+  0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
 
 .processing {
-  animation: pulse-cyan 2s ease-in-out infinite;
-  color: rgb(0, 255, 255);
+  animation: pulse-cortana 2s ease-in-out infinite;
+  color: rgb(76, 201, 240);
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8);
 }
 
-/* Stats Display */
+/* Stats Display - Tactical HUD Style */
 .stat-value {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: rgb(0, 255, 255);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  color: rgb(76, 201, 240);
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.8),
+               0 0 20px rgba(76, 201, 240, 0.4);
+  text-transform: uppercase;
 }
 
 .stat-label {
@@ -318,14 +327,26 @@ button:active:not(:disabled) {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgb(176, 184, 200);
+  color: rgb(144, 184, 216);
 }
 
 /* Hexagon accent (like in logo) */
 .hex-point {
   width: 6px;
   height: 6px;
-  background: rgb(0, 255, 255);
+  background: rgb(76, 201, 240);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(76, 201, 240, 1);
+}
+
+/* Scan Lines Effect (Halo Terminal) */
+.scan-lines {
+  position: relative;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(76, 201, 240, 0.03),
+    rgba(76, 201, 240, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
 }

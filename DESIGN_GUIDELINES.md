@@ -1,157 +1,230 @@
-# Design Guidelines: NeuroPlay Analytics (LoL Coach)
+# Design Guidelines: Halo-Inspired Strategic Interface
 
 ## 1. Der Markenkern & Visuelle Strategie
 
-Das Produkt ist ein hochtechnologisches Werkzeug, das die Brücke zwischen intuitiven Gaming-Skills und harter Datenanalyse schlägt.
+**Inspiration:** Halo 2 & Halo 3 Main Menu Interface - Das legendäre militärische Sci-Fi HUD.
 
-**Keywords:** Intelligent, Analytisch, Futuristisch, Präzise, "Game-Changing"
+**Keywords:** Episch, Militärisch, Strategisch, Holographisch, Tactical, Elite
 
-**Visuelle Ästhetik:** "Dark Mode First". Das Design lebt von leuchtenden Elementen auf dunklen Hintergründen. Es erinnert an Head-Up-Displays (HUDs) in Sci-Fi-Spielen oder Terminals in Cyberpunk-Filmen. Es darf niemals "brav" oder wie eine Standard-Bürosoftware aussehen.
+**Visuelle Ästhetik:** Tiefes Dunkelblau mit holographischen blauen Elementen. Wie ein UNSC-Terminal oder Cortanas Interface. Klare, scharfe Kontraste. Keine grellen Farben auf hellem Hintergrund. Alles wirkt wie ein militärisches Strategie-System.
 
 ---
 
 ## 2. Das Logo
 
-Das Logo symbolisiert die Verschmelzung von Gaming-Hardware (Controller) und künstlicher Intelligenz (Neuronales Netz/Gehirn) zur Leistungssteigerung (Pfeil).
+Gaming Controller mit Neural Network - bleibt bestehen, wird aber in Halo-Blau-Tönen dargestellt.
 
-### 2.1. Hauptlogo (Primary)
-Die bevorzugte Darstellung ist immer die "leuchtende" Neon-Variante auf dunklem Grund.
-
-- **Verwendung:** Website-Header, App-Startbildschirm, Social Media Profile, digitale Werbung
-- **Schutzraum (Clear Space):** Mindestabstand entsprechend der Höhe des "Pfeils" im Logo
-
-### 2.2. Logo-Varianten
-
-- **Flat-Variante:** Ohne "Glow"-Effekt für kleinere Darstellungen
-- **Monochrom:** Schwarz/Weiß für einfache Anwendungen
-- **Light Mode:** Vermeiden wenn möglich; bei Bedarf dunklere Töne verwenden
+**Verwendung:** Immer mit blauem Glow auf dunklem Hintergrund.
 
 ---
 
 ## 3. Die Farbpalette
 
-### 3.1. Primärfarben (The Neon Glow)
+### 3.1. Hintergrundfarben (The Void)
 
-**Cyber Cyan** (Links im Controller)
-- HEX: `#00FFFF`
-- RGB: 0, 255, 255
-- **Verwendung:** Highlights, positive Tendenzen, primäre Call-to-Action Buttons
+**Deep Space Black** (Haupthintergrund)
+- HEX: `#000814`
+- RGB: 0, 8, 20
+- Sehr dunkles Blau-Schwarz, fast schwarz aber mit leichtem Blauton
 
-**Electric Magenta** (Rechts im Controller)
-- HEX: `#E100FF`
-- RGB: 225, 0, 255
-- **Verwendung:** Sekundäre Highlights, spezielle KI-Features, Hover-Effekte
+**UNSC Navy** (Sekundärer Hintergrund / Cards)
+- HEX: `#001D3D`
+- RGB: 0, 29, 61
+- Tiefes Dunkelblau wie Halo UI Panels
 
-### 3.2. Hintergrundfarben (The Void)
+**Tactical Blue** (Tertiary / Hover States)
+- HEX: `#003566`
+- RGB: 0, 53, 102
+- Mittleres Dunkelblau für aktive Elemente
 
-**Deep Space Navy** (Haupthintergrund)
-- HEX: `#0A0E17`
-- RGB: 10, 14, 23
+### 3.2. Primärfarben (Holographic Elements)
 
-**Interface Grey** (Sekundärer Hintergrund)
-- HEX: `#161B28`
-- RGB: 22, 27, 40
+**Cortana Blue** (Primary - Main UI Color)
+- HEX: `#4CC9F0`
+- RGB: 76, 201, 240
+- Das ikonische helle Blau von Cortana / Halo UI
+
+**Shield Blue** (Akzent)
+- HEX: `#0096C7`
+- RGB: 0, 150, 199
+- Etwas dunkleres Blau für Variationen
+
+**Energy Cyan** (Highlights)
+- HEX: `#00B4D8`
+- RGB: 0, 180, 216
+- Für wichtige Highlights und Buttons
 
 ### 3.3. Textfarben
 
 **Tech White** (Haupttext für Überschriften)
-- HEX: `#FFFFFF`
-- RGB: 255, 255, 255
+- HEX: `#E8F1F5`
+- RGB: 232, 241, 245
+- Leicht bläuliches Weiß
 
-**HUD Grey** (Fließtext & Labels)
-- HEX: `#B0B8C8`
-- RGB: 176, 184, 200
+**Tactical Grey** (Fließtext & Labels)
+- HEX: `#90B8D8`
+- RGB: 144, 184, 216
+- Bläulich-grau für gute Lesbarkeit
 
 ### 3.4. Semantische Farben
 
-**Success Green** (Verbesserung/Sieg)
-- HEX: `#00E676`
-- RGB: 0, 230, 118
+**Success Green** (Positive States / Wins)
+- HEX: `#06D6A0`
+- RGB: 6, 214, 160
+- Helles Grün wie Halo Shield Recharge
 
-**Warning Red** (Verschlechterung/Fehler)
-- HEX: `#FF1744`
-- RGB: 255, 23, 68
+**Alert Orange** (Warnings)
+- HEX: `#FFB703`
+- RGB: 255, 183, 3
+- Orange für Warnungen (wie Halo Motion Tracker)
+
+**Danger Red** (Errors / Critical)
+- HEX: `#EF476F`
+- RGB: 239, 71, 111
+- Rot für kritische Zustände
 
 ---
 
 ## 4. Typografie
 
-### 4.1. Überschriften & Zahlen: "Chakra Petch"
-- **Verwendung:** Hauptüberschriften (H1, H2), große Statistiken/Zahlen, Button-Texte
-- **Gewichte:** Bold (700) für Überschriften, Medium (500) für Buttons
-- **Beispiel:** `WIN RATE: 64%`
+### 4.1. Überschriften: "Rajdhani"
+Eine militärisch-technische Schrift, die an Halo's UI erinnert.
 
-### 4.2. Fließtext & UI-Labels: "Inter"
-- **Verwendung:** Analysetexte, Achsenbeschriftungen, Menüpunkte, Kleingedrucktes
-- **Gewichte:** Regular (400) für Text, Semi-Bold (600) für wichtige Labels
-- **Textfarbe:** HUD Grey (`#B0B8C8`) auf dunklem Hintergrund
+- **Verwendung:** Alle Überschriften (H1-H3), wichtige Stats, Buttons
+- **Gewichte:** Bold (700), Semi-Bold (600)
+- **Stil:** Uppercase für militärischen Look
 
----
+### 4.2. Fließtext: "Inter"
+Bleibt für optimale Lesbarkeit.
 
-## 5. Ikonografie & Design-Elemente
-
-### 5.1. Icons
-- Nur **Line Icons** (Linien-basiert)
-- Strichstärke: 1px oder 2px
-- **Aktiv:** Leuchten in Cyber Cyan
-- **Inaktiv:** HUD Grey
-- Icons wirken als wären sie aus Licht geformt
-
-### 5.2. Datenvisualisierung
-
-**Linien-Diagramme:**
-- Dünne, leuchtende Linien (Cyan oder Magenta)
-- Transparenter Farbverlauf unter der Linie
-
-**Knotenpunkte:**
-- Kleine leuchtende Punkte oder Hexagone
-
-**Gitterlinien:**
-- Extrem dünn und kaum sichtbar (dunkles Grau/Blau)
-
-### 5.3. UI-Elemente
-
-**Cards:**
-- Hintergrund: Interface Grey (`#161B28`)
-- Subtiler, dünner leuchtender Rand (`1px solid Cyber Cyan`)
-- Leuchtende Ecken für HUD-Look
-
-**Rahmen:**
-- Keine fetten Schatten
-- Subtile outer-glow CSS Effekte
+- **Verwendung:** Beschreibungen, Labels, Fließtext
+- **Gewichte:** Regular (400), Medium (500)
+- **Textfarbe:** Tactical Grey (`#90B8D8`)
 
 ---
 
-## 6. Zusammenfassung für Entwickler
+## 5. Visuelle Effekte
+
+### 5.1. Holographische Effekte
+
+**Box Glow (Halo-Style):**
+```css
+box-shadow:
+  0 0 20px rgba(76, 201, 240, 0.3),
+  inset 0 0 30px rgba(76, 201, 240, 0.05);
+```
+
+**Text Glow:**
+```css
+text-shadow:
+  0 0 10px rgba(76, 201, 240, 0.8),
+  0 0 20px rgba(76, 201, 240, 0.4);
+```
+
+### 5.2. UI Elemente
+
+**Panels / Cards:**
+- Hintergrund: UNSC Navy (`#001D3D`)
+- Border: 2px solid Cortana Blue (`#4CC9F0` mit 40% opacity)
+- Subtiles Inner Glow
+- Scharfe, eckige Kanten (border-radius minimal)
+
+**Scan Lines (Halo Terminal Effect):**
+```css
+background-image: repeating-linear-gradient(
+  0deg,
+  rgba(76, 201, 240, 0.03),
+  rgba(76, 201, 240, 0.03) 1px,
+  transparent 1px,
+  transparent 2px
+);
+```
+
+**Divider Lines:**
+- 1-2px solid
+- Cortana Blue mit Glow
+- Horizontale Streifen wie in Halo Menüs
+
+### 5.3. Buttons
+
+**Primary Button:**
+- Background: Transparent
+- Border: 2px solid Cortana Blue
+- Text: Cortana Blue mit Glow
+- Hover: Light blue background fill
+- Font: Rajdhani Bold, Uppercase
+
+**Active State:**
+- Background: Cortana Blue mit 20% opacity
+- Stronger Glow
+
+---
+
+## 6. Design Prinzipien
+
+### 6.1. Klare Kontraste
+- Dunkler Hintergrund (#000814)
+- Helle blaue UI Elemente (#4CC9F0)
+- NIEMALS helle Farben auf hellem Hintergrund
+- Immer scharfe, klare Trennung
+
+### 6.2. Militärisch-Strategisch
+- Uppercase Headlines
+- Technische, präzise Typografie
+- Grid-basierte Layouts
+- Sechseckige Elemente (Halo-typisch)
+
+### 6.3. Holographische Ästhetik
+- Alles wirkt wie projiziert
+- Subtile Glows überall
+- Scan Lines für Terminal-Feel
+- Transparente Overlays
+
+### 6.4. Epische Atmosphäre
+- Großzügiger Weißraum (Dunkelraum)
+- Monumentale Überschriften
+- Tiefe durch Layering
+- Ruhiges, kraftvolles Design
+
+---
+
+## 7. Zusammenfassung für Entwickler
 
 ```css
-/* Farben */
---bg-primary: #0A0E17;
---bg-secondary: #161B28;
---text-primary: #FFFFFF;
---text-secondary: #B0B8C8;
---accent-cyan: #00FFFF;
---accent-magenta: #E100FF;
---success: #00E676;
---error: #FF1744;
+/* Halo Color Palette */
+--bg-primary: #000814;      /* Deep Space Black */
+--bg-secondary: #001D3D;    /* UNSC Navy */
+--bg-tertiary: #003566;     /* Tactical Blue */
 
-/* Typografie */
---font-heading: 'Chakra Petch', sans-serif;
+--text-primary: #E8F1F5;    /* Tech White */
+--text-secondary: #90B8D8;  /* Tactical Grey */
+
+--accent-primary: #4CC9F0;  /* Cortana Blue */
+--accent-shield: #0096C7;   /* Shield Blue */
+--accent-energy: #00B4D8;   /* Energy Cyan */
+
+--success: #06D6A0;         /* Success Green */
+--warning: #FFB703;         /* Alert Orange */
+--error: #EF476F;           /* Danger Red */
+
+/* Typography */
+--font-heading: 'Rajdhani', sans-serif;
 --font-body: 'Inter', sans-serif;
 
-/* Effekte */
---glow-cyan: 0 0 10px rgba(0, 255, 255, 0.5);
---glow-magenta: 0 0 10px rgba(225, 0, 255, 0.5);
+/* Glow Effects */
+--glow-blue: 0 0 20px rgba(76, 201, 240, 0.4);
+--glow-text: 0 0 10px rgba(76, 201, 240, 0.8);
 ```
 
 **Prinzipien:**
-- Hintergrund ist immer `#0A0E17`
-- Text ist `#B0B8C8` (Inter Regular), Überschriften `#FFFFFF` (Chakra Petch Bold)
-- Akzente sind `#00FFFF` und `#E100FF`
-- Alles muss "leuchten" (subtile outer-glow CSS Effekte)
-- **Keine Flächen füllen, wenn Linien ausreichen**
-- HUD/Cyberpunk-Ästhetik durchgehend
+- Tiefes Dunkelblau-Schwarz Background (#000814)
+- Holographisches Blau (#4CC9F0) für UI
+- Rajdhani Bold Uppercase für Headlines
+- Sharp, kantige UI Elemente
+- Subtile Glows überall
+- Wie UNSC Tactical Interface
+- Episch, militärisch, strategisch
 
 ---
 
-**Logo:** Gaming Controller mit Neural Network - bereits implementiert als `/public/logo.png`
+**Referenz:** Halo 2 & Halo 3 Main Menu Interface, UNSC Terminals, Cortana Hologramme

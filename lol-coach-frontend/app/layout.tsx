@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 // Fonts are loaded via Google Fonts CDN in globals.css
-// Chakra Petch for headings, Inter for body text
+// Rajdhani for headings (military-tech style), Inter for body text
 
 export const metadata: Metadata = {
-  title: "LoL Coach - AI-Powered Win Prediction",
-  description: "Real-time win prediction, champion analytics, and intelligent item recommendations for League of Legends",
+  title: "UNSC Tactical Command - Halo-Inspired LoL Strategy",
+  description: "Military-grade tactical intelligence system - Real-time win prediction, operative analytics, and strategic loadout recommendations",
   icons: {
     icon: "/favicon.png",
     apple: "/logo.png",
