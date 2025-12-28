@@ -1,0 +1,4474 @@
+{
+  "Jayce": {
+    "name": "Jayce",
+    "total_wins": 62,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 14
+      },
+      {
+        "name": "Lux",
+        "count": 8
+      },
+      {
+        "name": "Jhin",
+        "count": 7
+      },
+      {
+        "name": "Zyra",
+        "count": 6
+      },
+      {
+        "name": "Cassiopeia",
+        "count": 5
+      }
+    ]
+  },
+  "Maokai": {
+    "name": "Maokai",
+    "total_wins": 95,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 15
+      },
+      {
+        "name": "Teemo",
+        "count": 10
+      },
+      {
+        "name": "Caitlyn",
+        "count": 9
+      },
+      {
+        "name": "Sylas",
+        "count": 9
+      },
+      {
+        "name": "Yasuo",
+        "count": 8
+      }
+    ]
+  },
+  "Viktor": {
+    "name": "Viktor",
+    "total_wins": 114,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Jhin",
+        "count": 13
+      },
+      {
+        "name": "Swain",
+        "count": 11
+      },
+      {
+        "name": "Viego",
+        "count": 11
+      },
+      {
+        "name": "Caitlyn",
+        "count": 11
+      }
+    ]
+  },
+  "Senna": {
+    "name": "Senna",
+    "total_wins": 158,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 16
+      },
+      {
+        "name": "Malzahar",
+        "count": 15
+      },
+      {
+        "name": "Caitlyn",
+        "count": 13
+      },
+      {
+        "name": "Viego",
+        "count": 13
+      },
+      {
+        "name": "Jax",
+        "count": 12
+      }
+    ]
+  },
+  "Cassiopeia": {
+    "name": "Cassiopeia",
+    "total_wins": 91,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Morgana",
+        "count": 10
+      },
+      {
+        "name": "Viego",
+        "count": 10
+      },
+      {
+        "name": "Caitlyn",
+        "count": 9
+      },
+      {
+        "name": "Malphite",
+        "count": 8
+      }
+    ]
+  },
+  "Sett": {
+    "name": "Sett",
+    "total_wins": 293,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 41
+      },
+      {
+        "name": "Lux",
+        "count": 32
+      },
+      {
+        "name": "Caitlyn",
+        "count": 32
+      },
+      {
+        "name": "Morgana",
+        "count": 31
+      },
+      {
+        "name": "Jinx",
+        "count": 30
+      }
+    ]
+  },
+  "Kayn": {
+    "name": "Kayn",
+    "total_wins": 285,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 35
+      },
+      {
+        "name": "Lux",
+        "count": 33
+      },
+      {
+        "name": "Caitlyn",
+        "count": 29
+      },
+      {
+        "name": "Mel",
+        "count": 29
+      },
+      {
+        "name": "Jinx",
+        "count": 25
+      }
+    ]
+  },
+  "Yasuo": {
+    "name": "Yasuo",
+    "total_wins": 325,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 42
+      },
+      {
+        "name": "Malphite",
+        "count": 31
+      },
+      {
+        "name": "Lux",
+        "count": 30
+      },
+      {
+        "name": "Jinx",
+        "count": 30
+      },
+      {
+        "name": "Jhin",
+        "count": 29
+      }
+    ]
+  },
+  "Vayne": {
+    "name": "Vayne",
+    "total_wins": 304,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 39
+      },
+      {
+        "name": "Viego",
+        "count": 26
+      },
+      {
+        "name": "Morgana",
+        "count": 22
+      },
+      {
+        "name": "Diana",
+        "count": 22
+      },
+      {
+        "name": "Malphite",
+        "count": 21
+      }
+    ]
+  },
+  "Lux": {
+    "name": "Lux",
+    "total_wins": 639,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 78
+      },
+      {
+        "name": "Caitlyn",
+        "count": 64
+      },
+      {
+        "name": "Ashe",
+        "count": 57
+      },
+      {
+        "name": "Jinx",
+        "count": 55
+      },
+      {
+        "name": "Jhin",
+        "count": 53
+      }
+    ]
+  },
+  "Tahm Kench": {
+    "name": "Tahm Kench",
+    "total_wins": 174,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 26
+      },
+      {
+        "name": "Malphite",
+        "count": 15
+      },
+      {
+        "name": "Jhin",
+        "count": 15
+      },
+      {
+        "name": "Mel",
+        "count": 15
+      },
+      {
+        "name": "Caitlyn",
+        "count": 14
+      }
+    ]
+  },
+  "Zac": {
+    "name": "Zac",
+    "total_wins": 85,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 14
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Morgana",
+        "count": 9
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 8
+      },
+      {
+        "name": "Mel",
+        "count": 8
+      }
+    ]
+  },
+  "Shen": {
+    "name": "Shen",
+    "total_wins": 114,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 16
+      },
+      {
+        "name": "Diana",
+        "count": 15
+      },
+      {
+        "name": "Caitlyn",
+        "count": 14
+      },
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Jhin",
+        "count": 13
+      }
+    ]
+  },
+  "Blitzcrank": {
+    "name": "Blitzcrank",
+    "total_wins": 160,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 20
+      },
+      {
+        "name": "Jhin",
+        "count": 16
+      },
+      {
+        "name": "Yone",
+        "count": 15
+      },
+      {
+        "name": "Caitlyn",
+        "count": 14
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 14
+      }
+    ]
+  },
+  "Teemo": {
+    "name": "Teemo",
+    "total_wins": 397,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 54
+      },
+      {
+        "name": "Caitlyn",
+        "count": 44
+      },
+      {
+        "name": "Lux",
+        "count": 33
+      },
+      {
+        "name": "Ashe",
+        "count": 30
+      },
+      {
+        "name": "Jinx",
+        "count": 30
+      }
+    ]
+  },
+  "LeBlanc": {
+    "name": "LeBlanc",
+    "total_wins": 121,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 19
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 17
+      },
+      {
+        "name": "Kayn",
+        "count": 12
+      },
+      {
+        "name": "Teemo",
+        "count": 11
+      },
+      {
+        "name": "Jhin",
+        "count": 11
+      }
+    ]
+  },
+  "Miss Fortune": {
+    "name": "Miss Fortune",
+    "total_wins": 791,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 78
+      },
+      {
+        "name": "Jax",
+        "count": 64
+      },
+      {
+        "name": "Viego",
+        "count": 63
+      },
+      {
+        "name": "Malphite",
+        "count": 61
+      },
+      {
+        "name": "Morgana",
+        "count": 57
+      }
+    ]
+  },
+  "Nami": {
+    "name": "Nami",
+    "total_wins": 244,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 29
+      },
+      {
+        "name": "Caitlyn",
+        "count": 24
+      },
+      {
+        "name": "Nocturne",
+        "count": 22
+      },
+      {
+        "name": "Lucian",
+        "count": 21
+      },
+      {
+        "name": "Jinx",
+        "count": 21
+      }
+    ]
+  },
+  "Cho'Gath": {
+    "name": "Cho'Gath",
+    "total_wins": 200,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 31
+      },
+      {
+        "name": "Caitlyn",
+        "count": 31
+      },
+      {
+        "name": "Lux",
+        "count": 19
+      },
+      {
+        "name": "Diana",
+        "count": 19
+      },
+      {
+        "name": "Morgana",
+        "count": 17
+      }
+    ]
+  },
+  "Shaco": {
+    "name": "Shaco",
+    "total_wins": 251,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 33
+      },
+      {
+        "name": "Lux",
+        "count": 28
+      },
+      {
+        "name": "Caitlyn",
+        "count": 24
+      },
+      {
+        "name": "Jhin",
+        "count": 23
+      },
+      {
+        "name": "Jinx",
+        "count": 20
+      }
+    ]
+  },
+  "Yone": {
+    "name": "Yone",
+    "total_wins": 361,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 46
+      },
+      {
+        "name": "Lux",
+        "count": 43
+      },
+      {
+        "name": "Jinx",
+        "count": 33
+      },
+      {
+        "name": "Jhin",
+        "count": 32
+      },
+      {
+        "name": "Caitlyn",
+        "count": 31
+      }
+    ]
+  },
+  "Brand": {
+    "name": "Brand",
+    "total_wins": 281,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 29
+      },
+      {
+        "name": "Caitlyn",
+        "count": 29
+      },
+      {
+        "name": "Jhin",
+        "count": 27
+      },
+      {
+        "name": "Yone",
+        "count": 20
+      },
+      {
+        "name": "Viego",
+        "count": 19
+      }
+    ]
+  },
+  "Gragas": {
+    "name": "Gragas",
+    "total_wins": 65,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Yasuo",
+        "count": 8
+      },
+      {
+        "name": "Ashe",
+        "count": 7
+      },
+      {
+        "name": "Jhin",
+        "count": 7
+      },
+      {
+        "name": "Viego",
+        "count": 6
+      }
+    ]
+  },
+  "Ekko": {
+    "name": "Ekko",
+    "total_wins": 212,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 30
+      },
+      {
+        "name": "Caitlyn",
+        "count": 24
+      },
+      {
+        "name": "Morgana",
+        "count": 20
+      },
+      {
+        "name": "Yone",
+        "count": 17
+      },
+      {
+        "name": "Garen",
+        "count": 16
+      }
+    ]
+  },
+  "Twisted Fate": {
+    "name": "Twisted Fate",
+    "total_wins": 52,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 6
+      },
+      {
+        "name": "Senna",
+        "count": 5
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 5
+      },
+      {
+        "name": "Vayne",
+        "count": 5
+      },
+      {
+        "name": "Master Yi",
+        "count": 4
+      }
+    ]
+  },
+  "Ashe": {
+    "name": "Ashe",
+    "total_wins": 395,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 57
+      },
+      {
+        "name": "Malphite",
+        "count": 37
+      },
+      {
+        "name": "Jax",
+        "count": 34
+      },
+      {
+        "name": "Teemo",
+        "count": 30
+      },
+      {
+        "name": "Morgana",
+        "count": 29
+      }
+    ]
+  },
+  "Xerath": {
+    "name": "Xerath",
+    "total_wins": 194,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 31
+      },
+      {
+        "name": "Caitlyn",
+        "count": 20
+      },
+      {
+        "name": "Jax",
+        "count": 15
+      },
+      {
+        "name": "Jhin",
+        "count": 15
+      },
+      {
+        "name": "Malphite",
+        "count": 15
+      }
+    ]
+  },
+  "Urgot": {
+    "name": "Urgot",
+    "total_wins": 123,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 17
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 15
+      },
+      {
+        "name": "Veigar",
+        "count": 14
+      },
+      {
+        "name": "Morgana",
+        "count": 12
+      },
+      {
+        "name": "Diana",
+        "count": 12
+      }
+    ]
+  },
+  "Akshan": {
+    "name": "Akshan",
+    "total_wins": 88,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Tristana",
+        "count": 9
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      },
+      {
+        "name": "Jhin",
+        "count": 9
+      },
+      {
+        "name": "Lux",
+        "count": 8
+      }
+    ]
+  },
+  "Tristana": {
+    "name": "Tristana",
+    "total_wins": 252,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 24
+      },
+      {
+        "name": "Teemo",
+        "count": 23
+      },
+      {
+        "name": "Viego",
+        "count": 22
+      },
+      {
+        "name": "Morgana",
+        "count": 19
+      },
+      {
+        "name": "Malzahar",
+        "count": 18
+      }
+    ]
+  },
+  "Leona": {
+    "name": "Leona",
+    "total_wins": 222,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 49
+      },
+      {
+        "name": "Teemo",
+        "count": 23
+      },
+      {
+        "name": "Jinx",
+        "count": 21
+      },
+      {
+        "name": "Caitlyn",
+        "count": 20
+      },
+      {
+        "name": "Jhin",
+        "count": 20
+      }
+    ]
+  },
+  "Garen": {
+    "name": "Garen",
+    "total_wins": 322,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 41
+      },
+      {
+        "name": "Caitlyn",
+        "count": 35
+      },
+      {
+        "name": "Viego",
+        "count": 34
+      },
+      {
+        "name": "Lux",
+        "count": 29
+      },
+      {
+        "name": "Ashe",
+        "count": 28
+      }
+    ]
+  },
+  "Nocturne": {
+    "name": "Nocturne",
+    "total_wins": 196,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 40
+      },
+      {
+        "name": "Jinx",
+        "count": 27
+      },
+      {
+        "name": "Nami",
+        "count": 22
+      },
+      {
+        "name": "Lux",
+        "count": 22
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 18
+      }
+    ]
+  },
+  "Veigar": {
+    "name": "Veigar",
+    "total_wins": 316,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 53
+      },
+      {
+        "name": "Malphite",
+        "count": 29
+      },
+      {
+        "name": "Garen",
+        "count": 26
+      },
+      {
+        "name": "Caitlyn",
+        "count": 26
+      },
+      {
+        "name": "Ashe",
+        "count": 26
+      }
+    ]
+  },
+  "Kalista": {
+    "name": "Kalista",
+    "total_wins": 47,
+    "best_teammates": [
+      {
+        "name": "Malphite",
+        "count": 7
+      },
+      {
+        "name": "Veigar",
+        "count": 6
+      },
+      {
+        "name": "Thresh",
+        "count": 5
+      },
+      {
+        "name": "Kha'Zix",
+        "count": 5
+      },
+      {
+        "name": "Rell",
+        "count": 5
+      }
+    ]
+  },
+  "Nautilus": {
+    "name": "Nautilus",
+    "total_wins": 271,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 38
+      },
+      {
+        "name": "Jinx",
+        "count": 30
+      },
+      {
+        "name": "Viego",
+        "count": 24
+      },
+      {
+        "name": "Jhin",
+        "count": 22
+      },
+      {
+        "name": "Samira",
+        "count": 22
+      }
+    ]
+  },
+  "Evelynn": {
+    "name": "Evelynn",
+    "total_wins": 86,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 10
+      },
+      {
+        "name": "Sett",
+        "count": 9
+      },
+      {
+        "name": "Jhin",
+        "count": 9
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      },
+      {
+        "name": "Morgana",
+        "count": 8
+      }
+    ]
+  },
+  "Galio": {
+    "name": "Galio",
+    "total_wins": 149,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Jinx",
+        "count": 16
+      },
+      {
+        "name": "Ashe",
+        "count": 16
+      },
+      {
+        "name": "Viego",
+        "count": 14
+      },
+      {
+        "name": "Master Yi",
+        "count": 13
+      }
+    ]
+  },
+  "Nilah": {
+    "name": "Nilah",
+    "total_wins": 53,
+    "best_teammates": [
+      {
+        "name": "Teemo",
+        "count": 7
+      },
+      {
+        "name": "Tahm Kench",
+        "count": 6
+      },
+      {
+        "name": "Sylas",
+        "count": 6
+      },
+      {
+        "name": "Garen",
+        "count": 5
+      },
+      {
+        "name": "Swain",
+        "count": 5
+      }
+    ]
+  },
+  "Ryze": {
+    "name": "Ryze",
+    "total_wins": 68,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 11
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Ashe",
+        "count": 7
+      },
+      {
+        "name": "Malphite",
+        "count": 7
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 6
+      }
+    ]
+  },
+  "Swain": {
+    "name": "Swain",
+    "total_wins": 292,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 48
+      },
+      {
+        "name": "Jhin",
+        "count": 31
+      },
+      {
+        "name": "Caitlyn",
+        "count": 28
+      },
+      {
+        "name": "Yone",
+        "count": 26
+      },
+      {
+        "name": "Viego",
+        "count": 25
+      }
+    ]
+  },
+  "Bard": {
+    "name": "Bard",
+    "total_wins": 92,
+    "best_teammates": [
+      {
+        "name": "Malphite",
+        "count": 14
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Jhin",
+        "count": 12
+      },
+      {
+        "name": "Caitlyn",
+        "count": 10
+      },
+      {
+        "name": "Mel",
+        "count": 9
+      }
+    ]
+  },
+  "Mordekaiser": {
+    "name": "Mordekaiser",
+    "total_wins": 299,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 37
+      },
+      {
+        "name": "Lux",
+        "count": 36
+      },
+      {
+        "name": "Jhin",
+        "count": 33
+      },
+      {
+        "name": "Caitlyn",
+        "count": 30
+      },
+      {
+        "name": "Jinx",
+        "count": 27
+      }
+    ]
+  },
+  "Briar": {
+    "name": "Briar",
+    "total_wins": 226,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 35
+      },
+      {
+        "name": "Lux",
+        "count": 30
+      },
+      {
+        "name": "Caitlyn",
+        "count": 23
+      },
+      {
+        "name": "Ashe",
+        "count": 21
+      },
+      {
+        "name": "Jinx",
+        "count": 20
+      }
+    ]
+  },
+  "Soraka": {
+    "name": "Soraka",
+    "total_wins": 115,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Jhin",
+        "count": 13
+      },
+      {
+        "name": "Jinx",
+        "count": 11
+      },
+      {
+        "name": "Viego",
+        "count": 11
+      },
+      {
+        "name": "Zaahen",
+        "count": 10
+      }
+    ]
+  },
+  "Gwen": {
+    "name": "Gwen",
+    "total_wins": 138,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 25
+      },
+      {
+        "name": "Lux",
+        "count": 17
+      },
+      {
+        "name": "Yasuo",
+        "count": 16
+      },
+      {
+        "name": "Caitlyn",
+        "count": 14
+      },
+      {
+        "name": "Jinx",
+        "count": 14
+      }
+    ]
+  },
+  "Dr. Mundo": {
+    "name": "Dr. Mundo",
+    "total_wins": 365,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 55
+      },
+      {
+        "name": "Lux",
+        "count": 39
+      },
+      {
+        "name": "Caitlyn",
+        "count": 37
+      },
+      {
+        "name": "Mel",
+        "count": 33
+      },
+      {
+        "name": "Jinx",
+        "count": 32
+      }
+    ]
+  },
+  "Zoe": {
+    "name": "Zoe",
+    "total_wins": 98,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 16
+      },
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 12
+      },
+      {
+        "name": "Caitlyn",
+        "count": 11
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 10
+      }
+    ]
+  },
+  "Pyke": {
+    "name": "Pyke",
+    "total_wins": 177,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 26
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 18
+      },
+      {
+        "name": "Caitlyn",
+        "count": 18
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 16
+      },
+      {
+        "name": "Yone",
+        "count": 16
+      }
+    ]
+  },
+  "Nasus": {
+    "name": "Nasus",
+    "total_wins": 213,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 34
+      },
+      {
+        "name": "Lux",
+        "count": 33
+      },
+      {
+        "name": "Caitlyn",
+        "count": 26
+      },
+      {
+        "name": "Jhin",
+        "count": 21
+      },
+      {
+        "name": "Swain",
+        "count": 17
+      }
+    ]
+  },
+  "Morgana": {
+    "name": "Morgana",
+    "total_wins": 427,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 62
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 57
+      },
+      {
+        "name": "Jinx",
+        "count": 34
+      },
+      {
+        "name": "Jhin",
+        "count": 32
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 31
+      }
+    ]
+  },
+  "Smolder": {
+    "name": "Smolder",
+    "total_wins": 309,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 30
+      },
+      {
+        "name": "Viego",
+        "count": 27
+      },
+      {
+        "name": "Morgana",
+        "count": 26
+      },
+      {
+        "name": "Malphite",
+        "count": 23
+      },
+      {
+        "name": "Jax",
+        "count": 23
+      }
+    ]
+  },
+  "Seraphine": {
+    "name": "Seraphine",
+    "total_wins": 218,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 43
+      },
+      {
+        "name": "Garen",
+        "count": 23
+      },
+      {
+        "name": "Ashe",
+        "count": 20
+      },
+      {
+        "name": "Warwick",
+        "count": 19
+      },
+      {
+        "name": "Jinx",
+        "count": 18
+      }
+    ]
+  },
+  "Darius": {
+    "name": "Darius",
+    "total_wins": 282,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 42
+      },
+      {
+        "name": "Lux",
+        "count": 29
+      },
+      {
+        "name": "Ashe",
+        "count": 27
+      },
+      {
+        "name": "Jinx",
+        "count": 25
+      },
+      {
+        "name": "Caitlyn",
+        "count": 22
+      }
+    ]
+  },
+  "Viego": {
+    "name": "Viego",
+    "total_wins": 412,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 63
+      },
+      {
+        "name": "Lux",
+        "count": 52
+      },
+      {
+        "name": "Jhin",
+        "count": 41
+      },
+      {
+        "name": "Caitlyn",
+        "count": 41
+      },
+      {
+        "name": "Malzahar",
+        "count": 36
+      }
+    ]
+  },
+  "Jhin": {
+    "name": "Jhin",
+    "total_wins": 464,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 53
+      },
+      {
+        "name": "Malphite",
+        "count": 46
+      },
+      {
+        "name": "Viego",
+        "count": 41
+      },
+      {
+        "name": "Sylas",
+        "count": 38
+      },
+      {
+        "name": "Jax",
+        "count": 34
+      }
+    ]
+  },
+  "Yorick": {
+    "name": "Yorick",
+    "total_wins": 189,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 23
+      },
+      {
+        "name": "Jinx",
+        "count": 20
+      },
+      {
+        "name": "Jhin",
+        "count": 20
+      },
+      {
+        "name": "Morgana",
+        "count": 19
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      }
+    ]
+  },
+  "Syndra": {
+    "name": "Syndra",
+    "total_wins": 143,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 29
+      },
+      {
+        "name": "Master Yi",
+        "count": 15
+      },
+      {
+        "name": "Jinx",
+        "count": 13
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 12
+      },
+      {
+        "name": "Caitlyn",
+        "count": 12
+      }
+    ]
+  },
+  "Kai'Sa": {
+    "name": "Kai'Sa",
+    "total_wins": 370,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 42
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 29
+      },
+      {
+        "name": "Malphite",
+        "count": 26
+      },
+      {
+        "name": "Warwick",
+        "count": 25
+      },
+      {
+        "name": "Amumu",
+        "count": 24
+      }
+    ]
+  },
+  "Yuumi": {
+    "name": "Yuumi",
+    "total_wins": 123,
+    "best_teammates": [
+      {
+        "name": "Tristana",
+        "count": 14
+      },
+      {
+        "name": "Jinx",
+        "count": 14
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Fizz",
+        "count": 11
+      },
+      {
+        "name": "Ahri",
+        "count": 11
+      }
+    ]
+  },
+  "Malphite": {
+    "name": "Malphite",
+    "total_wins": 447,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 61
+      },
+      {
+        "name": "Lux",
+        "count": 48
+      },
+      {
+        "name": "Jhin",
+        "count": 46
+      },
+      {
+        "name": "Caitlyn",
+        "count": 45
+      },
+      {
+        "name": "Ashe",
+        "count": 37
+      }
+    ]
+  },
+  "Sylas": {
+    "name": "Sylas",
+    "total_wins": 301,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 39
+      },
+      {
+        "name": "Jhin",
+        "count": 38
+      },
+      {
+        "name": "Caitlyn",
+        "count": 31
+      },
+      {
+        "name": "Jinx",
+        "count": 28
+      },
+      {
+        "name": "Lux",
+        "count": 24
+      }
+    ]
+  },
+  "Kennen": {
+    "name": "Kennen",
+    "total_wins": 86,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Lux",
+        "count": 10
+      },
+      {
+        "name": "Jhin",
+        "count": 8
+      },
+      {
+        "name": "Jinx",
+        "count": 7
+      },
+      {
+        "name": "Malphite",
+        "count": 7
+      }
+    ]
+  },
+  "Kindred": {
+    "name": "Kindred",
+    "total_wins": 95,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 16
+      },
+      {
+        "name": "Mordekaiser",
+        "count": 10
+      },
+      {
+        "name": "Tristana",
+        "count": 9
+      },
+      {
+        "name": "Lux",
+        "count": 9
+      },
+      {
+        "name": "Morgana",
+        "count": 9
+      }
+    ]
+  },
+  "Xin Zhao": {
+    "name": "Xin Zhao",
+    "total_wins": 92,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 17
+      },
+      {
+        "name": "Caitlyn",
+        "count": 15
+      },
+      {
+        "name": "Morgana",
+        "count": 10
+      },
+      {
+        "name": "Senna",
+        "count": 8
+      },
+      {
+        "name": "Garen",
+        "count": 8
+      }
+    ]
+  },
+  "Kassadin": {
+    "name": "Kassadin",
+    "total_wins": 60,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 12
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 10
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      },
+      {
+        "name": "Teemo",
+        "count": 7
+      },
+      {
+        "name": "Jhin",
+        "count": 6
+      }
+    ]
+  },
+  "Mel": {
+    "name": "Mel",
+    "total_wins": 360,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 47
+      },
+      {
+        "name": "Malphite",
+        "count": 33
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 33
+      },
+      {
+        "name": "Jax",
+        "count": 31
+      },
+      {
+        "name": "Kayn",
+        "count": 29
+      }
+    ]
+  },
+  "Warwick": {
+    "name": "Warwick",
+    "total_wins": 317,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 47
+      },
+      {
+        "name": "Jinx",
+        "count": 36
+      },
+      {
+        "name": "Caitlyn",
+        "count": 36
+      },
+      {
+        "name": "Lux",
+        "count": 30
+      },
+      {
+        "name": "Jhin",
+        "count": 28
+      }
+    ]
+  },
+  "Vel'Koz": {
+    "name": "Vel'Koz",
+    "total_wins": 186,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 27
+      },
+      {
+        "name": "Caitlyn",
+        "count": 17
+      },
+      {
+        "name": "Ashe",
+        "count": 17
+      },
+      {
+        "name": "Warwick",
+        "count": 16
+      },
+      {
+        "name": "Viego",
+        "count": 16
+      }
+    ]
+  },
+  "Aatrox": {
+    "name": "Aatrox",
+    "total_wins": 131,
+    "best_teammates": [
+      {
+        "name": "Mel",
+        "count": 15
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 15
+      },
+      {
+        "name": "Caitlyn",
+        "count": 15
+      },
+      {
+        "name": "Morgana",
+        "count": 13
+      },
+      {
+        "name": "Jhin",
+        "count": 13
+      }
+    ]
+  },
+  "Jax": {
+    "name": "Jax",
+    "total_wins": 366,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 64
+      },
+      {
+        "name": "Lux",
+        "count": 49
+      },
+      {
+        "name": "Caitlyn",
+        "count": 39
+      },
+      {
+        "name": "Jhin",
+        "count": 34
+      },
+      {
+        "name": "Ashe",
+        "count": 34
+      }
+    ]
+  },
+  "Riven": {
+    "name": "Riven",
+    "total_wins": 73,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 12
+      },
+      {
+        "name": "Jhin",
+        "count": 10
+      },
+      {
+        "name": "Jinx",
+        "count": 6
+      },
+      {
+        "name": "Morgana",
+        "count": 6
+      },
+      {
+        "name": "Veigar",
+        "count": 6
+      }
+    ]
+  },
+  "Skarner": {
+    "name": "Skarner",
+    "total_wins": 20,
+    "best_teammates": [
+      {
+        "name": "Jhin",
+        "count": 6
+      },
+      {
+        "name": "Ashe",
+        "count": 3
+      },
+      {
+        "name": "Varus",
+        "count": 3
+      },
+      {
+        "name": "Morgana",
+        "count": 3
+      },
+      {
+        "name": "Riven",
+        "count": 2
+      }
+    ]
+  },
+  "Hwei": {
+    "name": "Hwei",
+    "total_wins": 119,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Caitlyn",
+        "count": 16
+      },
+      {
+        "name": "Ashe",
+        "count": 15
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 9
+      }
+    ]
+  },
+  "Sivir": {
+    "name": "Sivir",
+    "total_wins": 122,
+    "best_teammates": [
+      {
+        "name": "Teemo",
+        "count": 14
+      },
+      {
+        "name": "Morgana",
+        "count": 12
+      },
+      {
+        "name": "Lux",
+        "count": 12
+      },
+      {
+        "name": "Veigar",
+        "count": 11
+      },
+      {
+        "name": "Nautilus",
+        "count": 10
+      }
+    ]
+  },
+  "Kayle": {
+    "name": "Kayle",
+    "total_wins": 155,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 24
+      },
+      {
+        "name": "Caitlyn",
+        "count": 19
+      },
+      {
+        "name": "Lux",
+        "count": 18
+      },
+      {
+        "name": "Jhin",
+        "count": 13
+      },
+      {
+        "name": "Mel",
+        "count": 12
+      }
+    ]
+  },
+  "Qiyana": {
+    "name": "Qiyana",
+    "total_wins": 80,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Caitlyn",
+        "count": 8
+      },
+      {
+        "name": "Jinx",
+        "count": 7
+      },
+      {
+        "name": "Diana",
+        "count": 7
+      },
+      {
+        "name": "Morgana",
+        "count": 7
+      }
+    ]
+  },
+  "Jinx": {
+    "name": "Jinx",
+    "total_wins": 460,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 55
+      },
+      {
+        "name": "Malphite",
+        "count": 37
+      },
+      {
+        "name": "Warwick",
+        "count": 36
+      },
+      {
+        "name": "Diana",
+        "count": 34
+      },
+      {
+        "name": "Morgana",
+        "count": 34
+      }
+    ]
+  },
+  "Milio": {
+    "name": "Milio",
+    "total_wins": 167,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 24
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 21
+      },
+      {
+        "name": "Jinx",
+        "count": 19
+      },
+      {
+        "name": "Malphite",
+        "count": 17
+      },
+      {
+        "name": "Warwick",
+        "count": 14
+      }
+    ]
+  },
+  "Illaoi": {
+    "name": "Illaoi",
+    "total_wins": 131,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 19
+      },
+      {
+        "name": "Caitlyn",
+        "count": 13
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Ahri",
+        "count": 11
+      },
+      {
+        "name": "Diana",
+        "count": 11
+      }
+    ]
+  },
+  "Lee Sin": {
+    "name": "Lee Sin",
+    "total_wins": 117,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Caitlyn",
+        "count": 13
+      },
+      {
+        "name": "Morgana",
+        "count": 13
+      },
+      {
+        "name": "Ashe",
+        "count": 11
+      },
+      {
+        "name": "Swain",
+        "count": 11
+      }
+    ]
+  },
+  "Draven": {
+    "name": "Draven",
+    "total_wins": 73,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 10
+      },
+      {
+        "name": "Xerath",
+        "count": 9
+      },
+      {
+        "name": "Mordekaiser",
+        "count": 7
+      },
+      {
+        "name": "Thresh",
+        "count": 7
+      },
+      {
+        "name": "Teemo",
+        "count": 6
+      }
+    ]
+  },
+  "Karma": {
+    "name": "Karma",
+    "total_wins": 131,
+    "best_teammates": [
+      {
+        "name": "Jhin",
+        "count": 13
+      },
+      {
+        "name": "Caitlyn",
+        "count": 13
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Smolder",
+        "count": 10
+      },
+      {
+        "name": "Diana",
+        "count": 10
+      }
+    ]
+  },
+  "Camille": {
+    "name": "Camille",
+    "total_wins": 32,
+    "best_teammates": [
+      {
+        "name": "Smolder",
+        "count": 5
+      },
+      {
+        "name": "Morgana",
+        "count": 5
+      },
+      {
+        "name": "Ashe",
+        "count": 5
+      },
+      {
+        "name": "Jinx",
+        "count": 4
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 4
+      }
+    ]
+  },
+  "Hecarim": {
+    "name": "Hecarim",
+    "total_wins": 58,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Lux",
+        "count": 9
+      },
+      {
+        "name": "Yuumi",
+        "count": 7
+      },
+      {
+        "name": "Katarina",
+        "count": 6
+      },
+      {
+        "name": "Brand",
+        "count": 6
+      }
+    ]
+  },
+  "Katarina": {
+    "name": "Katarina",
+    "total_wins": 176,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 24
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 23
+      },
+      {
+        "name": "Morgana",
+        "count": 18
+      },
+      {
+        "name": "Ashe",
+        "count": 16
+      },
+      {
+        "name": "Garen",
+        "count": 16
+      }
+    ]
+  },
+  "Zilean": {
+    "name": "Zilean",
+    "total_wins": 74,
+    "best_teammates": [
+      {
+        "name": "Nasus",
+        "count": 9
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Caitlyn",
+        "count": 8
+      },
+      {
+        "name": "Jhin",
+        "count": 8
+      },
+      {
+        "name": "Vayne",
+        "count": 8
+      }
+    ]
+  },
+  "Rengar": {
+    "name": "Rengar",
+    "total_wins": 72,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 13
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 10
+      },
+      {
+        "name": "Malphite",
+        "count": 7
+      },
+      {
+        "name": "Malzahar",
+        "count": 7
+      },
+      {
+        "name": "Jinx",
+        "count": 6
+      }
+    ]
+  },
+  "Nunu & Willump": {
+    "name": "Nunu & Willump",
+    "total_wins": 72,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 10
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 10
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 9
+      },
+      {
+        "name": "Lux",
+        "count": 9
+      },
+      {
+        "name": "Teemo",
+        "count": 8
+      }
+    ]
+  },
+  "Varus": {
+    "name": "Varus",
+    "total_wins": 131,
+    "best_teammates": [
+      {
+        "name": "Morgana",
+        "count": 18
+      },
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Diana",
+        "count": 10
+      },
+      {
+        "name": "Teemo",
+        "count": 10
+      },
+      {
+        "name": "Viktor",
+        "count": 9
+      }
+    ]
+  },
+  "Lissandra": {
+    "name": "Lissandra",
+    "total_wins": 57,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Viego",
+        "count": 7
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 6
+      },
+      {
+        "name": "Garen",
+        "count": 6
+      },
+      {
+        "name": "Teemo",
+        "count": 5
+      }
+    ]
+  },
+  "Rammus": {
+    "name": "Rammus",
+    "total_wins": 74,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Morgana",
+        "count": 11
+      },
+      {
+        "name": "Teemo",
+        "count": 8
+      },
+      {
+        "name": "Lux",
+        "count": 7
+      },
+      {
+        "name": "Yasuo",
+        "count": 7
+      }
+    ]
+  },
+  "Tryndamere": {
+    "name": "Tryndamere",
+    "total_wins": 136,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 19
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Morgana",
+        "count": 15
+      },
+      {
+        "name": "Mel",
+        "count": 12
+      },
+      {
+        "name": "Caitlyn",
+        "count": 12
+      }
+    ]
+  },
+  "Yunara": {
+    "name": "Yunara",
+    "total_wins": 141,
+    "best_teammates": [
+      {
+        "name": "Malphite",
+        "count": 14
+      },
+      {
+        "name": "Teemo",
+        "count": 12
+      },
+      {
+        "name": "Darius",
+        "count": 11
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Mel",
+        "count": 11
+      }
+    ]
+  },
+  "Lulu": {
+    "name": "Lulu",
+    "total_wins": 106,
+    "best_teammates": [
+      {
+        "name": "Jinx",
+        "count": 15
+      },
+      {
+        "name": "Vayne",
+        "count": 14
+      },
+      {
+        "name": "Master Yi",
+        "count": 10
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 10
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 9
+      }
+    ]
+  },
+  "Renekton": {
+    "name": "Renekton",
+    "total_wins": 102,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Jhin",
+        "count": 11
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 10
+      },
+      {
+        "name": "Ahri",
+        "count": 10
+      },
+      {
+        "name": "Jinx",
+        "count": 10
+      }
+    ]
+  },
+  "Vi": {
+    "name": "Vi",
+    "total_wins": 105,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 19
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 16
+      },
+      {
+        "name": "Garen",
+        "count": 12
+      },
+      {
+        "name": "Jhin",
+        "count": 12
+      },
+      {
+        "name": "Smolder",
+        "count": 10
+      }
+    ]
+  },
+  "Rakan": {
+    "name": "Rakan",
+    "total_wins": 83,
+    "best_teammates": [
+      {
+        "name": "Xayah",
+        "count": 14
+      },
+      {
+        "name": "Yasuo",
+        "count": 8
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Warwick",
+        "count": 8
+      },
+      {
+        "name": "Kayn",
+        "count": 8
+      }
+    ]
+  },
+  "Irelia": {
+    "name": "Irelia",
+    "total_wins": 163,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 19
+      },
+      {
+        "name": "Viego",
+        "count": 19
+      },
+      {
+        "name": "Lux",
+        "count": 18
+      },
+      {
+        "name": "Caitlyn",
+        "count": 16
+      },
+      {
+        "name": "Nautilus",
+        "count": 14
+      }
+    ]
+  },
+  "Sejuani": {
+    "name": "Sejuani",
+    "total_wins": 76,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 13
+      },
+      {
+        "name": "Lux",
+        "count": 12
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Jhin",
+        "count": 7
+      },
+      {
+        "name": "Ashe",
+        "count": 7
+      }
+    ]
+  },
+  "Sona": {
+    "name": "Sona",
+    "total_wins": 89,
+    "best_teammates": [
+      {
+        "name": "Kai'Sa",
+        "count": 10
+      },
+      {
+        "name": "Caitlyn",
+        "count": 9
+      },
+      {
+        "name": "Jhin",
+        "count": 9
+      },
+      {
+        "name": "Warwick",
+        "count": 8
+      },
+      {
+        "name": "Kayn",
+        "count": 8
+      }
+    ]
+  },
+  "Bel'Veth": {
+    "name": "Bel'Veth",
+    "total_wins": 62,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Lux",
+        "count": 8
+      },
+      {
+        "name": "Smolder",
+        "count": 6
+      },
+      {
+        "name": "Caitlyn",
+        "count": 6
+      },
+      {
+        "name": "Morgana",
+        "count": 6
+      }
+    ]
+  },
+  "Kha'Zix": {
+    "name": "Kha'Zix",
+    "total_wins": 131,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 19
+      },
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Malphite",
+        "count": 13
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Yone",
+        "count": 12
+      }
+    ]
+  },
+  "Alistar": {
+    "name": "Alistar",
+    "total_wins": 59,
+    "best_teammates": [
+      {
+        "name": "Kai'Sa",
+        "count": 8
+      },
+      {
+        "name": "Yone",
+        "count": 6
+      },
+      {
+        "name": "Teemo",
+        "count": 6
+      },
+      {
+        "name": "Caitlyn",
+        "count": 6
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 6
+      }
+    ]
+  },
+  "Trundle": {
+    "name": "Trundle",
+    "total_wins": 159,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 22
+      },
+      {
+        "name": "Caitlyn",
+        "count": 20
+      },
+      {
+        "name": "Jinx",
+        "count": 16
+      },
+      {
+        "name": "Lux",
+        "count": 14
+      },
+      {
+        "name": "Morgana",
+        "count": 12
+      }
+    ]
+  },
+  "Amumu": {
+    "name": "Amumu",
+    "total_wins": 230,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 36
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 24
+      },
+      {
+        "name": "Jinx",
+        "count": 24
+      },
+      {
+        "name": "Lux",
+        "count": 21
+      },
+      {
+        "name": "Caitlyn",
+        "count": 20
+      }
+    ]
+  },
+  "Zed": {
+    "name": "Zed",
+    "total_wins": 228,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 26
+      },
+      {
+        "name": "Lux",
+        "count": 25
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 22
+      },
+      {
+        "name": "Jinx",
+        "count": 19
+      },
+      {
+        "name": "Sett",
+        "count": 19
+      }
+    ]
+  },
+  "Vex": {
+    "name": "Vex",
+    "total_wins": 142,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 19
+      },
+      {
+        "name": "Viego",
+        "count": 17
+      },
+      {
+        "name": "Caitlyn",
+        "count": 16
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 15
+      },
+      {
+        "name": "Ashe",
+        "count": 13
+      }
+    ]
+  },
+  "Naafiri": {
+    "name": "Naafiri",
+    "total_wins": 132,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 17
+      },
+      {
+        "name": "Jinx",
+        "count": 14
+      },
+      {
+        "name": "Lux",
+        "count": 14
+      },
+      {
+        "name": "Vayne",
+        "count": 12
+      },
+      {
+        "name": "Jhin",
+        "count": 12
+      }
+    ]
+  },
+  "Caitlyn": {
+    "name": "Caitlyn",
+    "total_wins": 578,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 64
+      },
+      {
+        "name": "Morgana",
+        "count": 62
+      },
+      {
+        "name": "Malphite",
+        "count": 45
+      },
+      {
+        "name": "Teemo",
+        "count": 44
+      },
+      {
+        "name": "Diana",
+        "count": 42
+      }
+    ]
+  },
+  "Aurelion Sol": {
+    "name": "Aurelion Sol",
+    "total_wins": 84,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Ashe",
+        "count": 10
+      },
+      {
+        "name": "Jax",
+        "count": 9
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 8
+      },
+      {
+        "name": "Zyra",
+        "count": 8
+      }
+    ]
+  },
+  "Diana": {
+    "name": "Diana",
+    "total_wins": 377,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 57
+      },
+      {
+        "name": "Caitlyn",
+        "count": 42
+      },
+      {
+        "name": "Lux",
+        "count": 39
+      },
+      {
+        "name": "Jinx",
+        "count": 34
+      },
+      {
+        "name": "Jhin",
+        "count": 30
+      }
+    ]
+  },
+  "Pantheon": {
+    "name": "Pantheon",
+    "total_wins": 221,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 31
+      },
+      {
+        "name": "Jhin",
+        "count": 23
+      },
+      {
+        "name": "Jinx",
+        "count": 21
+      },
+      {
+        "name": "Lux",
+        "count": 21
+      },
+      {
+        "name": "Viego",
+        "count": 19
+      }
+    ]
+  },
+  "Malzahar": {
+    "name": "Malzahar",
+    "total_wins": 322,
+    "best_teammates": [
+      {
+        "name": "Viego",
+        "count": 36
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 35
+      },
+      {
+        "name": "Caitlyn",
+        "count": 32
+      },
+      {
+        "name": "Jinx",
+        "count": 29
+      },
+      {
+        "name": "Lux",
+        "count": 27
+      }
+    ]
+  },
+  "Gangplank": {
+    "name": "Gangplank",
+    "total_wins": 60,
+    "best_teammates": [
+      {
+        "name": "Jhin",
+        "count": 7
+      },
+      {
+        "name": "Swain",
+        "count": 6
+      },
+      {
+        "name": "Ezreal",
+        "count": 6
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 6
+      },
+      {
+        "name": "Sivir",
+        "count": 5
+      }
+    ]
+  },
+  "Ahri": {
+    "name": "Ahri",
+    "total_wins": 286,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 38
+      },
+      {
+        "name": "Caitlyn",
+        "count": 36
+      },
+      {
+        "name": "Jhin",
+        "count": 26
+      },
+      {
+        "name": "Morgana",
+        "count": 24
+      },
+      {
+        "name": "Viego",
+        "count": 23
+      }
+    ]
+  },
+  "Rumble": {
+    "name": "Rumble",
+    "total_wins": 49,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 9
+      },
+      {
+        "name": "Jhin",
+        "count": 6
+      },
+      {
+        "name": "Lux",
+        "count": 4
+      },
+      {
+        "name": "Yasuo",
+        "count": 4
+      },
+      {
+        "name": "Ashe",
+        "count": 4
+      }
+    ]
+  },
+  "Poppy": {
+    "name": "Poppy",
+    "total_wins": 119,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 18
+      },
+      {
+        "name": "Caitlyn",
+        "count": 17
+      },
+      {
+        "name": "Jinx",
+        "count": 13
+      },
+      {
+        "name": "Warwick",
+        "count": 11
+      },
+      {
+        "name": "Veigar",
+        "count": 10
+      }
+    ]
+  },
+  "Master Yi": {
+    "name": "Master Yi",
+    "total_wins": 281,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 36
+      },
+      {
+        "name": "Caitlyn",
+        "count": 29
+      },
+      {
+        "name": "Jinx",
+        "count": 29
+      },
+      {
+        "name": "Lux",
+        "count": 26
+      },
+      {
+        "name": "Ashe",
+        "count": 21
+      }
+    ]
+  },
+  "Singed": {
+    "name": "Singed",
+    "total_wins": 74,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Tristana",
+        "count": 9
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 9
+      },
+      {
+        "name": "Ashe",
+        "count": 9
+      },
+      {
+        "name": "Yasuo",
+        "count": 7
+      }
+    ]
+  },
+  "Jarvan IV": {
+    "name": "Jarvan IV",
+    "total_wins": 91,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 12
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Diana",
+        "count": 8
+      },
+      {
+        "name": "Lux",
+        "count": 8
+      },
+      {
+        "name": "Garen",
+        "count": 8
+      }
+    ]
+  },
+  "Corki": {
+    "name": "Corki",
+    "total_wins": 35,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 5
+      },
+      {
+        "name": "Pyke",
+        "count": 4
+      },
+      {
+        "name": "Darius",
+        "count": 3
+      },
+      {
+        "name": "Zed",
+        "count": 3
+      },
+      {
+        "name": "Viego",
+        "count": 3
+      }
+    ]
+  },
+  "Samira": {
+    "name": "Samira",
+    "total_wins": 175,
+    "best_teammates": [
+      {
+        "name": "Nautilus",
+        "count": 22
+      },
+      {
+        "name": "Warwick",
+        "count": 19
+      },
+      {
+        "name": "Malzahar",
+        "count": 15
+      },
+      {
+        "name": "Malphite",
+        "count": 15
+      },
+      {
+        "name": "Lux",
+        "count": 14
+      }
+    ]
+  },
+  "Janna": {
+    "name": "Janna",
+    "total_wins": 69,
+    "best_teammates": [
+      {
+        "name": "Mordekaiser",
+        "count": 9
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      },
+      {
+        "name": "Caitlyn",
+        "count": 8
+      },
+      {
+        "name": "Jhin",
+        "count": 8
+      },
+      {
+        "name": "Diana",
+        "count": 7
+      }
+    ]
+  },
+  "Ambessa": {
+    "name": "Ambessa",
+    "total_wins": 96,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      },
+      {
+        "name": "Caitlyn",
+        "count": 9
+      },
+      {
+        "name": "Ashe",
+        "count": 9
+      }
+    ]
+  },
+  "Shyvana": {
+    "name": "Shyvana",
+    "total_wins": 60,
+    "best_teammates": [
+      {
+        "name": "Malzahar",
+        "count": 8
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 7
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 6
+      },
+      {
+        "name": "Senna",
+        "count": 6
+      },
+      {
+        "name": "Jhin",
+        "count": 6
+      }
+    ]
+  },
+  "Aurora": {
+    "name": "Aurora",
+    "total_wins": 55,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 10
+      },
+      {
+        "name": "Viego",
+        "count": 8
+      },
+      {
+        "name": "Kayn",
+        "count": 7
+      },
+      {
+        "name": "Jinx",
+        "count": 6
+      },
+      {
+        "name": "Master Yi",
+        "count": 5
+      }
+    ]
+  },
+  "Fiora": {
+    "name": "Fiora",
+    "total_wins": 96,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Vayne",
+        "count": 11
+      },
+      {
+        "name": "Jhin",
+        "count": 10
+      },
+      {
+        "name": "Malzahar",
+        "count": 10
+      }
+    ]
+  },
+  "Aphelios": {
+    "name": "Aphelios",
+    "total_wins": 103,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 12
+      },
+      {
+        "name": "Kayn",
+        "count": 9
+      },
+      {
+        "name": "Malphite",
+        "count": 9
+      },
+      {
+        "name": "Sylas",
+        "count": 8
+      },
+      {
+        "name": "Veigar",
+        "count": 8
+      }
+    ]
+  },
+  "Sion": {
+    "name": "Sion",
+    "total_wins": 153,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 26
+      },
+      {
+        "name": "Smolder",
+        "count": 12
+      },
+      {
+        "name": "Diana",
+        "count": 12
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 11
+      }
+    ]
+  },
+  "Udyr": {
+    "name": "Udyr",
+    "total_wins": 67,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Ashe",
+        "count": 9
+      },
+      {
+        "name": "Lux",
+        "count": 9
+      },
+      {
+        "name": "Caitlyn",
+        "count": 9
+      },
+      {
+        "name": "Seraphine",
+        "count": 8
+      }
+    ]
+  },
+  "Olaf": {
+    "name": "Olaf",
+    "total_wins": 50,
+    "best_teammates": [
+      {
+        "name": "Kai'Sa",
+        "count": 8
+      },
+      {
+        "name": "Malphite",
+        "count": 6
+      },
+      {
+        "name": "Teemo",
+        "count": 6
+      },
+      {
+        "name": "Caitlyn",
+        "count": 5
+      },
+      {
+        "name": "Zyra",
+        "count": 5
+      }
+    ]
+  },
+  "Zeri": {
+    "name": "Zeri",
+    "total_wins": 66,
+    "best_teammates": [
+      {
+        "name": "Teemo",
+        "count": 8
+      },
+      {
+        "name": "Yone",
+        "count": 8
+      },
+      {
+        "name": "Viego",
+        "count": 8
+      },
+      {
+        "name": "Malphite",
+        "count": 7
+      },
+      {
+        "name": "Mordekaiser",
+        "count": 7
+      }
+    ]
+  },
+  "Ziggs": {
+    "name": "Ziggs",
+    "total_wins": 115,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 15
+      },
+      {
+        "name": "Morgana",
+        "count": 12
+      },
+      {
+        "name": "Jinx",
+        "count": 12
+      },
+      {
+        "name": "Warwick",
+        "count": 10
+      },
+      {
+        "name": "Pantheon",
+        "count": 10
+      }
+    ]
+  },
+  "Twitch": {
+    "name": "Twitch",
+    "total_wins": 155,
+    "best_teammates": [
+      {
+        "name": "Brand",
+        "count": 13
+      },
+      {
+        "name": "Darius",
+        "count": 13
+      },
+      {
+        "name": "Lux",
+        "count": 12
+      },
+      {
+        "name": "Yasuo",
+        "count": 12
+      },
+      {
+        "name": "Morgana",
+        "count": 12
+      }
+    ]
+  },
+  "Heimerdinger": {
+    "name": "Heimerdinger",
+    "total_wins": 109,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 16
+      },
+      {
+        "name": "Caitlyn",
+        "count": 12
+      },
+      {
+        "name": "Warwick",
+        "count": 11
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Viego",
+        "count": 11
+      }
+    ]
+  },
+  "Lillia": {
+    "name": "Lillia",
+    "total_wins": 130,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 20
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 17
+      },
+      {
+        "name": "Jinx",
+        "count": 14
+      },
+      {
+        "name": "Darius",
+        "count": 13
+      },
+      {
+        "name": "Mel",
+        "count": 12
+      }
+    ]
+  },
+  "Orianna": {
+    "name": "Orianna",
+    "total_wins": 81,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Jinx",
+        "count": 11
+      },
+      {
+        "name": "Jhin",
+        "count": 11
+      },
+      {
+        "name": "Lux",
+        "count": 8
+      },
+      {
+        "name": "Vayne",
+        "count": 8
+      }
+    ]
+  },
+  "Fizz": {
+    "name": "Fizz",
+    "total_wins": 203,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 27
+      },
+      {
+        "name": "Caitlyn",
+        "count": 21
+      },
+      {
+        "name": "Jinx",
+        "count": 18
+      },
+      {
+        "name": "Lux",
+        "count": 17
+      },
+      {
+        "name": "Jhin",
+        "count": 16
+      }
+    ]
+  },
+  "Lucian": {
+    "name": "Lucian",
+    "total_wins": 133,
+    "best_teammates": [
+      {
+        "name": "Nami",
+        "count": 21
+      },
+      {
+        "name": "Lux",
+        "count": 15
+      },
+      {
+        "name": "Yone",
+        "count": 12
+      },
+      {
+        "name": "Diana",
+        "count": 12
+      },
+      {
+        "name": "Malphite",
+        "count": 12
+      }
+    ]
+  },
+  "Zaahen": {
+    "name": "Zaahen",
+    "total_wins": 228,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 35
+      },
+      {
+        "name": "Mel",
+        "count": 23
+      },
+      {
+        "name": "Lux",
+        "count": 23
+      },
+      {
+        "name": "Ashe",
+        "count": 18
+      },
+      {
+        "name": "Jhin",
+        "count": 18
+      }
+    ]
+  },
+  "Akali": {
+    "name": "Akali",
+    "total_wins": 268,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 37
+      },
+      {
+        "name": "Caitlyn",
+        "count": 30
+      },
+      {
+        "name": "Teemo",
+        "count": 22
+      },
+      {
+        "name": "Smolder",
+        "count": 22
+      },
+      {
+        "name": "Jinx",
+        "count": 22
+      }
+    ]
+  },
+  "Talon": {
+    "name": "Talon",
+    "total_wins": 90,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 15
+      },
+      {
+        "name": "Caitlyn",
+        "count": 12
+      },
+      {
+        "name": "Jhin",
+        "count": 11
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 9
+      },
+      {
+        "name": "Teemo",
+        "count": 8
+      }
+    ]
+  },
+  "Fiddlesticks": {
+    "name": "Fiddlesticks",
+    "total_wins": 107,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 16
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Yone",
+        "count": 12
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 11
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 9
+      }
+    ]
+  },
+  "Xayah": {
+    "name": "Xayah",
+    "total_wins": 83,
+    "best_teammates": [
+      {
+        "name": "Rakan",
+        "count": 14
+      },
+      {
+        "name": "Lux",
+        "count": 9
+      },
+      {
+        "name": "Mel",
+        "count": 7
+      },
+      {
+        "name": "Warwick",
+        "count": 7
+      },
+      {
+        "name": "Mordekaiser",
+        "count": 6
+      }
+    ]
+  },
+  "Thresh": {
+    "name": "Thresh",
+    "total_wins": 219,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 27
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 22
+      },
+      {
+        "name": "Jhin",
+        "count": 20
+      },
+      {
+        "name": "Diana",
+        "count": 20
+      },
+      {
+        "name": "Jax",
+        "count": 19
+      }
+    ]
+  },
+  "Elise": {
+    "name": "Elise",
+    "total_wins": 55,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 11
+      },
+      {
+        "name": "Lux",
+        "count": 10
+      },
+      {
+        "name": "Jhin",
+        "count": 8
+      },
+      {
+        "name": "Jax",
+        "count": 6
+      },
+      {
+        "name": "Yasuo",
+        "count": 6
+      }
+    ]
+  },
+  "Taric": {
+    "name": "Taric",
+    "total_wins": 58,
+    "best_teammates": [
+      {
+        "name": "Mordekaiser",
+        "count": 8
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Warwick",
+        "count": 6
+      },
+      {
+        "name": "Viego",
+        "count": 6
+      },
+      {
+        "name": "Malphite",
+        "count": 5
+      }
+    ]
+  },
+  "Zyra": {
+    "name": "Zyra",
+    "total_wins": 217,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 36
+      },
+      {
+        "name": "Viego",
+        "count": 24
+      },
+      {
+        "name": "Caitlyn",
+        "count": 21
+      },
+      {
+        "name": "Jhin",
+        "count": 19
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 18
+      }
+    ]
+  },
+  "Neeko": {
+    "name": "Neeko",
+    "total_wins": 110,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 20
+      },
+      {
+        "name": "Caitlyn",
+        "count": 19
+      },
+      {
+        "name": "Malphite",
+        "count": 13
+      },
+      {
+        "name": "Yasuo",
+        "count": 12
+      },
+      {
+        "name": "Jinx",
+        "count": 11
+      }
+    ]
+  },
+  "Braum": {
+    "name": "Braum",
+    "total_wins": 112,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 17
+      },
+      {
+        "name": "Ashe",
+        "count": 15
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 13
+      },
+      {
+        "name": "Viego",
+        "count": 11
+      },
+      {
+        "name": "Lucian",
+        "count": 9
+      }
+    ]
+  },
+  "Gnar": {
+    "name": "Gnar",
+    "total_wins": 69,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 12
+      },
+      {
+        "name": "Caitlyn",
+        "count": 11
+      },
+      {
+        "name": "Lux",
+        "count": 10
+      },
+      {
+        "name": "Malzahar",
+        "count": 9
+      },
+      {
+        "name": "Ashe",
+        "count": 8
+      }
+    ]
+  },
+  "Wukong": {
+    "name": "Wukong",
+    "total_wins": 100,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 12
+      },
+      {
+        "name": "Malphite",
+        "count": 12
+      },
+      {
+        "name": "Jinx",
+        "count": 12
+      },
+      {
+        "name": "Morgana",
+        "count": 10
+      },
+      {
+        "name": "Ashe",
+        "count": 10
+      }
+    ]
+  },
+  "Kog'Maw": {
+    "name": "Kog'Maw",
+    "total_wins": 69,
+    "best_teammates": [
+      {
+        "name": "Malphite",
+        "count": 10
+      },
+      {
+        "name": "Zaahen",
+        "count": 9
+      },
+      {
+        "name": "Milio",
+        "count": 7
+      },
+      {
+        "name": "Lulu",
+        "count": 7
+      },
+      {
+        "name": "Dr. Mundo",
+        "count": 6
+      }
+    ]
+  },
+  "Annie": {
+    "name": "Annie",
+    "total_wins": 44,
+    "best_teammates": [
+      {
+        "name": "Teemo",
+        "count": 6
+      },
+      {
+        "name": "Garen",
+        "count": 6
+      },
+      {
+        "name": "Volibear",
+        "count": 5
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 4
+      },
+      {
+        "name": "Morgana",
+        "count": 4
+      }
+    ]
+  },
+  "Volibear": {
+    "name": "Volibear",
+    "total_wins": 251,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 45
+      },
+      {
+        "name": "Lux",
+        "count": 28
+      },
+      {
+        "name": "Jhin",
+        "count": 28
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 23
+      },
+      {
+        "name": "Yone",
+        "count": 22
+      }
+    ]
+  },
+  "Nidalee": {
+    "name": "Nidalee",
+    "total_wins": 55,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 6
+      },
+      {
+        "name": "Jhin",
+        "count": 6
+      },
+      {
+        "name": "Leona",
+        "count": 5
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 4
+      },
+      {
+        "name": "Nasus",
+        "count": 4
+      }
+    ]
+  },
+  "K'Sante": {
+    "name": "K'Sante",
+    "total_wins": 38,
+    "best_teammates": [
+      {
+        "name": "Jinx",
+        "count": 8
+      },
+      {
+        "name": "Jhin",
+        "count": 6
+      },
+      {
+        "name": "Diana",
+        "count": 6
+      },
+      {
+        "name": "Kayn",
+        "count": 5
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 4
+      }
+    ]
+  },
+  "Ornn": {
+    "name": "Ornn",
+    "total_wins": 86,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 14
+      },
+      {
+        "name": "Lux",
+        "count": 11
+      },
+      {
+        "name": "Caitlyn",
+        "count": 11
+      },
+      {
+        "name": "Brand",
+        "count": 11
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      }
+    ]
+  },
+  "Renata Glasc": {
+    "name": "Renata Glasc",
+    "total_wins": 18,
+    "best_teammates": [
+      {
+        "name": "Zaahen",
+        "count": 5
+      },
+      {
+        "name": "Vayne",
+        "count": 4
+      },
+      {
+        "name": "Jax",
+        "count": 3
+      },
+      {
+        "name": "Diana",
+        "count": 3
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 3
+      }
+    ]
+  },
+  "Taliyah": {
+    "name": "Taliyah",
+    "total_wins": 33,
+    "best_teammates": [
+      {
+        "name": "Jhin",
+        "count": 6
+      },
+      {
+        "name": "Jinx",
+        "count": 5
+      },
+      {
+        "name": "Caitlyn",
+        "count": 5
+      },
+      {
+        "name": "Jax",
+        "count": 4
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 4
+      }
+    ]
+  },
+  "Anivia": {
+    "name": "Anivia",
+    "total_wins": 84,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Jhin",
+        "count": 10
+      },
+      {
+        "name": "Aatrox",
+        "count": 8
+      },
+      {
+        "name": "Warwick",
+        "count": 8
+      },
+      {
+        "name": "Ashe",
+        "count": 7
+      }
+    ]
+  },
+  "Ezreal": {
+    "name": "Ezreal",
+    "total_wins": 234,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 29
+      },
+      {
+        "name": "Yone",
+        "count": 20
+      },
+      {
+        "name": "Brand",
+        "count": 19
+      },
+      {
+        "name": "Diana",
+        "count": 18
+      },
+      {
+        "name": "Malphite",
+        "count": 18
+      }
+    ]
+  },
+  "Karthus": {
+    "name": "Karthus",
+    "total_wins": 36,
+    "best_teammates": [
+      {
+        "name": "Brand",
+        "count": 5
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 5
+      },
+      {
+        "name": "Jinx",
+        "count": 4
+      },
+      {
+        "name": "Yone",
+        "count": 4
+      },
+      {
+        "name": "Lux",
+        "count": 4
+      }
+    ]
+  },
+  "Rell": {
+    "name": "Rell",
+    "total_wins": 51,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Ashe",
+        "count": 5
+      },
+      {
+        "name": "Vayne",
+        "count": 5
+      },
+      {
+        "name": "Jhin",
+        "count": 5
+      },
+      {
+        "name": "Warwick",
+        "count": 5
+      }
+    ]
+  },
+  "Vladimir": {
+    "name": "Vladimir",
+    "total_wins": 105,
+    "best_teammates": [
+      {
+        "name": "Caitlyn",
+        "count": 16
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 13
+      },
+      {
+        "name": "Shaco",
+        "count": 12
+      },
+      {
+        "name": "Jinx",
+        "count": 9
+      },
+      {
+        "name": "Jhin",
+        "count": 9
+      }
+    ]
+  },
+  "Quinn": {
+    "name": "Quinn",
+    "total_wins": 72,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 10
+      },
+      {
+        "name": "Lux",
+        "count": 7
+      },
+      {
+        "name": "Morgana",
+        "count": 7
+      },
+      {
+        "name": "Jhin",
+        "count": 7
+      },
+      {
+        "name": "Mel",
+        "count": 7
+      }
+    ]
+  },
+  "Azir": {
+    "name": "Azir",
+    "total_wins": 36,
+    "best_teammates": [
+      {
+        "name": "Miss Fortune",
+        "count": 7
+      },
+      {
+        "name": "Diana",
+        "count": 5
+      },
+      {
+        "name": "Gragas",
+        "count": 4
+      },
+      {
+        "name": "Lux",
+        "count": 4
+      },
+      {
+        "name": "Milio",
+        "count": 4
+      }
+    ]
+  },
+  "Graves": {
+    "name": "Graves",
+    "total_wins": 63,
+    "best_teammates": [
+      {
+        "name": "Lux",
+        "count": 13
+      },
+      {
+        "name": "Caitlyn",
+        "count": 10
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 8
+      },
+      {
+        "name": "Jhin",
+        "count": 7
+      },
+      {
+        "name": "Mel",
+        "count": 7
+      }
+    ]
+  },
+  "Kled": {
+    "name": "Kled",
+    "total_wins": 27,
+    "best_teammates": [
+      {
+        "name": "Master Yi",
+        "count": 5
+      },
+      {
+        "name": "Lux",
+        "count": 5
+      },
+      {
+        "name": "Jinx",
+        "count": 5
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 4
+      },
+      {
+        "name": "Sylas",
+        "count": 3
+      }
+    ]
+  },
+  "Rek'Sai": {
+    "name": "Rek'Sai",
+    "total_wins": 21,
+    "best_teammates": [
+      {
+        "name": "Veigar",
+        "count": 3
+      },
+      {
+        "name": "Jinx",
+        "count": 3
+      },
+      {
+        "name": "Mel",
+        "count": 3
+      },
+      {
+        "name": "Kai'Sa",
+        "count": 3
+      },
+      {
+        "name": "Riven",
+        "count": 2
+      }
+    ]
+  },
+  "Ivern": {
+    "name": "Ivern",
+    "total_wins": 16,
+    "best_teammates": [
+      {
+        "name": "Ashe",
+        "count": 4
+      },
+      {
+        "name": "Miss Fortune",
+        "count": 3
+      },
+      {
+        "name": "Irelia",
+        "count": 2
+      },
+      {
+        "name": "Darius",
+        "count": 2
+      },
+      {
+        "name": "Yone",
+        "count": 2
+      }
+    ]
+  }
+}
