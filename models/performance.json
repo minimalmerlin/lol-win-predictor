@@ -1,6 +1,23 @@
 {
-  "accuracy": 0.9088953052555596,
-  "roc_auc": 0.982066705387503,
-  "timestamp": "2025-12-27T16:22:13.546366",
-  "matches_count": 360188
+  "accuracy": 0.5139318885448917,
+  "roc_auc": 0.48654363706266823,
+  "timestamp": "2025-12-28T15:18:22.293759",
+  "matches_count": 1613,
+  "training_config": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "min_matches_for_training": 100,
+    "rf_params": {
+      "n_estimators": 100,
+      "max_depth": 20,
+      "min_samples_split": 10,
+      "min_samples_leaf": 5,
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "lr_params": {
+      "max_iter": 1000,
+      "random_state": 42
+    }
+  }
 }
