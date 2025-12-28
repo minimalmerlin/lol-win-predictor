@@ -2,37 +2,55 @@
  * Riot Data Dragon Asset URLs
  * ============================
  *
- * Offizielle Riot Games CDN für Champion- und Item-Bilder
+ * Single source of truth for all Riot API asset URLs.
+ * All champion and item images are loaded dynamically from Riot's CDN.
+ *
  * Docs: https://developer.riotgames.com/docs/lol#data-dragon
  */
 
-// Aktuellste Version (wird regelmäßig von Riot aktualisiert)
+// Latest version (update periodically or fetch dynamically)
 const DDRAGON_VERSION = '14.24.1'; // LoL Patch 14.24
 const DDRAGON_BASE = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}`;
 
 /**
  * Champion Portrait URL
+ * Loads champion image directly from Riot CDN
  * @param championName - Champion name (e.g., "Thresh", "MissFortune")
  * @returns URL to champion portrait image
  */
 export function getChampionImageUrl(championName: string): string {
-  // Data Dragon verwendet manchmal andere Namen
+  // Data Dragon uses specific naming for some champions
   const nameMapping: Record<string, string> = {
     'MissFortune': 'MissFortune',
     'DrMundo': 'DrMundo',
+    'Dr. Mundo': 'DrMundo',
     'JarvanIV': 'JarvanIV',
+    'Jarvan IV': 'JarvanIV',
     'KhaZix': 'Khazix',
+    "Kha'Zix": 'Khazix',
     'KogMaw': 'KogMaw',
+    "Kog'Maw": 'KogMaw',
     'LeBlanc': 'Leblanc',
     'LeeSin': 'LeeSin',
+    'Lee Sin': 'LeeSin',
     'MasterYi': 'MasterYi',
-    'MonkeyKing': 'MonkeyKing', // Wukong
+    'Master Yi': 'MasterYi',
+    'MonkeyKing': 'MonkeyKing',
+    'Wukong': 'MonkeyKing',
     'RekSai': 'RekSai',
+    "Rek'Sai": 'RekSai',
     'TahmKench': 'TahmKench',
+    'Tahm Kench': 'TahmKench',
     'TwistedFate': 'TwistedFate',
+    'Twisted Fate': 'TwistedFate',
     'VelKoz': 'Velkoz',
+    "Vel'Koz": 'Velkoz',
     'XinZhao': 'XinZhao',
-    // Füge hier weitere Mappings hinzu falls nötig
+    'Xin Zhao': 'XinZhao',
+    "Cho'Gath": 'Chogath',
+    'ChoGath': 'Chogath',
+    'AurelionSol': 'AurelionSol',
+    'Aurelion Sol': 'AurelionSol',
   };
 
   const mappedName = nameMapping[championName] || championName;
@@ -40,7 +58,7 @@ export function getChampionImageUrl(championName: string): string {
 }
 
 /**
- * Champion Splash Art URL (größeres Bild)
+ * Champion Splash Art URL (larger image for backgrounds)
  * @param championName - Champion name
  * @returns URL to champion splash art
  */
@@ -48,18 +66,34 @@ export function getChampionSplashUrl(championName: string): string {
   const nameMapping: Record<string, string> = {
     'MissFortune': 'MissFortune',
     'DrMundo': 'DrMundo',
+    'Dr. Mundo': 'DrMundo',
     'JarvanIV': 'JarvanIV',
+    'Jarvan IV': 'JarvanIV',
     'KhaZix': 'Khazix',
+    "Kha'Zix": 'Khazix',
     'KogMaw': 'KogMaw',
+    "Kog'Maw": 'KogMaw',
     'LeBlanc': 'Leblanc',
     'LeeSin': 'LeeSin',
+    'Lee Sin': 'LeeSin',
     'MasterYi': 'MasterYi',
+    'Master Yi': 'MasterYi',
     'MonkeyKing': 'MonkeyKing',
+    'Wukong': 'MonkeyKing',
     'RekSai': 'RekSai',
+    "Rek'Sai": 'RekSai',
     'TahmKench': 'TahmKench',
+    'Tahm Kench': 'TahmKench',
     'TwistedFate': 'TwistedFate',
+    'Twisted Fate': 'TwistedFate',
     'VelKoz': 'Velkoz',
+    "Vel'Koz": 'Velkoz',
     'XinZhao': 'XinZhao',
+    'Xin Zhao': 'XinZhao',
+    "Cho'Gath": 'Chogath',
+    'ChoGath': 'Chogath',
+    'AurelionSol': 'AurelionSol',
+    'Aurelion Sol': 'AurelionSol',
   };
 
   const mappedName = nameMapping[championName] || championName;
@@ -68,6 +102,7 @@ export function getChampionSplashUrl(championName: string): string {
 
 /**
  * Item Image URL
+ * Loads item image directly from Riot CDN
  * @param itemId - Item ID (e.g., 3003, 6653)
  * @returns URL to item image
  */
@@ -77,7 +112,7 @@ export function getItemImageUrl(itemId: number): string {
 
 /**
  * Item Name Mapping
- * Mapping von Item IDs zu Namen
+ * Maps item IDs to human-readable names
  */
 export const ITEM_NAMES: Record<number, string> = {
   // Starter Items
@@ -179,14 +214,12 @@ export const ITEM_NAMES: Record<number, string> = {
   6633: "Riftmaker",
   6655: "Luden's Tempest",
   6656: "Everfrost",
-
-  // Default für unbekannte Items
 };
 
 /**
  * Get Item Name
  * @param itemId - Item ID
- * @returns Item name or ID as string if not found
+ * @returns Item name or "Item {ID}" if not found
  */
 export function getItemName(itemId: number): string {
   return ITEM_NAMES[itemId] || `Item ${itemId}`;
@@ -194,6 +227,7 @@ export function getItemName(itemId: number): string {
 
 /**
  * Get Champion Image with fallback
+ * Returns an object with URL and error handler for Next.js Image components
  * @param championName - Champion name
  * @returns Object with URL and fallback handler
  */
@@ -201,7 +235,7 @@ export function getChampionImageWithFallback(championName: string) {
   return {
     url: getChampionImageUrl(championName),
     onError: (e: any) => {
-      // Fallback zu Placeholder wenn Bild nicht lädt
+      // Fallback to placeholder if image fails to load
       e.target.src = `https://via.placeholder.com/120x120/1e293b/60a5fa?text=${championName.substring(0, 2)}`;
     }
   };
@@ -210,14 +244,14 @@ export function getChampionImageWithFallback(championName: string) {
 /**
  * Get Item Image with fallback
  * @param itemId - Item ID
- * @returns Object with URL and fallback handler
+ * @returns Object with URL, name, and fallback handler
  */
 export function getItemImageWithFallback(itemId: number) {
   return {
     url: getItemImageUrl(itemId),
     name: getItemName(itemId),
     onError: (e: any) => {
-      // Fallback zu Placeholder
+      // Fallback to placeholder
       e.target.src = `https://via.placeholder.com/64x64/334155/94a3b8?text=${itemId}`;
     }
   };
