@@ -32,11 +32,12 @@ class PipelineConfig:
     """Pipeline configuration and paths"""
     ROOT_DIR = Path(__file__).parent
     FETCH_SCRIPT = ROOT_DIR / "fetch_matches_with_items.py"
+    MERGE_SCRIPT = ROOT_DIR / "merge_training_data.py"
     PROCESS_SCRIPT = ROOT_DIR / "generate_item_builds.py"
     TRAIN_SCRIPT = ROOT_DIR / "train_model.py"
 
     # Validate scripts exist
-    REQUIRED_SCRIPTS = [FETCH_SCRIPT, PROCESS_SCRIPT, TRAIN_SCRIPT]
+    REQUIRED_SCRIPTS = [FETCH_SCRIPT, MERGE_SCRIPT, PROCESS_SCRIPT, TRAIN_SCRIPT]
 
 
 class PipelineLogger:
@@ -253,6 +254,7 @@ Examples:
   python pipeline.py                    # Run full pipeline (100 matches)
   python pipeline.py --matches 1000     # Fetch 1000 matches
   python pipeline.py --skip-fetch       # Skip data fetching
+  python pipeline.py --skip-merge       # Skip data merging
   python pipeline.py --skip-processing  # Skip data processing
   python pipeline.py --skip-training    # Skip model training
         """
@@ -269,6 +271,12 @@ Examples:
         "--skip-fetch",
         action="store_true",
         help="Skip data fetching step"
+    )
+
+    parser.add_argument(
+        "--skip-merge",
+        action="store_true",
+        help="Skip data merging step"
     )
 
     parser.add_argument(
@@ -305,6 +313,14 @@ def main():
             args=[]  # Could add ["--matches", str(args.matches)] if script supports it
         )
         pipeline.add_step(fetch_step)
+
+    if not args.skip_merge:
+        merge_step = PipelineStep(
+            name="Data Merging (Consolidate Datasets)",
+            script_path=config.MERGE_SCRIPT,
+            args=[]
+        )
+        pipeline.add_step(merge_step)
 
     if not args.skip_processing:
         process_step = PipelineStep(

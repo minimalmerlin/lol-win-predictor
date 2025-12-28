@@ -24,6 +24,11 @@ on:
         required: false
         default: false
         type: boolean
+      skip_merge:
+        description: 'Skip data merging'
+        required: false
+        default: false
+        type: boolean
       skip_processing:
         description: 'Skip data processing'
         required: false
@@ -94,6 +99,7 @@ jobs:
 
           echo "Checking required scripts..."
           test -f fetch_matches_with_items.py || echo "⚠️  fetch_matches_with_items.py not found"
+          test -f merge_training_data.py || echo "⚠️  merge_training_data.py not found"
           test -f generate_item_builds.py || echo "⚠️  generate_item_builds.py not found"
           test -f train_model.py || echo "⚠️  train_model.py not found"
           test -f pipeline.py || (echo "❌ pipeline.py not found" && exit 1)
@@ -115,6 +121,10 @@ jobs:
           # Add skip flags if provided (for manual runs)
           if [ "${{ github.event.inputs.skip_fetch }}" = "true" ]; then
             CMD="$CMD --skip-fetch"
+          fi
+
+          if [ "${{ github.event.inputs.skip_merge }}" = "true" ]; then
+            CMD="$CMD --skip-merge"
           fi
 
           if [ "${{ github.event.inputs.skip_processing }}" = "true" ]; then
