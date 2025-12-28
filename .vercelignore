@@ -1,16 +1,18 @@
-# Vercel Ignore - Backend Deployment
-lol-coach-frontend/
-node_modules/
+# Vercel Ignore - Exclude Python backend files (not needed for Next.js deployment)
+api/
 __pycache__/
 *.pyc
 .env
 .DS_Store
 *.log
 models/
-data/champion_data/
+data/
 *.pkl
 *.joblib
-requirements-local.txt
+requirements*.txt
 *.ipynb
 scripts/
 tests/
+runtime.txt
+DEPLOYMENT_GUIDE.md
+VERCEL_DEPLOYMENT.md
