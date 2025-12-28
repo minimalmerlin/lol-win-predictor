@@ -1,8 +1,15 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
 
-# DEIN KEY HIER EINFÜGEN
-API_KEY = 'RGAPI-HIER-EINFÜGEN' 
+# Load environment variables from .env file
+load_dotenv()
+
+# API Key from environment variable
+API_KEY = os.getenv("RIOT_API_KEY")
+if not API_KEY:
+    raise ValueError("RIOT_API_KEY not found in environment variables. Please create a .env file with your API key.") 
 REGION = 'euw1'
 
 HEADERS = {"X-Riot-Token": API_KEY}

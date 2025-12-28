@@ -1,5 +1,21 @@
 # Quick Start Guide: Massives Training mit öffentlichen Daten
 
+⚠️ **DEPRECATED - This guide is outdated and references scripts that no longer exist.**
+
+**For current training workflow, see:**
+- [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) - Production deployment
+- [pipeline.py](pipeline.py) - Automated ML pipeline
+- [.github/workflows/ml-training.yml](.github/workflows/ml-training.yml) - GitHub Actions automation
+
+**Current data collection:**
+- `fetch_matches_with_items.py` - Fetches match data with items
+- `merge_training_data.py` - Merges multiple datasets
+- `train_model.py` - Trains the ML model
+
+---
+
+## Historical Information (Outdated)
+
 Dieses Guide zeigt dir, wie du dein Win-Prediction-Modell mit Millionen von öffentlichen Match-Daten trainierst.
 
 ## Übersicht der Datenquellen

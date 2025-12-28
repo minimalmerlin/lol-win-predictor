@@ -2,10 +2,16 @@ import requests
 import pandas as pd
 import time
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # ================= CONFIGURATION =================
-# PLATZHALTER: User muss den Key manuell einfügen
-API_KEY = "RGAPI-99f0dd8c-40a0-42d6-8dda-03f6faaa9779"
+# API Key from environment variable
+API_KEY = os.getenv("RIOT_API_KEY")
+if not API_KEY:
+    raise ValueError("RIOT_API_KEY not found in environment variables. Please create a .env file with your API key.")
 
 REGION_ROUTING = "europe"   # Für Match-V5 (europe, americas, asia)
 START_PLAYER_NAME = "Agurin" # Seed Player (High Elo Jungler)

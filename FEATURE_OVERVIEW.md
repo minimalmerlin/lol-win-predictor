@@ -173,17 +173,18 @@ Dashboard (/)
 
 ## 🧠 Machine Learning Models
 
-### **1. Champion Matchup Predictor**
-- **Trainiert auf**: 360k+ High-Elo Matches
-- **Input**: 5 vs 5 Champions
+### **1. Champion Matchup Predictor (Draft-Only)**
+- **Trainiert auf**: 12,834 matches
+- **Input**: 5 vs 5 Champions (draft only, no in-game stats)
 - **Output**: Win-Probability für beide Teams
-- **Accuracy**: ~90%
+- **Accuracy**: 52.0% (baseline for draft-only prediction - expected due to game complexity)
+- **Note**: Higher accuracy requires in-game features (gold, kills, objectives)
 
 ### **2. Win Prediction Model (Game State)**
-- **Trainiert auf**: 360k+ Matches
+- **Trainiert auf**: 12,834 matches
 - **Input**: Game Duration, Kills, Gold, Towers, Dragons, Barons, Vision
 - **Output**: Real-time Win-Probability
-- **Accuracy**: 90.9%
+- **Accuracy**: 61.6% (with in-game state features)
 
 ### **3. Intelligent Item Recommender**
 - **Heuristiken**:
@@ -203,7 +204,7 @@ Dashboard (/)
 | **Item Builds** | ✅ Meta-Builds | ✅ Matchup-spezifisch |
 | **Draft Prediction** | ❌ Nein | ✅ Live während Pick |
 | **Live Game Tracking** | ❌ Nein | ✅ Auto via Riot API |
-| **Win Probability** | ❌ Nein | ✅ Real-time 90.9% Acc |
+| **Win Probability** | ❌ Nein | ✅ Real-time (61.6% with game state) |
 | **Strategic Advice** | ❌ Nein | ✅ Game-State basiert |
 | **Team Synergies** | ❌ Basic | ✅ ML-basiert (8k+ Pairs) |
 

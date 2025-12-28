@@ -4,12 +4,19 @@ import time
 import os
 import urllib.parse
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Import configuration
 from config import TRAINING_DATA_PATH, CRAWLER_STATE_DIR, TARGET_MATCHES
 
 # --- KONFIGURATION ---
-API_KEY = 'RGAPI-99f0dd8c-40a0-42d6-8dda-03f6faaa9779'  # <--- TÄGLICH ERNEUERN!
+# API Key from environment variable
+API_KEY = os.getenv("RIOT_API_KEY")
+if not API_KEY:
+    raise ValueError("RIOT_API_KEY not found in environment variables. Please create a .env file with your API key.")
 REGION_ROUTING = 'europe'
 # TARGET_MATCHES and paths now come from config.py for consistency
 OUTPUT_FILE = str(TRAINING_DATA_PATH)

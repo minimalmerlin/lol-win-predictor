@@ -10,14 +10,19 @@ Modern REST API with:
 - Auto-generated Swagger docs
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 import json
 from pathlib import Path
 import pickle
 import logging
+import os
 
 from intelligent_item_recommender import IntelligentItemRecommender
 from riot_live_client import RiotLiveClient
@@ -26,6 +31,36 @@ from dynamic_build_generator import DynamicBuildGenerator, Champion, GameState
 # Logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Environment configuration
+ENV = os.getenv("ENV", "development")
+INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY")
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+
+# Rate limiting
+limiter = Limiter(key_func=get_remote_address)
+
+# Security: API Key middleware
+async def verify_api_key(request: Request):
+    """
+    Verify API key for production environments.
+    Development mode allows requests without API key (with warning).
+    """
+    if ENV == "production":
+        api_key = request.headers.get("X-INTERNAL-API-KEY")
+
+        if not api_key or api_key != INTERNAL_API_KEY:
+            logger.warning(f"Unauthorized API access attempt from {request.client.host}")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid or missing API key"
+            )
+    elif ENV == "development":
+        # Development mode - log warning but allow
+        if not request.headers.get("X-INTERNAL-API-KEY"):
+            logger.warning(f"Development mode: Request from {request.client.host} without API key")
+
+    return True
 
 # FastAPI App
 app = FastAPI(
@@ -36,10 +71,17 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS - Allow all origins for development (restrict in production)
+# Rate limiting setup
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+# CORS - Production-ready with environment-based origins
+origins_list = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
+logger.info(f"CORS allowed origins: {origins_list}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production: ["https://your-frontend.vercel.app"]
+    allow_origins=origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -245,8 +287,9 @@ async def health_check():
     }
 
 
-@app.post("/api/predict-champion-matchup", response_model=PredictionResponse)
-async def predict_champion_matchup(request: ChampionMatchupRequest):
+@app.post("/api/predict-champion-matchup", response_model=PredictionResponse, dependencies=[])
+@limiter.limit("10/minute")
+async def predict_champion_matchup(http_request: Request, request: ChampionMatchupRequest):
     """
     Predict win probability based on champion team compositions
 
@@ -256,6 +299,9 @@ async def predict_champion_matchup(request: ChampionMatchupRequest):
     - Confidence level
     - Champion win-rate details
     """
+    # Verify API key
+    await verify_api_key(http_request)
+
     if not champion_predictor:
         raise HTTPException(status_code=503, detail="Champion Predictor not loaded")
 
@@ -283,8 +329,9 @@ async def predict_champion_matchup(request: ChampionMatchupRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/api/predict-game-state", response_model=PredictionResponse)
-async def predict_game_state(request: GameStateRequest):
+@app.post("/api/predict-game-state", response_model=PredictionResponse, dependencies=[])
+@limiter.limit("10/minute")
+async def predict_game_state(http_request: Request, request: GameStateRequest):
     """
     Predict win probability based on current game state
 
@@ -294,6 +341,9 @@ async def predict_game_state(request: GameStateRequest):
     - Confidence level
     - Game state analysis
     """
+    # Verify API key
+    await verify_api_key(http_request)
+
     if not win_predictor:
         raise HTTPException(status_code=503, detail="Win Predictor not loaded")
 

@@ -60,8 +60,8 @@ lol-coach-frontend/.env*.local
 # Large data files (locally generated training data)
 data/clean_training_data.csv
 data/clean_training_data_massive.csv
+data/clean_training_data_items.csv
 data/crawler_state/
 
-# Large model files (>100MB)
-models/win_predictor_rf.pkl
+# Model backups only (keep trained models in repo for deployment)
 models/backups/
