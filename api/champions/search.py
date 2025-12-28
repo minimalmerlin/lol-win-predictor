@@ -1,21 +1,65 @@
 """
 Champions Search Endpoint with Fuzzy Matching
+Now returns champion IDs from Riot API for proper navigation
 """
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 import os
 from difflib import SequenceMatcher
+import requests
 
 app = Flask(__name__)
 CORS(app)
 
+# Cache for Riot API champion data
+_riot_champions_cache = None
+
+def get_riot_champion_mapping():
+    """
+    Fetches champion name -> ID mapping from Riot Data Dragon
+    Returns dict: {"Wukong": "MonkeyKing", "Lee Sin": "LeeSin", ...}
+    """
+    global _riot_champions_cache
+
+    if _riot_champions_cache:
+        return _riot_champions_cache
+
+    try:
+        # Get latest version
+        version_url = "https://ddragon.leagueoflegends.com/api/versions.json"
+        versions = requests.get(version_url, timeout=5).json()
+        latest_version = versions[0]
+
+        # Get champion data
+        champion_url = f"https://ddragon.leagueoflegends.com/cdn/{latest_version}/data/en_US/champion.json"
+        response = requests.get(champion_url, timeout=5)
+        data = response.json()
+
+        # Build Name -> ID mapping
+        name_to_id = {}
+        for champ_data in data['data'].values():
+            name_to_id[champ_data['name']] = champ_data['id']
+
+        _riot_champions_cache = name_to_id
+        print(f"✅ Cached {len(name_to_id)} champion IDs from Riot API")
+        return name_to_id
+
+    except Exception as e:
+        print(f"⚠️  Failed to fetch Riot champion mapping: {e}")
+        return {}
+
 def get_champion_data():
     """Load champions with stats from champion_stats.json"""
     try:
-        # Get the path to champion_stats.json
+        # Get the path to champion_stats.json - try both locations
         base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        stats_file = os.path.join(base_dir, 'data', 'champion_data', 'champion_stats.json')
+
+        # Try new location first (from generate_frontend_stats.py)
+        new_stats_file = os.path.join(base_dir, 'lol-coach-frontend', 'public', 'data', 'champion_stats.json')
+        old_stats_file = os.path.join(base_dir, 'data', 'champion_data', 'champion_stats.json')
+
+        stats_file = new_stats_file if os.path.exists(new_stats_file) else old_stats_file
 
         # Load champion stats
         with open(stats_file, 'r', encoding='utf-8') as f:
@@ -80,6 +124,9 @@ def handler(req):
         # Fallback if no data file
         return jsonify({"results": []})
 
+    # Get Riot API champion ID mapping
+    name_to_id = get_riot_champion_mapping()
+
     # Calculate similarity for all champions
     matches = []
     for champ_name, stats in champion_stats.items():
@@ -89,6 +136,7 @@ def handler(req):
         if similarity > 0.3:
             result = {
                 'name': champ_name,
+                'id': name_to_id.get(champ_name, champ_name),  # Add Riot ID for navigation
                 'similarity': similarity,
                 'match_quality': get_match_quality(similarity),
                 'has_builds': True

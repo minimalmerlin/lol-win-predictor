@@ -11,6 +11,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
 interface SearchResult {
   name: string;
+  id: string; // Riot champion ID for proper navigation (e.g. "MonkeyKing" instead of "Wukong")
   similarity: number;
   match_quality: string;
   has_builds: boolean;
@@ -62,11 +63,11 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
     return () => clearTimeout(debounceTimer);
   }, [query, searchChampions]);
 
-  const handleSelect = (championName: string) => {
+  const handleSelect = (championId: string, championName: string) => {
     if (onSelect) {
-      onSelect(championName);
+      onSelect(championName); // Callback still gets the name for compatibility
     } else {
-      router.push(`/champion/${championName}`);
+      router.push(`/champion/${championId}`); // Navigation uses ID
     }
     setQuery('');
     setIsOpen(false);
@@ -101,8 +102,8 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps = {}) {
           <div className="p-2 space-y-1">
             {results.map((result) => (
               <div
-                key={result.name}
-                onClick={() => handleSelect(result.name)}
+                key={result.id}
+                onClick={() => handleSelect(result.id, result.name)}
                 className="p-3 rounded-lg hover:bg-slate-700/50 cursor-pointer transition-colors group"
               >
                 <div className="flex items-center justify-between">
