@@ -10,3 +10,7 @@ models/
 data/champion_data/
 *.pkl
 *.joblib
+requirements-local.txt
+*.ipynb
+scripts/
+tests/
