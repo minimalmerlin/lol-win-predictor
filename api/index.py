@@ -1,88 +1,92 @@
 """
 Vercel Serverless Function Handler
 ===================================
-Wraps the FastAPI app for Vercel deployment
+Simple HTTP handler for Vercel deployment
 """
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 import json
-from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
-app = FastAPI(
-    title="LoL Coach API",
-    version="2.0.0"
-)
+# Champion list
+CHAMPIONS = [
+    "Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe",
+    "Aurelion Sol", "Azir", "Bard", "Blitzcrank", "Brand", "Braum", "Caitlyn",
+    "Camille", "Cassiopeia", "Cho'Gath", "Corki", "Darius", "Diana", "Dr. Mundo",
+    "Draven", "Ekko", "Elise", "Evelynn", "Ezreal", "Fiddlesticks", "Fiora",
+    "Fizz", "Galio", "Gangplank", "Garen", "Gnar", "Gragas", "Graves", "Hecarim",
+    "Heimerdinger", "Illaoi", "Irelia", "Ivern", "Janna", "Jarvan IV", "Jax",
+    "Jayce", "Jhin", "Jinx", "Kalista", "Karma", "Karthus", "Kassadin", "Katarina",
+    "Kayle", "Kayn", "Kennen", "Kha'Zix", "Kindred", "Kled", "Kog'Maw", "LeBlanc",
+    "Lee Sin", "Leona", "Lissandra", "Lucian", "Lulu", "Lux", "Malphite", "Malzahar",
+    "Maokai", "Master Yi", "Miss Fortune", "Mordekaiser", "Morgana", "Nami", "Nasus",
+    "Nautilus", "Nidalee", "Nocturne", "Nunu", "Olaf", "Orianna", "Ornn", "Pantheon",
+    "Poppy", "Quinn", "Rakan", "Rammus", "Rek'Sai", "Renekton", "Rengar", "Riven",
+    "Rumble", "Ryze", "Sejuani", "Shaco", "Shen", "Shyvana", "Singed", "Sion", "Sivir",
+    "Skarner", "Sona", "Soraka", "Swain", "Syndra", "Tahm Kench", "Taliyah", "Talon",
+    "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate",
+    "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor",
+    "Vladimir", "Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo",
+    "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"
+]
 
-# CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+def handler(request):
+    """Vercel serverless function handler"""
 
-# Simple health check
-@app.get("/")
-def read_root():
-    return {"status": "online", "message": "LoL Coach API"}
+    # Get path
+    path = request.get('path', '/')
+    query = request.get('query', {})
 
-# Load champion list from static file
-@app.get("/api/champions/list")
-def get_champions():
-    # For now, return a static list
-    # You'll need to include champion_stats.json in your deployment
-    champions = [
-        "Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe",
-        "Aurelion Sol", "Azir", "Bard", "Blitzcrank", "Brand", "Braum", "Caitlyn",
-        "Camille", "Cassiopeia", "Cho'Gath", "Corki", "Darius", "Diana", "Dr. Mundo",
-        "Draven", "Ekko", "Elise", "Evelynn", "Ezreal", "Fiddlesticks", "Fiora",
-        "Fizz", "Galio", "Gangplank", "Garen", "Gnar", "Gragas", "Graves", "Hecarim",
-        "Heimerdinger", "Illaoi", "Irelia", "Ivern", "Janna", "Jarvan IV", "Jax",
-        "Jayce", "Jhin", "Jinx", "Kalista", "Karma", "Karthus", "Kassadin", "Katarina",
-        "Kayle", "Kayn", "Kennen", "Kha'Zix", "Kindred", "Kled", "Kog'Maw", "LeBlanc",
-        "Lee Sin", "Leona", "Lissandra", "Lucian", "Lulu", "Lux", "Malphite", "Malzahar",
-        "Maokai", "Master Yi", "Miss Fortune", "Mordekaiser", "Morgana", "Nami", "Nasus",
-        "Nautilus", "Nidalee", "Nocturne", "Nunu", "Olaf", "Orianna", "Ornn", "Pantheon",
-        "Poppy", "Quinn", "Rakan", "Rammus", "Rek'Sai", "Renekton", "Rengar", "Riven",
-        "Rumble", "Ryze", "Sejuani", "Shaco", "Shen", "Shyvana", "Singed", "Sion", "Sivir",
-        "Skarner", "Sona", "Soraka", "Swain", "Syndra", "Tahm Kench", "Taliyah", "Talon",
-        "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate",
-        "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor",
-        "Vladimir", "Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo",
-        "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"
-    ]
-    return {"champions": champions, "total": len(champions)}
+    # CORS headers
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+    }
 
-@app.get("/api/champions/search")
-def search_champions(q: str = ""):
-    champions = [
-        "Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Ashe",
-        "Aurelion Sol", "Azir", "Bard", "Blitzcrank", "Brand", "Braum", "Caitlyn",
-        "Camille", "Cassiopeia", "Cho'Gath", "Corki", "Darius", "Diana", "Dr. Mundo",
-        "Draven", "Ekko", "Elise", "Evelynn", "Ezreal", "Fiddlesticks", "Fiora",
-        "Fizz", "Galio", "Gangplank", "Garen", "Gnar", "Gragas", "Graves", "Hecarim",
-        "Heimerdinger", "Illaoi", "Irelia", "Ivern", "Janna", "Jarvan IV", "Jax",
-        "Jayce", "Jhin", "Jinx", "Kalista", "Karma", "Karthus", "Kassadin", "Katarina",
-        "Kayle", "Kayn", "Kennen", "Kha'Zix", "Kindred", "Kled", "Kog'Maw", "LeBlanc",
-        "Lee Sin", "Leona", "Lissandra", "Lucian", "Lulu", "Lux", "Malphite", "Malzahar",
-        "Maokai", "Master Yi", "Miss Fortune", "Mordekaiser", "Morgana", "Nami", "Nasus",
-        "Nautilus", "Nidalee", "Nocturne", "Nunu", "Olaf", "Orianna", "Ornn", "Pantheon",
-        "Poppy", "Quinn", "Rakan", "Rammus", "Rek'Sai", "Renekton", "Rengar", "Riven",
-        "Rumble", "Ryze", "Sejuani", "Shaco", "Shen", "Shyvana", "Singed", "Sion", "Sivir",
-        "Skarner", "Sona", "Soraka", "Swain", "Syndra", "Tahm Kench", "Taliyah", "Talon",
-        "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate",
-        "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor",
-        "Vladimir", "Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo",
-        "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"
-    ]
+    # Handle OPTIONS for CORS
+    if request.get('method') == 'OPTIONS':
+        return {
+            'statusCode': 200,
+            'headers': headers,
+            'body': ''
+        }
 
-    if q:
-        filtered = [c for c in champions if q.lower() in c.lower()]
-        return {"results": [{"name": c} for c in filtered[:10]]}
+    # Root endpoint
+    if path == '/':
+        return {
+            'statusCode': 200,
+            'headers': headers,
+            'body': json.dumps({"status": "online", "message": "LoL Coach API"})
+        }
 
-    return {"results": []}
+    # Champions list endpoint
+    if path == '/api/champions/list':
+        return {
+            'statusCode': 200,
+            'headers': headers,
+            'body': json.dumps({"champions": CHAMPIONS, "total": len(CHAMPIONS)})
+        }
 
-# Vercel handler
-handler = app
+    # Champions search endpoint
+    if path == '/api/champions/search':
+        q = query.get('q', [''])[0] if isinstance(query.get('q'), list) else query.get('q', '')
+
+        if q:
+            filtered = [c for c in CHAMPIONS if q.lower() in c.lower()]
+            results = [{"name": c} for c in filtered[:10]]
+        else:
+            results = []
+
+        return {
+            'statusCode': 200,
+            'headers': headers,
+            'body': json.dumps({"results": results})
+        }
+
+    # 404 for unknown paths
+    return {
+        'statusCode': 404,
+        'headers': headers,
+        'body': json.dumps({"error": "Not found"})
+    }
