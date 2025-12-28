@@ -1,71 +1,186 @@
-# Image Management - Single Source of Truth
+# Image Management - Dynamic & Auto-Updating
 
 ## Overview
 
-**All champion and item images are loaded dynamically from Riot's official CDN.**
+**All champion and item images are loaded dynamically from Riot's official CDN with automatic version detection.**
 
-There are **NO local image files** for champions or items. Everything comes from:
-- Riot Data Dragon API: `https://ddragon.leagueoflegends.com/cdn/`
+- ✅ **NO manual updates needed** - automatically fetches latest patch version
+- ✅ **NO local image files** - everything from Riot Data Dragon API
+- ✅ **NO outdated Mythic items** - always shows current items
+- ✅ **Cached for performance** - 1 hour cache to reduce API calls
 
-## Single Source: `lib/riot-assets.ts`
+## Two-Layer Architecture
 
-This is the **only file** that defines image URLs. All components import from here.
+### 1. Core Dynamic API: `lib/riot-data.ts`
 
-### Usage
+The intelligent layer that **automatically** fetches data from Riot:
+
+```typescript
+import { getLatestChampionData, getLatestItemData, getLatestVersion } from '@/lib/riot-data';
+
+// Fetch latest patch version (e.g., "14.24.1")
+const version = await getLatestVersion();
+
+// Fetch ALL champions with correct IDs
+const { champions } = await getLatestChampionData();
+// Returns: [{ id: "MonkeyKing", name: "Wukong", ... }, ...]
+
+// Fetch ALL items (no outdated Mythics!)
+const { items } = await getLatestItemData();
+```
+
+**Benefits:**
+- Auto-updates every hour
+- Solves "Wukong vs MonkeyKing" problem automatically
+- New champions work immediately
+- Never recommends removed items
+
+### 2. Compatibility Wrapper: `lib/riot-assets.ts`
+
+Backward-compatible wrapper for existing components:
+
+```typescript
+import { getChampionImageUrl, getItemImageUrl } from '@/lib/riot-assets';
+
+// Simple synchronous calls (uses cached version)
+const url = getChampionImageUrl("Thresh");
+const itemUrl = getItemImageUrl(3157);
+```
+
+## Usage Examples
+
+### For New Code (Recommended)
+
+Use the dynamic API directly:
 
 ```tsx
-import { getChampionImageUrl, getItemImageUrl, getItemName } from '@/lib/riot-assets';
+'use client';
+import { useEffect, useState } from 'react';
+import { getLatestChampionData, getChampionImageUrl } from '@/lib/riot-data';
 
-// Champion image
+export default function ChampionList() {
+  const [version, setVersion] = useState('');
+  const [champions, setChampions] = useState([]);
+
+  useEffect(() => {
+    async function load() {
+      const data = await getLatestChampionData();
+      setVersion(data.version);
+      setChampions(data.champions);
+    }
+    load();
+  }, []);
+
+  return (
+    <div>
+      <p>Patch {version}</p>
+      {champions.map(champ => (
+        <img
+          key={champ.id}
+          src={getChampionImageUrl(champ.id, version)}
+          alt={champ.name}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+### For Existing Code (Backward Compatible)
+
+Keep using the simple API:
+
+```tsx
+import { getChampionImageUrl, getItemImageUrl } from '@/lib/riot-assets';
+
 <Image
   src={getChampionImageUrl("Thresh")}
   alt="Thresh"
   width={64}
   height={64}
   unoptimized
-  onError={(e) => {
-    const target = e.target as HTMLImageElement;
-    target.src = `https://via.placeholder.com/64x64?text=Thresh`;
-  }}
-/>
-
-// Item image
-<Image
-  src={getItemImageUrl(3157)}
-  alt={getItemName(3157)}
-  width={48}
-  height={48}
-  unoptimized
 />
 ```
 
-## Functions Available
+## Key Functions
 
-### Champion Images
+### Dynamic API (`riot-data.ts`)
 
-- `getChampionImageUrl(name: string)`: Champion portrait (120x120)
-- `getChampionSplashUrl(name: string)`: Splash art (large background)
-- `getChampionImageWithFallback(name: string)`: Returns object with URL + error handler
+| Function | Description | Returns |
+|----------|-------------|---------|
+| `getLatestVersion()` | Get current patch version | `Promise<string>` |
+| `getLatestChampionData()` | Get all champions + version | `Promise<{ version, champions }>` |
+| `getLatestItemData()` | Get all items + version | `Promise<{ version, items }>` |
+| `getChampionIdByName(name)` | Find champion ID by name | `Promise<string \| null>` |
+| `getItemName(itemId)` | Get item name (always current) | `Promise<string>` |
+| `clearCache()` | Force refresh data | `void` |
 
-### Item Images
+### Wrapper API (`riot-assets.ts`)
 
-- `getItemImageUrl(itemId: number)`: Item icon (64x64)
-- `getItemName(itemId: number)`: Human-readable item name
-- `ITEM_NAMES`: Full mapping of item IDs to names
-- `getItemImageWithFallback(itemId: number)`: Returns object with URL + error handler + name
+| Function | Description | Returns |
+|----------|-------------|---------|
+| `getChampionImageUrl(name)` | Champion portrait URL | `string` |
+| `getChampionSplashUrl(name)` | Splash art URL | `string` |
+| `getItemImageUrl(itemId)` | Item icon URL | `string` |
+| `getItemName(itemId)` | Item name (async) | `Promise<string>` |
+
+## Caching Strategy
+
+- **Duration**: 1 hour per fetch
+- **Scope**: Module-level (shared across all components)
+- **Refresh**: Automatic after cache expires
+- **Manual**: Call `clearCache()` to force refresh
+
+```typescript
+import { clearCache } from '@/lib/riot-data';
+
+// Force refresh (e.g., on new patch day)
+clearCache();
+```
+
+## Why This Is Better
+
+### ❌ Old Static Approach
+
+```typescript
+const DDRAGON_VERSION = '14.24.1'; // Manual update required!
+const ITEM_NAMES = {
+  6630: "Goredrinker", // REMOVED ITEM - Bug!
+  6631: "Stridebreaker", // REMOVED ITEM - Bug!
+}
+```
+
+**Problems:**
+1. Breaks on new patch day
+2. Recommends removed items
+3. New champions don't work
+4. Manual maintenance nightmare
+
+### ✅ New Dynamic Approach
+
+```typescript
+const { version } = await getLatestVersion(); // Auto-detects "14.24.1"
+const { items } = await getLatestItemData(); // Only current items
+```
+
+**Benefits:**
+1. Works on new patch day automatically
+2. Never shows removed items
+3. New champions work immediately
+4. Zero maintenance
 
 ## Champion Name Mapping
 
-Some champions have special naming in Riot's API. The `riot-assets.ts` handles this automatically:
+The wrapper handles name variations automatically:
 
-```typescript
-'Master Yi' -> 'MasterYi'
-'Dr. Mundo' -> 'DrMundo'
-"Kha'Zix" -> 'Khazix'
-"Kog'Maw" -> 'KogMaw'
-'Twisted Fate' -> 'TwistedFate'
-// etc.
 ```
+"Master Yi" → "MasterYi"
+"Dr. Mundo" → "DrMundo"
+"Kha'Zix" → "Khazix"
+"Wukong" → "MonkeyKing"
+```
+
+For new champions, the dynamic API fetches the correct ID directly from Riot.
 
 ## Configuration
 
@@ -79,55 +194,60 @@ images: {
       protocol: 'https',
       hostname: 'ddragon.leagueoflegends.com',
       pathname: '/cdn/**',
-    },
-    {
-      protocol: 'https',
-      hostname: 'via.placeholder.com', // Fallback
-    },
-  ],
+    }
+  ]
 }
 ```
 
-## NO Local Images!
+## Migration Path
 
-❌ **Do NOT add champion/item images to `/public`**
+Existing code using `riot-assets.ts` will continue to work.
 
-✅ **Always use `riot-assets.ts` functions**
+**To migrate to dynamic API:**
 
-### Why?
-
-1. **Single source of truth**: One place to update API version
-2. **Always up-to-date**: New champions/items work automatically
-3. **No maintenance**: No need to download/update images
-4. **Smaller bundle**: No large image files in the repository
-5. **Official assets**: Always matches current game patch
-
-## Current Patch Version
-
-The CDN version is set in `riot-assets.ts`:
-
+1. Replace imports:
 ```typescript
-const DDRAGON_VERSION = '14.24.1'; // LoL Patch 14.24
+// Before
+import { getChampionImageUrl } from '@/lib/riot-assets';
+
+// After
+import { getLatestChampionData, getChampionImageUrl } from '@/lib/riot-data';
 ```
 
-Update this when a new patch is released to get the latest champion/item images.
+2. Fetch data on component mount:
+```typescript
+const { version, champions } = await getLatestChampionData();
+```
 
-## Error Handling
-
-All images have fallback placeholders in case the Riot CDN fails:
-
-- Champion images → Placeholder with first 2 letters of name
-- Item images → Placeholder with item ID
-
-This is handled automatically by the `onError` handlers in components.
+3. Use version in URL generation:
+```typescript
+getChampionImageUrl(champion.id, version)
+```
 
 ## Components Using Images
 
-Currently used in:
-- `app/champion/[name]/page.tsx` - Champion detail page
-- `components/ChampionStatsExplorer.tsx` - Champion stats table
+- `app/champion/[name]/page.tsx` - Champion details
+- `components/ChampionStatsExplorer.tsx` - Stats table
 - `app/draft/page.tsx` - Draft predictor
 - `app/live/page.tsx` - Live game tracker
-- `components/ChampionCard.tsx` - Champion selection cards
 
-All import from `@/lib/riot-assets` - **do not use any other source!**
+## Error Handling
+
+All images have automatic fallback:
+
+```typescript
+<Image
+  src={getChampionImageUrl("Thresh")}
+  onError={(e) => {
+    e.target.src = 'https://via.placeholder.com/64x64?text=TH';
+  }}
+/>
+```
+
+## Summary
+
+- ✅ **Single source of truth**: `riot-data.ts`
+- ✅ **Auto-updating**: Checks Riot API every hour
+- ✅ **Always current**: New patches work automatically
+- ✅ **No maintenance**: Zero manual updates needed
+- ✅ **Backward compatible**: Old code still works
