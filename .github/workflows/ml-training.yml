@@ -1,0 +1,252 @@
+name: Victory AI Daily Loop - ML Training Pipeline
+
+on:
+  # Scheduled daily run at 04:00 UTC
+  schedule:
+    - cron: '0 4 * * *'
+
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      matches:
+        description: 'Number of matches to fetch'
+        required: false
+        default: '100'
+        type: choice
+        options:
+          - '100'
+          - '500'
+          - '1000'
+          - '5000'
+          - '10000'
+      skip_fetch:
+        description: 'Skip data fetching'
+        required: false
+        default: false
+        type: boolean
+      skip_processing:
+        description: 'Skip data processing'
+        required: false
+        default: false
+        type: boolean
+      skip_training:
+        description: 'Skip model training'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  PYTHON_VERSION: '3.11'
+  RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+
+jobs:
+  ml-pipeline:
+    name: Run ML Training Pipeline
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required for git push
+
+    steps:
+      # ============================================================================
+      # STEP 1: Checkout Repository
+      # ============================================================================
+      - name: 📦 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for proper git operations
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ============================================================================
+      # STEP 2: Setup Python Environment
+      # ============================================================================
+      - name: 🐍 Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'  # Cache pip dependencies
+
+      # ============================================================================
+      # STEP 3: Install Dependencies
+      # ============================================================================
+      - name: 📚 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-local.txt || true
+          echo "✅ Dependencies installed successfully"
+
+      # ============================================================================
+      # STEP 4: Create Environment File
+      # ============================================================================
+      - name: 🔐 Setup Environment Variables
+        run: |
+          echo "RIOT_API_KEY=${{ secrets.RIOT_API_KEY }}" > .env
+          echo "✅ Environment file created"
+
+      # ============================================================================
+      # STEP 5: Validate Environment
+      # ============================================================================
+      - name: ✅ Validate Environment
+        run: |
+          echo "Checking Python version..."
+          python --version
+
+          echo "Checking required scripts..."
+          test -f fetch_matches_with_items.py || echo "⚠️  fetch_matches_with_items.py not found"
+          test -f generate_item_builds.py || echo "⚠️  generate_item_builds.py not found"
+          test -f train_model.py || echo "⚠️  train_model.py not found"
+          test -f pipeline.py || (echo "❌ pipeline.py not found" && exit 1)
+
+          echo "Checking API key..."
+          test -n "$RIOT_API_KEY" || (echo "❌ RIOT_API_KEY secret not configured" && exit 1)
+
+          echo "✅ Environment validation passed"
+
+      # ============================================================================
+      # STEP 6: Run ML Pipeline
+      # ============================================================================
+      - name: 🚀 Execute ML Pipeline
+        id: pipeline
+        run: |
+          # Build pipeline command with optional flags
+          CMD="python pipeline.py"
+
+          # Add skip flags if provided (for manual runs)
+          if [ "${{ github.event.inputs.skip_fetch }}" = "true" ]; then
+            CMD="$CMD --skip-fetch"
+          fi
+
+          if [ "${{ github.event.inputs.skip_processing }}" = "true" ]; then
+            CMD="$CMD --skip-processing"
+          fi
+
+          if [ "${{ github.event.inputs.skip_training }}" = "true" ]; then
+            CMD="$CMD --skip-training"
+          fi
+
+          echo "Executing: $CMD"
+          echo "=================================================="
+
+          # Execute pipeline
+          $CMD
+
+          # Capture exit code
+          EXIT_CODE=$?
+
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "✅ Pipeline completed successfully"
+            echo "pipeline_success=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Pipeline failed with exit code $EXIT_CODE"
+            echo "pipeline_success=false" >> $GITHUB_OUTPUT
+            exit $EXIT_CODE
+          fi
+
+      # ============================================================================
+      # STEP 7: Check for Changes (GitOps)
+      # ============================================================================
+      - name: 🔍 Check for Data/Model Changes
+        id: check_changes
+        run: |
+          # Check if there are changes in data or model directories
+          git add -N data/ models/ lol-coach-frontend/public/data/ 2>/dev/null || true
+
+          if git diff --quiet data/ models/ lol-coach-frontend/public/data/ 2>/dev/null; then
+            echo "No changes detected in data or models"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in data or models"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+
+            # Show what changed
+            echo "Changed files:"
+            git diff --name-only data/ models/ lol-coach-frontend/public/data/ 2>/dev/null || true
+          fi
+
+      # ============================================================================
+      # STEP 8: Commit and Push Changes (GitOps)
+      # ============================================================================
+      - name: 💾 Auto-Commit Data & Model Updates
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          # Configure git
+          git config --global user.name "Victory AI Bot"
+          git config --global user.email "actions@github.com"
+
+          # Stage changes
+          git add data/ models/ lol-coach-frontend/public/data/ 2>/dev/null || true
+
+          # Create commit with timestamp and details
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+          # Get commit details
+          COMMIT_MSG="🤖 Auto-Update: Data & Model Training
+
+          Automated ML pipeline run completed successfully.
+
+          Timestamp: ${TIMESTAMP}
+          Triggered by: ${{ github.event_name }}
+          Workflow: ${{ github.workflow }}
+          Run: ${{ github.run_number }}
+
+          Changes:
+          $(git diff --cached --stat data/ models/ lol-coach-frontend/public/data/ 2>/dev/null || echo 'No stat available')
+
+          🚀 Generated with Victory AI Daily Loop
+          "
+
+          git commit -m "$COMMIT_MSG" || (echo "⚠️  No changes to commit" && exit 0)
+
+          # Push changes
+          echo "Pushing changes to repository..."
+          git push origin ${{ github.ref_name }} || (echo "❌ Failed to push changes" && exit 1)
+
+          echo "✅ Changes committed and pushed successfully"
+
+      # ============================================================================
+      # STEP 9: Upload Artifacts (Optional - for debugging)
+      # ============================================================================
+      - name: 📤 Upload Pipeline Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-artifacts-${{ github.run_number }}
+          path: |
+            models/performance.json
+            data/champion_data/*.json
+          retention-days: 7
+          if-no-files-found: warn
+
+      # ============================================================================
+      # STEP 10: Summary
+      # ============================================================================
+      - name: 📊 Pipeline Summary
+        if: always()
+        run: |
+          echo "## 🎯 Victory AI Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ steps.pipeline.outputs.pipeline_success == 'true' && '✅ Success' || '❌ Failed' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Run:** #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.check_changes.outputs.has_changes }}" = "true" ]; then
+            echo "**Changes:** Data/Model updated and committed ✅" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Changes:** No changes detected" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Automated by Victory AI Daily Loop*" >> $GITHUB_STEP_SUMMARY
+
+      # ============================================================================
+      # STEP 11: Notify on Failure (Optional)
+      # ============================================================================
+      - name: 🚨 Notify on Failure
+        if: failure()
+        run: |
+          echo "::error::ML Pipeline failed. Check the logs for details."
+          echo "❌ Pipeline execution failed. Manual intervention required." >> $GITHUB_STEP_SUMMARY
