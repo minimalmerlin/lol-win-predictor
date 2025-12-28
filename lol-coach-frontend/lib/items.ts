@@ -95,11 +95,9 @@ export const ITEM_NAMES: Record<number, string> = {
   6630: "Goredrinker",
   6631: "Stridebreaker",
   6632: "Divine Sunderer",
-  6653: "Liandry's Anguish",
   6655: "Luden's Companion",
   6656: "Everfrost",
   6662: "Iceborn Gauntlet",
-  6664: "Turbo Chemtank",
 
   // Consumables & Trinkets
   2003: "Health Potion",
