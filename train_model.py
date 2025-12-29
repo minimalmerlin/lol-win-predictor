@@ -45,13 +45,26 @@ def load_and_prepare_data():
     print("LOADING TRAINING DATA")
     print("=" * 60)
 
-    # Get the appropriate data file
-    data_path = get_training_data_path()
-    print(f"\nUsing data file: {data_path}")
+    # Get the appropriate data file (with intelligent fallback)
+    try:
+        data_path = get_training_data_path()
+        print(f"\nUsing data file: {data_path}")
+    except FileNotFoundError as e:
+        print(f"\n❌ CRITICAL ERROR: {e}")
+        print("\n💡 TROUBLESHOOTING:")
+        print("  1. Check if pipeline Step 1 (Data Fetching) completed successfully")
+        print("  2. Verify merge step created clean_training_data_massive.csv")
+        print("  3. Ensure at least one CSV file exists in data/ directory")
+        raise
 
-    # Load data
-    df = pd.read_csv(data_path)
-    print(f"Loaded {len(df)} matches")
+    # Load data with error handling
+    try:
+        df = pd.read_csv(data_path)
+        print(f"✓ Loaded {len(df)} matches")
+    except Exception as e:
+        print(f"\n❌ ERROR: Failed to read CSV file: {e}")
+        print(f"   File: {data_path}")
+        raise
 
     # Show data info
     print("\nDataset Info:")

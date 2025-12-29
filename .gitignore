@@ -58,6 +58,8 @@ lol-coach-frontend/.env*.local
 *.temp
 
 # Large data files (locally generated training data)
+# NOTE: These are gitignored locally but force-added by GitHub Actions workflow
+# The workflow uses 'git add -f' to commit pipeline-generated data to ensure persistence
 data/clean_training_data.csv
 data/clean_training_data_massive.csv
 data/clean_training_data_items.csv

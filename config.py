@@ -17,7 +17,10 @@ CHAMPION_DATA_DIR = DATA_DIR / 'champion_data'
 # PRIMARY: Use this for training - continuously growing dataset
 TRAINING_DATA_PATH = DATA_DIR / 'clean_training_data_massive.csv'
 
-# FALLBACK: Smaller dataset for quick testing
+# FALLBACK 1: Items dataset (freshly fetched by pipeline)
+TRAINING_DATA_ITEMS = DATA_DIR / 'clean_training_data_items.csv'
+
+# FALLBACK 2: Smaller dataset for quick testing
 TRAINING_DATA_FALLBACK = DATA_DIR / 'clean_training_data.csv'
 
 # Champion data files
@@ -65,25 +68,44 @@ for directory in [DATA_DIR, MODELS_DIR, CHAMPION_DATA_DIR, MODEL_BACKUP_DIR, CRA
 
 def get_training_data_path():
     """
-    Get the path to the training data file.
-    Returns the massive dataset if it exists and has enough data,
-    otherwise falls back to the smaller dataset.
+    Get the path to the training data file with intelligent fallback.
+
+    Priority order:
+    1. clean_training_data_massive.csv (merged dataset)
+    2. clean_training_data_items.csv (freshly fetched by pipeline)
+    3. clean_training_data.csv (legacy small dataset)
+
+    Returns the first file that exists with enough matches.
     """
-    if TRAINING_DATA_PATH.exists():
-        # Check if file has enough data
-        with open(TRAINING_DATA_PATH, 'r') as f:
-            line_count = sum(1 for _ in f) - 1  # Subtract header
+    candidates = [
+        ('massive', TRAINING_DATA_PATH),
+        ('items', TRAINING_DATA_ITEMS),
+        ('fallback', TRAINING_DATA_FALLBACK)
+    ]
 
-        if line_count >= TRAINING_CONFIG['min_matches_for_training']:
-            return TRAINING_DATA_PATH
+    for name, path in candidates:
+        if path.exists():
+            try:
+                # Check if file has enough data
+                with open(path, 'r') as f:
+                    line_count = sum(1 for _ in f) - 1  # Subtract header
 
-    if TRAINING_DATA_FALLBACK.exists():
-        return TRAINING_DATA_FALLBACK
+                if line_count >= TRAINING_CONFIG['min_matches_for_training']:
+                    print(f"✓ Using {name} dataset: {path} ({line_count} matches)")
+                    return path
+                else:
+                    print(f"⚠️  {name} dataset has only {line_count} matches (need {TRAINING_CONFIG['min_matches_for_training']})")
+            except Exception as e:
+                print(f"⚠️  Error reading {name} dataset: {e}")
+                continue
 
+    # If we get here, no valid dataset was found
     raise FileNotFoundError(
-        f"No training data found. Please ensure either {TRAINING_DATA_PATH} "
-        f"or {TRAINING_DATA_FALLBACK} exists with at least "
-        f"{TRAINING_CONFIG['min_matches_for_training']} matches."
+        f"No valid training data found. Searched:\n"
+        f"  1. {TRAINING_DATA_PATH} (massive dataset)\n"
+        f"  2. {TRAINING_DATA_ITEMS} (items dataset)\n"
+        f"  3. {TRAINING_DATA_FALLBACK} (fallback dataset)\n"
+        f"Minimum required: {TRAINING_CONFIG['min_matches_for_training']} matches"
     )
 
 
