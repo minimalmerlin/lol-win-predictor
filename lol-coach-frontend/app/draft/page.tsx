@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -70,25 +70,26 @@ export default function DraftAssistantPage() {
   const [itemBuild, setItemBuild] = useState<ItemBuild | null>(null);
   const [loading, setLoading] = useState(false);
   const [buildLoading, setBuildLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Auto-predict when both teams have at least 1 champion
-  useEffect(() => {
+  const predictMatchup = async () => {
     const blueChamps = blueTeam.filter(s => s.champion).map(s => s.champion!);
     const redChamps = redTeam.filter(s => s.champion).map(s => s.champion!);
 
-    if (blueChamps.length > 0 && redChamps.length > 0) {
-      predictMatchup(blueChamps, redChamps);
-    } else {
-      setPrediction(null);
+    if (blueChamps.length === 0 || redChamps.length === 0) {
+      setError('Please select at least one champion for each team');
+      return;
     }
-  }, [blueTeam, redTeam]);
 
-  const predictMatchup = async (blueChamps: string[], redChamps: string[]) => {
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch(`${API_URL}/api/predict-champion-matchup`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-INTERNAL-API-KEY': 'victory-secret-key-2025'
+        },
         body: JSON.stringify({
           blue_champions: blueChamps,
           red_champions: redChamps
@@ -98,9 +99,12 @@ export default function DraftAssistantPage() {
       if (response.ok) {
         const data = await response.json();
         setPrediction(data);
+      } else {
+        setError('Failed to predict matchup. Please try again.');
       }
     } catch (error) {
       console.error('Failed to predict:', error);
+      setError('Failed to predict matchup. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -492,6 +496,34 @@ export default function DraftAssistantPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Predict Button */}
+        <div className="flex flex-col items-center gap-4 my-6">
+          <Button
+            onClick={predictMatchup}
+            disabled={loading || blueTeam.filter(s => s.champion).length === 0 || redTeam.filter(s => s.champion).length === 0}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-lg px-8 py-6"
+            size="lg"
+          >
+            {loading ? 'Predicting...' : '🔮 Predict Win Probability'}
+          </Button>
+
+          {/* Warning Message */}
+          {(blueTeam.filter(s => s.champion).length === 0 || redTeam.filter(s => s.champion).length === 0) && !loading && (
+            <span className="text-sm text-yellow-400">
+              ⚠️ Select at least 1 champion per team to predict
+            </span>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <Card className="w-full max-w-2xl bg-red-900/20 border-red-500/50">
+              <CardContent className="pt-6">
+                <p className="text-red-300 text-center">{error}</p>
+              </CardContent>
+            </Card>
+          )}
         </div>
 
         {/* Item Build Display */}

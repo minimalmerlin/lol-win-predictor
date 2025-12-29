@@ -1,6 +1,13 @@
 // API Configuration and Client
 // Empty string uses relative paths (same domain), perfect for Next.js API routes
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+const API_KEY = process.env.NEXT_PUBLIC_INTERNAL_API_KEY || 'victory-secret-key-2025';
+
+// Helper to get headers with API key
+const getHeaders = () => ({
+  'Content-Type': 'application/json',
+  'X-INTERNAL-API-KEY': API_KEY,
+});
 
 export interface Champion {
   name: string;
@@ -75,7 +82,7 @@ export const api = {
   ): Promise<ChampionMatchupPrediction> {
     const res = await fetch(`${API_BASE_URL}/api/predict-champion-matchup`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({
         blue_champions: blueChampions,
         red_champions: redChampions,
@@ -93,7 +100,7 @@ export const api = {
   ): Promise<ItemRecommendationResponse> {
     const res = await fetch(`${API_BASE_URL}/api/item-recommendations`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({
         champion,
         enemy_team: enemyTeam,

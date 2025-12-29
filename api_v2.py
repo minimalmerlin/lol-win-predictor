@@ -291,7 +291,7 @@ async def health_check():
 
 @app.post("/api/predict-champion-matchup", response_model=PredictionResponse, dependencies=[])
 @limiter.limit("10/minute")
-async def predict_champion_matchup(http_request: Request, request: ChampionMatchupRequest):
+async def predict_champion_matchup(request: Request, body: ChampionMatchupRequest):
     """
     Predict win probability based on champion team compositions
 
@@ -302,15 +302,15 @@ async def predict_champion_matchup(http_request: Request, request: ChampionMatch
     - Champion win-rate details
     """
     # Verify API key
-    await verify_api_key(http_request)
+    await verify_api_key(request)
 
     if not champion_predictor:
         raise HTTPException(status_code=503, detail="Champion Predictor not loaded")
 
     try:
         result = champion_predictor.predict(
-            blue_champions=request.blue_champions,
-            red_champions=request.red_champions
+            blue_champions=body.blue_champions,
+            red_champions=body.red_champions
         )
 
         return PredictionResponse(
