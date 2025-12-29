@@ -2,9 +2,11 @@
 // Empty string uses relative paths (same domain), perfect for Next.js API routes
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 // ⚠️  SECURITY: API Key should be set via environment variable, not hardcoded
+// Note: For Next.js API routes, we don't need to send the API key from client
+// The Next.js API route will handle authentication with the backend
 const API_KEY = process.env.NEXT_PUBLIC_INTERNAL_API_KEY || '';
 if (!API_KEY && process.env.NODE_ENV === 'production') {
-  console.error('⚠️  WARNING: NEXT_PUBLIC_INTERNAL_API_KEY not set in production!');
+  console.warn('⚠️  WARNING: NEXT_PUBLIC_INTERNAL_API_KEY not set in production!');
 }
 
 // Helper to get headers with API key
@@ -92,7 +94,24 @@ export const api = {
         red_champions: redChampions,
       }),
     });
-    if (!res.ok) throw new Error('Failed to predict matchup');
+    
+    if (!res.ok) {
+      // Try to get error details from response
+      let errorDetail = 'Failed to predict matchup';
+      try {
+        const errorData = await res.json();
+        errorDetail = errorData.detail || errorData.error || errorData.message || errorDetail;
+      } catch {
+        // If JSON parsing fails, use status text
+        errorDetail = res.statusText || errorDetail;
+      }
+      
+      const error = new Error(errorDetail);
+      (error as any).status = res.status;
+      (error as any).response = res;
+      throw error;
+    }
+    
     return res.json();
   },
 

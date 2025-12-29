@@ -27,9 +27,16 @@ export default function ChampionSelectPredictor() {
     try {
       const result = await api.predictChampionMatchup(blueChampions, redChampions);
       setPrediction(result);
-    } catch (err) {
-      setError('Failed to predict matchup. Please try again.');
-      console.error(err);
+    } catch (err: any) {
+      // Show detailed error message
+      const errorMessage = err?.message || err?.details || 'Failed to predict matchup. Please try again.';
+      setError(errorMessage);
+      console.error('Prediction error:', err);
+      
+      // Log full error for debugging
+      if (err?.response) {
+        console.error('Response error:', await err.response.text());
+      }
     } finally {
       setLoading(false);
     }

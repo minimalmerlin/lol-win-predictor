@@ -58,14 +58,27 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Backend API error:', response.status, errorText);
+      let errorDetail = 'Backend prediction failed';
+      try {
+        const errorData = await response.json();
+        errorDetail = errorData.detail || errorData.error || errorData.message || errorDetail;
+      } catch {
+        // If JSON parsing fails, try text
+        try {
+          const errorText = await response.text();
+          errorDetail = errorText || errorDetail;
+        } catch {
+          errorDetail = `HTTP ${response.status}: ${response.statusText}`;
+        }
+      }
+      
+      console.error('Backend API error:', response.status, errorDetail);
 
       return NextResponse.json(
         {
-          error: 'Backend prediction failed',
+          error: errorDetail,
           status: response.status,
-          details: errorText
+          details: `Backend returned status ${response.status}`
         },
         { status: response.status }
       );
