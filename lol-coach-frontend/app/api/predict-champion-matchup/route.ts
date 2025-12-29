@@ -4,7 +4,11 @@ import { NextRequest } from 'next/server';
 /**
  * Champion Matchup Prediction API Route
  *
- * This endpoint proxies requests to the FastAPI backend for real ML predictions.
+ * This endpoint proxies requests to either:
+ * 1. External FastAPI backend (if NEXT_PUBLIC_API_URL is set)
+ * 2. Vercel Python serverless function in same project (if no external URL)
+ * 3. Local FastAPI backend in development (localhost:8000)
+ *
  * No mock data - all predictions come from the trained scikit-learn models.
  */
 
@@ -28,31 +32,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get backend URL from environment
-    // For Vercel: Set NEXT_PUBLIC_API_URL to your backend Vercel project URL
-    // For local: Falls back to http://localhost:8000
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 
-                       (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : null);
-
-    if (!backendUrl) {
-      return NextResponse.json(
-        {
-          error: 'Backend API URL not configured',
-          detail: 'Please set NEXT_PUBLIC_API_URL environment variable in Vercel. ' +
-                  'This should be the URL of your backend Vercel project (e.g., https://your-backend.vercel.app). ' +
-                  'For local development, start the backend with: python api_v2.py'
-        },
-        { status: 503 }
-      );
+    // Determine backend URL
+    // If NEXT_PUBLIC_API_URL is set, use it (for separate backend deployment)
+    // Otherwise, use Vercel serverless functions in the same project
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+    
+    let apiEndpoint: string;
+    
+    if (backendUrl) {
+      // External backend (separate Vercel project or Railway)
+      apiEndpoint = `${backendUrl}/api/predict-champion-matchup`;
+    } else {
+      // Same Vercel project - use serverless functions
+      // In development, call FastAPI backend
+      if (process.env.NODE_ENV === 'development') {
+        apiEndpoint = 'http://localhost:8000/api/predict-champion-matchup';
+      } else {
+        // Production: Use Vercel serverless function in same project
+        // Vercel Python functions in /api are accessible at /api/*
+        // We need to construct the full URL from the request
+        const requestUrl = new URL(request.url);
+        // Use the same origin (same Vercel project)
+        apiEndpoint = `${requestUrl.origin}/api/predict-champion-matchup`;
+      }
     }
 
-    // Call real FastAPI backend
-    const response = await fetch(`${backendUrl}/api/predict-champion-matchup`, {
+    // Call backend (either external or serverless function)
+    const response = await fetch(apiEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Add API key if configured
-        ...(process.env.INTERNAL_API_KEY && {
+        // Add API key if configured (only for external backends)
+        ...(backendUrl && process.env.INTERNAL_API_KEY && {
           'X-INTERNAL-API-KEY': process.env.INTERNAL_API_KEY
         })
       },
