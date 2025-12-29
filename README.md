@@ -31,6 +31,62 @@ AI-powered League of Legends coaching platform with real-time win prediction, dy
 
 ## 🚀 Quick Start
 
-See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for deployment instructions.
+### 📦 Deployment (10 Minutes)
+
+**Everything is ready on Git!** Just follow the checklist:
+
+1. **[DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)** - Interactive checklist (✅ Recommended!)
+2. **[DEPLOY_NOW.md](./DEPLOY_NOW.md)** - Detailed step-by-step guide
+3. **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Technical documentation
+
+**TL;DR**:
+```bash
+1. Deploy Backend → Railway (5 min)
+2. Deploy Frontend → Vercel (5 min)
+3. Set Environment Variables
+4. Done! Auto-updates daily at 04:00 UTC ✨
+```
+
+### 🔄 Automatic Updates
+
+Once deployed, the system updates itself **every day at 04:00 UTC**:
+- ✅ Fetches new match data from Riot API
+- ✅ Trains ML models with fresh data
+- ✅ Updates frontend stats automatically
+- ✅ Deploys to production via GitHub Actions
+
+**You don't need to do anything!** 🎉
+
+---
+
+## 📚 Documentation
+
+- **[FEATURE_OVERVIEW.md](./FEATURE_OVERVIEW.md)** - Complete feature documentation (German)
+- **[DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)** - Quick deployment checklist
+- **[DEPLOY_NOW.md](./DEPLOY_NOW.md)** - Step-by-step deployment guide
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Technical deployment details
+
+---
+
+## 🛠️ Tech Stack
+
+**Backend**:
+- Python 3.11
+- FastAPI (REST API)
+- scikit-learn (ML Models)
+- Riot Games API
+
+**Frontend**:
+- Next.js 14 (React)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+**Infrastructure**:
+- GitHub Actions (CI/CD)
+- Railway (Backend Hosting)
+- Vercel (Frontend Hosting)
+
+---
 
 **Made with ❤️ for the League of Legends community**
