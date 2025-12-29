@@ -143,9 +143,25 @@ class ChampionMatchupPredictor:
         }
 
     def _normalize_champion_name(self, name: str) -> str:
-        """Normalize champion name (remove spaces, capitalize first letter)"""
-        # Remove spaces and capitalize
-        normalized = ''.join(word.capitalize() for word in name.strip().split())
+        """Normalize champion name (remove spaces, preserve CamelCase)"""
+        # Remove spaces and preserve CamelCase
+        # If name has spaces, capitalize each word
+        # If name is already CamelCase (no spaces), preserve it
+        name = name.strip()
+        
+        # If it has spaces, join and capitalize each word
+        if ' ' in name:
+            normalized = ''.join(word.capitalize() for word in name.split())
+        elif name.isupper():
+            # ALL_CAPS -> convert to CamelCase
+            normalized = name.capitalize()
+        elif name.islower():
+            # all_lower -> convert to CamelCase
+            normalized = name.capitalize()
+        else:
+            # Already CamelCase - preserve as is
+            normalized = name
+        
         return normalized
 
     def _find_champion_in_encoder(self, champion_name: str) -> str:
