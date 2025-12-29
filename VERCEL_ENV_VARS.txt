@@ -1,0 +1,22 @@
+# ===============================================
+# VERCEL ENVIRONMENT VARIABLES
+# ===============================================
+# Copy-Paste diese Werte in Vercel → Environment Variables
+# ===============================================
+
+# 1. BACKEND API URL (WICHTIG! - Deine Railway URL)
+NEXT_PUBLIC_API_URL=https://web-production-fb493.up.railway.app
+
+# 2. BACKEND API URL (für Server-Side Rendering)
+API_URL=https://web-production-fb493.up.railway.app
+
+# 3. INTERNAL API KEY (gleicher wie in Railway)
+INTERNAL_API_KEY=victory-secret-key-2025
+
+# ===============================================
+# DEPLOYMENT SETTINGS
+# ===============================================
+# Root Directory: lol-coach-frontend
+# Framework: Next.js (auto-detected)
+# Build Command: npm run build (default)
+# ===============================================

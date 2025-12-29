@@ -1,0 +1,28 @@
+# ===============================================
+# RAILWAY ENVIRONMENT VARIABLES
+# ===============================================
+# Copy-Paste diese Werte in Railway → Variables Tab
+# ===============================================
+
+# 1. RIOT API KEY (WICHTIG!)
+RIOT_API_KEY=***REMOVED***
+
+# 2. PRODUCTION MODE
+ENV=production
+
+# 3. PORT (Railway setzt das automatisch, aber zur Sicherheit)
+PORT=8000
+
+# 4. INTERNAL API KEY (für Frontend-Backend Kommunikation)
+INTERNAL_API_KEY=victory-secret-key-2025
+
+# 5. ALLOWED ORIGINS (wird später aktualisiert nach Vercel Deploy)
+# Erstmal nur localhost für Tests:
+ALLOWED_ORIGINS=http://localhost:3000
+
+# ===============================================
+# NACHDEM VERCEL DEPLOYED IST:
+# ===============================================
+# Komm zurück und UPDATE ALLOWED_ORIGINS zu:
+# ALLOWED_ORIGINS=https://deine-vercel-url.vercel.app,http://localhost:3000
+# ===============================================

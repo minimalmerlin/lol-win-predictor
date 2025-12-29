@@ -27,6 +27,8 @@ import os
 from intelligent_item_recommender import IntelligentItemRecommender
 from riot_live_client import RiotLiveClient
 from dynamic_build_generator import DynamicBuildGenerator, Champion, GameState
+from champion_matchup_predictor import ChampionMatchupPredictor
+from win_prediction_model import WinPredictionModel
 
 # Logging
 logging.basicConfig(level=logging.INFO)
