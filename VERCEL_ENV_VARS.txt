@@ -4,12 +4,14 @@
 # Copy-Paste diese Werte in Vercel → Environment Variables
 # ===============================================
 
-# 1. BACKEND API URL (WICHTIG! - Deine Railway URL)
-# ⚠️  Setze deine eigene Railway URL hier ein!
-NEXT_PUBLIC_API_URL=https://your-railway-app.up.railway.app
+# 1. BACKEND API URL (WICHTIG! - Deine Vercel Backend URL)
+# ⚠️  Setze deine eigene Vercel Backend URL hier ein!
+# Das ist die URL deines separaten Vercel Backend-Projekts
+# Beispiel: https://win-predicition-system-wr.vercel.app
+NEXT_PUBLIC_API_URL=https://your-backend-project.vercel.app
 
 # 2. BACKEND API URL (für Server-Side Rendering)
-API_URL=https://your-railway-app.up.railway.app
+API_URL=https://your-backend-project.vercel.app
 
 # 3. INTERNAL API KEY (gleicher wie in Railway)
 # ⚠️  SECURITY: Muss identisch mit Railway INTERNAL_API_KEY sein!

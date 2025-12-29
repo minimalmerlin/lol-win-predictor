@@ -28,14 +28,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get backend URL from environment with fallback for local development
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 'http://localhost:8000';
+    // Get backend URL from environment
+    // For Vercel: Set NEXT_PUBLIC_API_URL to your backend Vercel project URL
+    // For local: Falls back to http://localhost:8000
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 
+                       (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : null);
 
     if (!backendUrl) {
       return NextResponse.json(
         {
           error: 'Backend API URL not configured',
-          details: 'Please set NEXT_PUBLIC_API_URL or API_URL environment variable, or start the backend on http://localhost:8000'
+          detail: 'Please set NEXT_PUBLIC_API_URL environment variable in Vercel. ' +
+                  'This should be the URL of your backend Vercel project (e.g., https://your-backend.vercel.app). ' +
+                  'For local development, start the backend with: python api_v2.py'
         },
         { status: 503 }
       );
