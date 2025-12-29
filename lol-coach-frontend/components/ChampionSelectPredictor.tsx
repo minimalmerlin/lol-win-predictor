@@ -128,17 +128,23 @@ export default function ChampionSelectPredictor() {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <Button
           onClick={handlePredict}
           disabled={loading || blueChampions.length === 0 || redChampions.length === 0}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          size="lg"
         >
           {loading ? 'Predicting...' : '🔮 Predict Win Probability'}
         </Button>
-        <Button onClick={handleReset} variant="outline" className="border-slate-600 text-slate-300">
+        <Button onClick={handleReset} variant="outline" className="border-slate-600 text-slate-300" size="lg">
           Reset
         </Button>
+        {(blueChampions.length === 0 || redChampions.length === 0) && !loading && (
+          <span className="text-sm text-yellow-400">
+            ⚠️ Select at least 1 champion per team
+          </span>
+        )}
       </div>
 
       {/* Error */}
