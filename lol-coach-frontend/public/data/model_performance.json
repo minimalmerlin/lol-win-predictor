@@ -1,0 +1,23 @@
+{
+  "accuracy": 0.5200623295675886,
+  "roc_auc": 0.5126290893224581,
+  "timestamp": "2025-12-29T14:02:42.379480",
+  "matches_count": 12834,
+  "training_config": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "min_matches_for_training": 100,
+    "rf_params": {
+      "n_estimators": 100,
+      "max_depth": 20,
+      "min_samples_split": 10,
+      "min_samples_leaf": 5,
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "lr_params": {
+      "max_iter": 1000,
+      "random_state": 42
+    }
+  }
+}

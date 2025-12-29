@@ -219,6 +219,16 @@ def save_models_and_performance(rf_model, lr_model, rf_accuracy, rf_roc_auc, mat
 
     print(f"  ✓ Saved: {MODEL_PERFORMANCE_PATH}")
 
+    # Copy performance.json to frontend for static generation
+    frontend_stats_dir = BASE_DIR / 'lol-coach-frontend' / 'public' / 'data'
+    frontend_stats_dir.mkdir(parents=True, exist_ok=True)
+    frontend_perf_path = frontend_stats_dir / 'model_performance.json'
+
+    with open(frontend_perf_path, 'w') as f:
+        json.dump(performance, f, indent=2)
+
+    print(f"  ✓ Copied to frontend: {frontend_perf_path}")
+
 
 def main():
     """Main training pipeline"""

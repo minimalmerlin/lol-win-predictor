@@ -11,9 +11,17 @@ import ChampionSearchModal from '@/components/ChampionSearchModal';
 import { useRouter } from 'next/navigation';
 import { Target, Activity, Search, Cpu, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
+import { useModelStats } from '@/hooks/useModelStats';
+import { formatAccuracy, formatMatchCount } from '@/lib/model-stats';
 
 export default function Home() {
   const router = useRouter();
+  const { stats, loading } = useModelStats();
+
+  // Dynamic stats with fallback
+  const accuracy = stats ? formatAccuracy(stats.accuracy) : '52.0%';
+  const matchCount = stats ? formatMatchCount(stats.matches_count) : '12.8K';
+  const matchCountFull = stats ? stats.matches_count.toLocaleString() : '12,834';
 
   return (
     <div className="min-h-screen bg-background">
@@ -102,7 +110,7 @@ export default function Home() {
                 {/* STAT 1: MODEL ACCURACY */}
                 <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm">
                   <div className="text-4xl font-black text-[#1E90FF] mb-2 drop-shadow-[0_0_10px_rgba(30,144,255,0.5)]">
-                    52.6%
+                    {loading ? '...' : accuracy}
                   </div>
                   <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                     BASELINE MODEL ACCURACY
@@ -112,7 +120,7 @@ export default function Home() {
                 {/* STAT 2: DATA VOLUME */}
                 <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm">
                   <div className="text-4xl font-black text-[#1E90FF] mb-2 drop-shadow-[0_0_10px_rgba(30,144,255,0.5)]">
-                    50,000+
+                    {loading ? '...' : `${matchCount}+`}
                   </div>
                   <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                     MATCHES ANALYZED
@@ -176,7 +184,7 @@ export default function Home() {
                 <div className="flex flex-col items-center gap-2">
                   <Cpu className="h-8 w-8 text-primary" style={{filter: 'drop-shadow(0 0 8px rgba(30,144,255,0.9))'}} />
                   <div className="stat-label">Victory AI</div>
-                  <div className="text-xs text-card-foreground/60">52.6% Accuracy</div>
+                  <div className="text-xs text-card-foreground/60">{accuracy} Accuracy</div>
                 </div>
               </TabsTrigger>
               <TabsTrigger
@@ -306,12 +314,12 @@ export default function Home() {
               </div>
               <div className="stat-label">
                 <div className="text-[rgb(0,200,140)] text-sm mb-1">◆</div>
-                52.6% Baseline Accuracy
+                {accuracy} Baseline Accuracy
               </div>
             </div>
 
             <div className="text-xs text-card-foreground/50 pt-4 border-t border-primary/10">
-              ADVANCED GAMING INTELLIGENCE • 50,000+ Match Analysis • AI-Powered Victory Network V.2.1
+              ADVANCED GAMING INTELLIGENCE • {matchCountFull}+ Match Analysis • AI-Powered Victory Network V.2.1
             </div>
           </div>
         </div>
