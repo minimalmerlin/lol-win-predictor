@@ -69,12 +69,15 @@ class ChampionMatchupPredictor:
         blue_champions = [self._normalize_champion_name(c) for c in blue_champions]
         red_champions = [self._normalize_champion_name(c) for c in red_champions]
 
-        # Convert champion names to IDs
+        # Convert champion names to IDs with case-insensitive lookup
         try:
-            blue_ids = [self.champion_to_id[champ] for champ in blue_champions]
-            red_ids = [self.champion_to_id[champ] for champ in red_champions]
+            blue_ids = [self.champion_to_id[self._find_champion_in_encoder(champ)] for champ in blue_champions]
+            red_ids = [self.champion_to_id[self._find_champion_in_encoder(champ)] for champ in red_champions]
+        except ValueError as e:
+            # Re-raise ValueError with helpful message
+            raise
         except KeyError as e:
-            raise ValueError(f"Unknown champion: {e}")
+            raise ValueError(f"Unknown champion in encoder: {e}")
 
         # Pad to 5 champions (use 0 for missing slots)
         blue_ids = (blue_ids + [0] * 5)[:5]
@@ -145,10 +148,38 @@ class ChampionMatchupPredictor:
         normalized = ''.join(word.capitalize() for word in name.strip().split())
         return normalized
 
+    def _find_champion_in_encoder(self, champion_name: str) -> str:
+        """Find champion in encoder with case-insensitive lookup"""
+        # Try exact match first
+        if champion_name in self.champion_to_id:
+            return champion_name
+        
+        # Case-insensitive lookup
+        champion_lower = champion_name.lower()
+        for encoded_name in self.champion_to_id.keys():
+            if encoded_name.lower() == champion_lower:
+                return encoded_name
+        
+        # If still not found, raise error with suggestions
+        similar = [name for name in self.champion_to_id.keys() 
+                  if champion_lower in name.lower() or name.lower() in champion_lower][:5]
+        raise ValueError(
+            f"Unknown champion: '{champion_name}'. "
+            f"Similar champions: {similar if similar else 'None found'}"
+        )
+
     def _get_champion_winrate(self, champion: str) -> float:
         """Get winrate for a single champion"""
+        # Try exact match first
         if champion in self.champion_stats:
             return self.champion_stats[champion].get('win_rate', 0.5)
+        
+        # Case-insensitive lookup in stats
+        champion_lower = champion.lower()
+        for stat_name in self.champion_stats.keys():
+            if stat_name.lower() == champion_lower:
+                return self.champion_stats[stat_name].get('win_rate', 0.5)
+        
         return 0.5
 
     def _calculate_team_winrate(self, champions: List[str]) -> float:

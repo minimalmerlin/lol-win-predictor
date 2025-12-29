@@ -5,7 +5,9 @@
 # ===============================================
 
 # 1. RIOT API KEY (WICHTIG!)
-RIOT_API_KEY=***REMOVED***
+# ⚠️  SECURITY: Setze deinen eigenen RIOT API KEY hier ein!
+# Hole dir einen Key von: https://developer.riotgames.com/
+RIOT_API_KEY=YOUR_RIOT_API_KEY_HERE
 
 # 2. PRODUCTION MODE
 ENV=production
@@ -14,7 +16,9 @@ ENV=production
 PORT=8000
 
 # 4. INTERNAL API KEY (für Frontend-Backend Kommunikation)
-INTERNAL_API_KEY=victory-secret-key-2025
+# ⚠️  SECURITY: Generiere einen zufälligen, sicheren Key!
+# Beispiel: openssl rand -hex 32
+INTERNAL_API_KEY=YOUR_SECRET_API_KEY_HERE
 
 # 5. ALLOWED ORIGINS (wird später aktualisiert nach Vercel Deploy)
 # Erstmal nur localhost für Tests:

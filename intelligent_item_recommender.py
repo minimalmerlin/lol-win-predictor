@@ -160,7 +160,30 @@ class IntelligentItemRecommender:
             }
 
         builds_data = self.item_builds[champion]
-        builds = builds_data.get('builds', {})
+        
+        # Handle both formats: dict with 'builds' key, or list directly
+        if isinstance(builds_data, dict):
+            builds = builds_data.get('builds', {})
+        elif isinstance(builds_data, list):
+            # Convert list format to dict format for consistency
+            builds = {}
+            for idx, build_item in enumerate(builds_data):
+                if isinstance(build_item, dict):
+                    # Use items as key, or index if no items
+                    build_key = str(build_item.get('items', [])) if 'items' in build_item else str(idx)
+                    builds[build_key] = build_item
+                else:
+                    # If it's just a list of items, create a build entry
+                    build_key = str(build_item) if isinstance(build_item, list) else str(idx)
+                    builds[build_key] = {
+                        'items': build_item if isinstance(build_item, list) else [],
+                        'count': 1,
+                        'wins': 0,
+                        'losses': 0,
+                        'win_rate': 0.5
+                    }
+        else:
+            builds = {}
 
         if not builds:
             fallback_builds = self._get_similar_champion_builds(champion, top_n)
@@ -206,10 +229,17 @@ class IntelligentItemRecommender:
         if enemy_team:
             build_list = self._rerank_by_counter_items(build_list, enemy_team)
 
+        # Get total_games from builds_data (handle both formats)
+        if isinstance(builds_data, dict):
+            total_games = builds_data.get('total_games', 0)
+        else:
+            # For list format, sum up games from all builds
+            total_games = sum(b.get('games', b.get('count', 0)) for b in build_list)
+        
         return {
             'champion': champion,
             'found': True,
-            'total_games': builds_data.get('total_games', 0),
+            'total_games': total_games,
             'top_builds': build_list[:top_n],
             'all_builds_count': len(build_list),
             'enemy_adjusted': bool(enemy_team),

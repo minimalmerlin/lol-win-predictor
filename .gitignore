@@ -43,6 +43,10 @@ Thumbs.db
 .env
 .env.local
 .env.production
+.env.*.local
+
+# Security: Environment variable templates (keep templates, but ignore if they contain real keys)
+# Note: RAILWAY_ENV_VARS.txt and VERCEL_ENV_VARS.txt are templates and should not contain real keys
 
 # Logs
 *.log

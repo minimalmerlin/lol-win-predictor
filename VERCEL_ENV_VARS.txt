@@ -5,13 +5,15 @@
 # ===============================================
 
 # 1. BACKEND API URL (WICHTIG! - Deine Railway URL)
-NEXT_PUBLIC_API_URL=https://web-production-fb493.up.railway.app
+# ⚠️  Setze deine eigene Railway URL hier ein!
+NEXT_PUBLIC_API_URL=https://your-railway-app.up.railway.app
 
 # 2. BACKEND API URL (für Server-Side Rendering)
-API_URL=https://web-production-fb493.up.railway.app
+API_URL=https://your-railway-app.up.railway.app
 
 # 3. INTERNAL API KEY (gleicher wie in Railway)
-INTERNAL_API_KEY=victory-secret-key-2025
+# ⚠️  SECURITY: Muss identisch mit Railway INTERNAL_API_KEY sein!
+INTERNAL_API_KEY=YOUR_SECRET_API_KEY_HERE
 
 # ===============================================
 # DEPLOYMENT SETTINGS

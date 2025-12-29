@@ -1,7 +1,11 @@
 // API Configuration and Client
 // Empty string uses relative paths (same domain), perfect for Next.js API routes
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-const API_KEY = process.env.NEXT_PUBLIC_INTERNAL_API_KEY || 'victory-secret-key-2025';
+// ⚠️  SECURITY: API Key should be set via environment variable, not hardcoded
+const API_KEY = process.env.NEXT_PUBLIC_INTERNAL_API_KEY || '';
+if (!API_KEY && process.env.NODE_ENV === 'production') {
+  console.error('⚠️  WARNING: NEXT_PUBLIC_INTERNAL_API_KEY not set in production!');
+}
 
 // Helper to get headers with API key
 const getHeaders = () => ({

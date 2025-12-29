@@ -326,9 +326,16 @@ async def predict_champion_matchup(request: Request, body: ChampionMatchupReques
             }
         )
 
+    except ValueError as e:
+        # User input errors (e.g., unknown champion)
+        logger.warning(f"Invalid input for champion matchup prediction: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request: {str(e)}")
     except Exception as e:
-        logger.error(f"Error in champion matchup prediction: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error in champion matchup prediction: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Internal server error during prediction. Please try again later."
+        )
 
 
 @app.post("/api/predict-game-state", response_model=PredictionResponse, dependencies=[])
@@ -418,9 +425,16 @@ async def predict_game_state(http_request: Request, request: GameStateRequest):
             }
         )
 
+    except ValueError as e:
+        # User input errors
+        logger.warning(f"Invalid input for game state prediction: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request: {str(e)}")
     except Exception as e:
-        logger.error(f"Error in game state prediction: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error in game state prediction: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Internal server error during prediction. Please try again later."
+        )
 
 
 @app.get("/api/champion-stats", response_model=ChampionStatsResponse)
@@ -471,8 +485,11 @@ async def get_champion_stats(
         )
 
     except Exception as e:
-        logger.error(f"Error fetching champion stats: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error fetching champion stats: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch champion statistics. Please try again later."
+        )
 
 
 @app.post("/api/item-recommendations", response_model=ItemRecommendationResponse)
@@ -495,33 +512,61 @@ async def get_item_recommendations(request: ItemRecommendationRequest):
 
         champion_items = item_builds[champion]
 
-        # Get popular items sorted by win-rate
-        popular_items = []
-        for item_id, stats in champion_items.get('popular_items', {}).items():
-            if stats['count'] >= 3:  # Min 3 games (reduced from 10)
-                popular_items.append({
-                    'item_id': stats['item_id'],
-                    'games': stats['count'],
-                    'wins': stats['wins'],
-                    'win_rate': stats['wins'] / stats['count'] if stats['count'] > 0 else 0
-                })
+        # Handle both formats: dict with 'popular_items'/'builds' keys, or list directly
+        if isinstance(champion_items, dict):
+            # Dict format - extract popular_items and builds
+            popular_items = []
+            for item_id, stats in champion_items.get('popular_items', {}).items():
+                if stats.get('count', 0) >= 3:  # Min 3 games (reduced from 10)
+                    popular_items.append({
+                        'item_id': stats.get('item_id', item_id),
+                        'games': stats.get('count', 0),
+                        'wins': stats.get('wins', 0),
+                        'win_rate': stats.get('wins', 0) / stats.get('count', 1) if stats.get('count', 0) > 0 else 0
+                    })
 
-        popular_items.sort(key=lambda x: x['win_rate'], reverse=True)
-        recommended_items = popular_items[:request.top_n]
+            popular_items.sort(key=lambda x: x['win_rate'], reverse=True)
+            recommended_items = popular_items[:request.top_n]
 
-        # Get popular builds
-        builds = []
-        for build_key, stats in champion_items.get('builds', {}).items():
-            if stats['count'] >= 2:  # Min 2 games (reduced from 5)
-                builds.append({
-                    'items': stats['items'],
-                    'games': stats['count'],
-                    'wins': stats['wins'],
-                    'win_rate': stats['win_rate']
-                })
+            # Get popular builds
+            builds = []
+            for build_key, stats in champion_items.get('builds', {}).items():
+                if stats.get('count', 0) >= 2:  # Min 2 games (reduced from 5)
+                    builds.append({
+                        'items': stats.get('items', []),
+                        'games': stats.get('count', 0),
+                        'wins': stats.get('wins', 0),
+                        'win_rate': stats.get('win_rate', 0.0)
+                    })
 
-        builds.sort(key=lambda x: x['win_rate'], reverse=True)
-        popular_builds = builds[:10]  # Show top 10 builds instead of 5
+            builds.sort(key=lambda x: x['win_rate'], reverse=True)
+            popular_builds = builds[:10]  # Show top 10 builds instead of 5
+        elif isinstance(champion_items, list):
+            # List format - convert to expected format
+            recommended_items = []
+            popular_builds = []
+            
+            # Extract items from builds in list format
+            for build_item in champion_items:
+                if isinstance(build_item, dict):
+                    items = build_item.get('items', [])
+                    games = build_item.get('games', build_item.get('count', 0))
+                    wins = build_item.get('wins', 0)
+                    
+                    if games >= 2:
+                        popular_builds.append({
+                            'items': items,
+                            'games': games,
+                            'wins': wins,
+                            'win_rate': wins / games if games > 0 else 0.0
+                        })
+            
+            popular_builds.sort(key=lambda x: x['win_rate'], reverse=True)
+            popular_builds = popular_builds[:10]
+            recommended_items = []  # Can't extract individual items from list format easily
+        else:
+            recommended_items = []
+            popular_builds = []
 
         return ItemRecommendationResponse(
             champion=champion,
@@ -532,8 +577,11 @@ async def get_item_recommendations(request: ItemRecommendationRequest):
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error fetching item recommendations: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error fetching item recommendations: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch item recommendations. Please try again later."
+        )
 
 
 @app.get("/api/champions/list")
@@ -579,8 +627,11 @@ async def search_champions(
         }
 
     except Exception as e:
-        logger.error(f"Error searching champions: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error searching champions: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to search champions. Please try again later."
+        )
 
 
 @app.get("/api/champions/{champion_name}")
@@ -636,8 +687,11 @@ async def get_champion_details(champion_name: str):
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error fetching champion details: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error fetching champion details: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch champion details. Please try again later."
+        )
 
 
 @app.post("/api/item-recommendations-intelligent")
@@ -668,9 +722,16 @@ async def get_intelligent_item_recommendations(request: ItemRecommendationReques
 
         return result
 
+    except ValueError as e:
+        # User input errors (e.g., unknown champion)
+        logger.warning(f"Invalid input for intelligent item recommendations: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request: {str(e)}")
     except Exception as e:
-        logger.error(f"Error fetching intelligent item recommendations: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error fetching intelligent item recommendations: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to generate intelligent item recommendations. Please try again later."
+        )
 
 
 @app.get("/api/stats/model")
@@ -690,9 +751,18 @@ async def get_model_stats():
             "champions_with_builds": len(item_builds) if item_builds else 0,
             "champions_with_synergies": len(best_teammates) if best_teammates else 0
         }
+    except FileNotFoundError:
+        logger.warning("Model performance file not found")
+        raise HTTPException(
+            status_code=503,
+            detail="Model performance data not available"
+        )
     except Exception as e:
-        logger.error(f"Error fetching model stats: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error fetching model stats: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch model statistics. Please try again later."
+        )
 
 
 # ============================================================================
@@ -720,8 +790,11 @@ async def get_live_game_status():
             "instructions": "Start a game to enable live tracking" if not is_running else None
         }
     except Exception as e:
-        logger.error(f"Error checking game status: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error checking game status: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to check game status. Please try again later."
+        )
 
 
 @app.get("/api/live/game-data")
@@ -763,8 +836,11 @@ async def get_live_game_data():
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error fetching live game data: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error fetching live game data: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch live game data. Please try again later."
+        )
 
 
 @app.get("/api/live/predict")
@@ -872,8 +948,11 @@ async def get_live_win_prediction():
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error generating live prediction: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error generating live prediction: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to generate live prediction. Please try again later."
+        )
 
 
 def _generate_live_recommendation(pred_data: Dict, champion_pred: Dict, state_pred: Optional[Dict]) -> str:
@@ -1008,6 +1087,13 @@ async def generate_dynamic_build(request: DynamicBuildRequest):
             "explanation": build_path.explanation
         }
         
+    except ValueError as e:
+        # User input errors
+        logger.warning(f"Invalid input for dynamic build generation: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request: {str(e)}")
     except Exception as e:
-        logger.error(f"Error generating dynamic build: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error generating dynamic build: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to generate dynamic build. Please try again later."
+        )

@@ -7,6 +7,7 @@ Predicts win probability based on in-game state (kills, gold, towers, etc.)
 import pickle
 import logging
 from typing import Dict
+import joblib
 
 logger = logging.getLogger(__name__)
 
@@ -19,12 +20,23 @@ class WinPredictionModel:
         self.model_type = None  # 'rf' (Random Forest) or 'lr' (Logistic Regression)
 
     def load_model(self, model_path: str):
-        """Load the trained win prediction model"""
+        """Load the trained win prediction model
+        
+        Tries joblib first (better compatibility), falls back to pickle for legacy models.
+        """
         try:
-            with open(model_path, 'rb') as f:
-                data = pickle.load(f)
+            # Try joblib first (better cross-version compatibility)
+            try:
+                data = joblib.load(model_path)
+                logger.debug(f"Loaded model using joblib from {model_path}")
+            except Exception as joblib_error:
+                # Fallback to pickle for legacy models
+                logger.warning(f"joblib failed, trying pickle: {joblib_error}")
+                with open(model_path, 'rb') as f:
+                    data = pickle.load(f)
+                logger.debug(f"Loaded model using pickle from {model_path}")
 
-            # Handle different pickle formats
+            # Handle different formats
             if isinstance(data, dict):
                 self.model = data.get('model')
             else:
@@ -36,10 +48,13 @@ class WinPredictionModel:
             else:
                 self.model_type = 'lr'
 
+            if self.model is None:
+                raise ValueError(f"Model not found in loaded data from {model_path}")
+
             logger.info(f"✓ Win Prediction Model loaded from {model_path} (type: {self.model_type})")
 
         except Exception as e:
-            logger.error(f"Failed to load win predictor: {e}")
+            logger.error(f"Failed to load win predictor from {model_path}: {e}")
             raise
 
     def predict(self, game_state: Dict) -> Dict:
