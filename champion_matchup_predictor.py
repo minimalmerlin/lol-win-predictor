@@ -80,8 +80,29 @@ class ChampionMatchupPredictor:
         blue_ids = (blue_ids + [0] * 5)[:5]
         red_ids = (red_ids + [0] * 5)[:5]
 
-        # Create feature vector [blue_champ_1, ..., blue_champ_5, red_champ_1, ..., red_champ_5]
-        features = [blue_ids + red_ids]
+        # Calculate winrate features
+        blue_winrates = [self._get_champion_winrate(c) for c in blue_champions]
+        red_winrates = [self._get_champion_winrate(c) for c in red_champions]
+
+        blue_avg_winrate = sum(blue_winrates) / len(blue_winrates) if blue_winrates else 0.5
+        red_avg_winrate = sum(red_winrates) / len(red_winrates) if red_winrates else 0.5
+        blue_max_winrate = max(blue_winrates) if blue_winrates else 0.5
+        red_max_winrate = max(red_winrates) if red_winrates else 0.5
+        blue_min_winrate = min(blue_winrates) if blue_winrates else 0.5
+        red_min_winrate = min(red_winrates) if red_winrates else 0.5
+        winrate_diff = blue_avg_winrate - red_avg_winrate
+
+        # Create feature vector with 17 features:
+        # [blue_avg_wr, red_avg_wr, blue_max_wr, red_max_wr, blue_min_wr, red_min_wr, wr_diff,
+        #  blue_champ_0, blue_champ_1, blue_champ_2, blue_champ_3, blue_champ_4,
+        #  red_champ_0, red_champ_1, red_champ_2, red_champ_3, red_champ_4]
+        features = [[
+            blue_avg_winrate, red_avg_winrate,
+            blue_max_winrate, red_max_winrate,
+            blue_min_winrate, red_min_winrate,
+            winrate_diff,
+            *blue_ids, *red_ids
+        ]]
 
         # Predict
         try:
@@ -90,8 +111,8 @@ class ChampionMatchupPredictor:
         except Exception as e:
             logger.error(f"Prediction error: {e}")
             # Fallback to champion win rates
-            blue_win_prob = self._calculate_team_winrate(blue_champions)
-            red_win_prob = self._calculate_team_winrate(red_champions)
+            blue_win_prob = blue_avg_winrate
+            red_win_prob = red_avg_winrate
             # Normalize
             total = blue_win_prob + red_win_prob
             blue_win_prob = blue_win_prob / total
@@ -124,17 +145,18 @@ class ChampionMatchupPredictor:
         normalized = ''.join(word.capitalize() for word in name.strip().split())
         return normalized
 
+    def _get_champion_winrate(self, champion: str) -> float:
+        """Get winrate for a single champion"""
+        if champion in self.champion_stats:
+            return self.champion_stats[champion].get('win_rate', 0.5)
+        return 0.5
+
     def _calculate_team_winrate(self, champions: List[str]) -> float:
         """Calculate average winrate for a team of champions"""
         if not champions:
             return 0.5
 
-        winrates = []
-        for champ in champions:
-            if champ in self.champion_stats:
-                wr = self.champion_stats[champ].get('win_rate', 0.5)
-                winrates.append(wr)
-
+        winrates = [self._get_champion_winrate(c) for c in champions]
         return sum(winrates) / len(winrates) if winrates else 0.5
 
     def _calculate_confidence(self, probability: float, blue_count: int, red_count: int) -> str:

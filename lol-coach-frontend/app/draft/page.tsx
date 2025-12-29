@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { getChampionImageUrl, getItemImageUrl, getItemNameSync } from '@/lib/riot-data';
 import ChampionSearch from '@/components/ChampionSearch';
+import { api } from '@/lib/api';
 import {
   Select,
   SelectContent,
@@ -17,8 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const ROLES = ['Top', 'Jungle', 'Mid', 'ADC', 'Support'];
 
@@ -32,9 +31,11 @@ interface PredictionResult {
   red_win_probability: number;
   confidence: string;
   prediction: string;
-  details: {
+  details?: {
     blue_avg_winrate: number;
     red_avg_winrate: number;
+    model?: string;
+    accuracy?: string;
   };
 }
 
@@ -84,24 +85,8 @@ export default function DraftAssistantPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${API_URL}/api/predict-champion-matchup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-INTERNAL-API-KEY': 'victory-secret-key-2025'
-        },
-        body: JSON.stringify({
-          blue_champions: blueChamps,
-          red_champions: redChamps
-        })
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setPrediction(data);
-      } else {
-        setError('Failed to predict matchup. Please try again.');
-      }
+      const data = await api.predictChampionMatchup(blueChamps, redChamps);
+      setPrediction(data);
     } catch (error) {
       console.error('Failed to predict:', error);
       setError('Failed to predict matchup. Please try again.');
@@ -128,9 +113,15 @@ export default function DraftAssistantPage() {
 
     setBuildLoading(true);
     try {
-      const response = await fetch(`${API_URL}/api/draft/dynamic-build`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+      const API_KEY = process.env.NEXT_PUBLIC_INTERNAL_API_KEY || 'victory-secret-key-2025';
+
+      const response = await fetch(`${API_BASE_URL}/api/draft/dynamic-build`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-INTERNAL-API-KEY': API_KEY
+        },
         body: JSON.stringify({
           user_champion: userChampion.champion,
           user_role: userChampion.role,
