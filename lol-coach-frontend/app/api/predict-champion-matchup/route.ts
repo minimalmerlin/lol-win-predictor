@@ -28,14 +28,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get backend URL from environment
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+    // Get backend URL from environment with fallback for local development
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 'http://localhost:8000';
 
     if (!backendUrl) {
       return NextResponse.json(
         {
           error: 'Backend API URL not configured',
-          details: 'Please set NEXT_PUBLIC_API_URL or API_URL environment variable'
+          details: 'Please set NEXT_PUBLIC_API_URL or API_URL environment variable, or start the backend on http://localhost:8000'
         },
         { status: 503 }
       );
