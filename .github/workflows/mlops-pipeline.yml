@@ -83,17 +83,65 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
+          secure: true
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: '⚠️ MLOps Pipeline Failed - ${{ github.run_number }}'
+          subject: '⚠️ MLOps Pipeline FAILED - Run #${{ github.run_number }}'
           to: merlin.r.mechler@gmail.com
-          from: MLOps Bot
+          from: Victory AI MLOps Bot <${{ secrets.MAIL_USERNAME }}>
           body: |
-            MLOps Pipeline failed at ${{ github.run_id }}
+            🚨 MLOps Pipeline Failure Alert
+            ================================
 
-            Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            The automated MLOps pipeline has failed.
 
-            Mode: ${{ github.event.inputs.mode || 'check' }}
+            📊 Run Details:
+            - Run ID: ${{ github.run_id }}
+            - Run Number: #${{ github.run_number }}
+            - Mode: ${{ github.event.inputs.mode || 'check' }}
+            - Triggered by: ${{ github.event_name }}
+
+            🔗 View Logs:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            ⚡ Action Required:
+            Please review the logs and fix any issues.
+
+            ---
+            Automated by Victory AI MLOps System
+
+      - name: Notify on success (model retrained)
+        if: success() && github.event.inputs.mode == 'retrain'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: '✅ Model Successfully Retrained - Run #${{ github.run_number }}'
+          to: merlin.r.mechler@gmail.com
+          from: Victory AI MLOps Bot <${{ secrets.MAIL_USERNAME }}>
+          body: |
+            ✅ Model Retraining Successful
+            ===============================
+
+            The model has been successfully retrained and deployed.
+
+            📊 Run Details:
+            - Run ID: ${{ github.run_id }}
+            - Run Number: #${{ github.run_number }}
+            - Triggered by: ${{ github.event_name }}
+
+            🔗 View Details:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            📈 Next Steps:
+            - Check the performance report in the workflow logs
+            - New models have been committed to the repository
+
+            ---
+            Automated by Victory AI MLOps System
 
       - name: Create performance report
         if: success()
