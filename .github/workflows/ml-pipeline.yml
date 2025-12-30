@@ -28,6 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120  # 2 hours max
 
+    permissions:
+      contents: write      # Required for git push
+      deployments: write   # Required for creating deployments
+      issues: write        # Required for creating issues on failure
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
