@@ -45,10 +45,9 @@ DATA_DIR = BASE_DIR / 'data'
 LOGS_DIR = BASE_DIR / 'logs'
 
 # Database connection
-DATABASE_URL = os.environ.get(
-    'POSTGRES_URL',
-    'postgres://***REMOVED***:***REMOVED***@aws-1-eu-central-1.pooler.supabase.com:5432/postgres?sslmode=require'
-)
+DATABASE_URL = os.environ.get('POSTGRES_URL')
+if not DATABASE_URL:
+    raise ValueError("POSTGRES_URL environment variable is required")
 
 # Thresholds
 MIN_NEW_MATCHES = 1000  # Retrain if we have 1000+ new matches

@@ -20,10 +20,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Database connection URL from environment variable
-DATABASE_URL = os.environ.get(
-    'POSTGRES_URL',
-    'postgres://***REMOVED***:***REMOVED***@aws-1-eu-central-1.pooler.supabase.com:5432/postgres?sslmode=require'
-)
+DATABASE_URL = os.environ.get('POSTGRES_URL')
+if not DATABASE_URL:
+    raise ValueError("POSTGRES_URL environment variable is required")
 
 
 class DatabaseConnection:

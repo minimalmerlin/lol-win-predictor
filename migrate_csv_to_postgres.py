@@ -30,7 +30,9 @@ from pathlib import Path
 # ========================================
 
 # Database Connection (Direct, not pooled)
-DATABASE_URL = "postgres://***REMOVED***:***REMOVED***@aws-1-eu-central-1.pooler.supabase.com:5432/postgres?sslmode=require"
+DATABASE_URL = os.environ.get('POSTGRES_URL')
+if not DATABASE_URL:
+    raise ValueError("POSTGRES_URL environment variable is required. Please set it in .env file.")
 
 # CSV Input File
 CSV_FILE = "data/training_data_with_timeline.csv"
