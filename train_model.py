@@ -180,11 +180,18 @@ def backup_old_models():
     """Backup existing models before overwriting"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
+    # Ensure backup directory exists
+    MODEL_BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+
     for model_path in [WIN_PREDICTOR_RF_PATH, WIN_PREDICTOR_LR_PATH]:
         if model_path.exists():
-            backup_path = MODEL_BACKUP_DIR / f"{model_path.stem}_{timestamp}.pkl"
-            shutil.copy(model_path, backup_path)
-            print(f"  Backed up: {model_path.name} -> {backup_path.name}")
+            try:
+                backup_path = MODEL_BACKUP_DIR / f"{model_path.stem}_{timestamp}.pkl"
+                shutil.copy(model_path, backup_path)
+                print(f"  Backed up: {model_path.name} -> {backup_path.name}")
+            except Exception as e:
+                print(f"  ⚠️  Warning: Could not backup {model_path.name}: {e}")
+                # Continue anyway - backup failure shouldn't stop training
 
 
 def save_models_and_performance(rf_model, lr_model, rf_accuracy, rf_roc_auc, matches_count):
@@ -291,4 +298,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+        print("\n✓ Script completed successfully")
+    except Exception as e:
+        print(f"\n❌ FATAL ERROR: {e}")
+        import traceback
+        traceback.print_exc()
+        exit(1)
