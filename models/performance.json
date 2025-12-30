@@ -1,7 +1,7 @@
 {
   "accuracy": 0.5200623295675886,
   "roc_auc": 0.5126290893224581,
-  "timestamp": "2025-12-29T14:02:42.379480",
+  "timestamp": "2025-12-29T21:21:38.027238",
   "matches_count": 12834,
   "training_config": {
     "test_size": 0.2,

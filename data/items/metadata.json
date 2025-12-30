@@ -1,0 +1,17 @@
+{
+  "fetched_at": "2025-12-29T22:13:03.362786",
+  "patch_version": "15.24.1",
+  "total_items": 640,
+  "purchasable_items": 511,
+  "categories": {
+    "starter": 84,
+    "boots": 22,
+    "basic": 231,
+    "epic": 34,
+    "legendary": 111,
+    "mythic": 0,
+    "consumable": 25,
+    "trinket": 4
+  },
+  "items_with_counters": 245
+}

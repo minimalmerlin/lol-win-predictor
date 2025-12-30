@@ -1,0 +1,118 @@
+name: MLOps Pipeline - Automated Model Training
+
+on:
+  # Run daily at 4 AM CET (3 AM UTC)
+  schedule:
+    - cron: '0 3 * * *'
+
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pipeline mode'
+        required: true
+        default: 'check'
+        type: choice
+        options:
+          - check
+          - retrain
+          - monitor
+
+jobs:
+  mlops:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Configure database credentials
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+        run: |
+          echo "POSTGRES_URL configured"
+
+      - name: Run MLOps Pipeline
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+        run: |
+          python mlops_pipeline.py --mode ${{ github.event.inputs.mode || 'check' }}
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlops-logs-${{ github.run_number }}
+          path: |
+            mlops_pipeline.log
+            logs/
+
+      - name: Upload new models
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: models-${{ github.run_number }}
+          path: |
+            models/*.pkl
+            models/*.json
+
+      - name: Commit and push model updates
+        if: success()
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add models/*.pkl models/*.json
+          git diff --staged --quiet || git commit -m "🤖 Auto-update models from MLOps pipeline [skip ci]"
+          git push
+
+      - name: Notify on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: '⚠️ MLOps Pipeline Failed - ${{ github.run_number }}'
+          to: merlin.r.mechler@gmail.com
+          from: MLOps Bot
+          body: |
+            MLOps Pipeline failed at ${{ github.run_id }}
+
+            Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Mode: ${{ github.event.inputs.mode || 'check' }}
+
+      - name: Create performance report
+        if: success()
+        run: |
+          python << 'EOF'
+          import json
+          from pathlib import Path
+
+          perf_file = Path('models/game_state_performance.json')
+          if perf_file.exists():
+              with open(perf_file, 'r') as f:
+                  perf = json.load(f)
+
+              print("=" * 80)
+              print("MODEL PERFORMANCE REPORT")
+              print("=" * 80)
+              print(f"Accuracy: {perf.get('accuracy', 0)*100:.2f}%")
+              print(f"ROC-AUC: {perf.get('roc_auc', 0):.4f}")
+              print(f"Trained on: {perf.get('matches_count', 0):,} matches")
+              print(f"Timestamp: {perf.get('timestamp', 'unknown')}")
+              print("=" * 80)
+          EOF

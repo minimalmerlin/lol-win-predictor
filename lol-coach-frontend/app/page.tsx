@@ -9,7 +9,7 @@ import ItemRecommendations from '@/components/ItemRecommendations';
 import ChampionSearch from '@/components/ChampionSearch';
 import ChampionSearchModal from '@/components/ChampionSearchModal';
 import { useRouter } from 'next/navigation';
-import { Target, Activity, Search, Cpu, TrendingUp } from 'lucide-react';
+import { Target, Activity, Search, Cpu, TrendingUp, Database, BarChart3, History } from 'lucide-react';
 import Image from 'next/image';
 import { useModelStats } from '@/hooks/useModelStats';
 import { formatAccuracy, formatMatchCount } from '@/lib/model-stats';
@@ -64,6 +64,30 @@ export default function Home() {
               >
                 <Activity className="mr-2 h-4 w-4" />
                 LIVE COMBAT
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => router.push('/predict')}
+                className="btn-primary h-9 px-4"
+              >
+                <BarChart3 className="mr-2 h-4 w-4" />
+                PREDICT
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => router.push('/stats')}
+                className="btn-primary h-9 px-4"
+              >
+                <Database className="mr-2 h-4 w-4" />
+                STATS
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => router.push('/history')}
+                className="btn-primary h-9 px-4"
+              >
+                <History className="mr-2 h-4 w-4" />
+                HISTORY
               </Button>
             </nav>
           </div>
