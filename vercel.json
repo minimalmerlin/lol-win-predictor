@@ -1,36 +1,19 @@
 {
   "version": 2,
-  "buildCommand": "cd lol-coach-frontend && npm install && npm run build",
-  "outputDirectory": "lol-coach-frontend/.next",
-  "framework": "nextjs",
-  "regions": ["iad1"],
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    }
-  ],
-  "env": {
-    "PYTHON_VERSION": "3.9"
-  },
   "builds": [
     {
       "src": "api/**/*.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "lol-coach-frontend/package.json",
-      "use": "@vercel/next"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "/(.*)",
-      "dest": "/lol-coach-frontend/$1"
+      "source": "/(.*)",
+      "destination": "/lol-coach-frontend/$1"
     }
   ]
 }
