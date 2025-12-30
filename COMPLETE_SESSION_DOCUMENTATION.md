@@ -3619,3 +3619,311 @@ Total Database: 36 MB
 **Status**: ✅ Full PostgreSQL Migration COMPLETE
 **Next**: Backend API Integration (PostgreSQL statt CSV)
 
+
+---
+---
+
+# 🔧 SESSION 6: MLOps Pipeline Permission Fix
+
+**Datum**: 2025-12-30  
+**Zeitraum**: 15:00 - 15:15 CET  
+**Typ**: Bug Fix - GitHub Actions Permissions  
+**Status**: ✅ COMPLETE
+
+---
+
+## 🎯 PROBLEM
+
+Die automatisierte MLOps Pipeline ([ml-pipeline.yml](.github/workflows/ml-pipeline.yml)) schlug mit **403 Forbidden Errors** fehl:
+
+```
+RequestError [HttpError]: Resource not accessible by integration
+status: 403
+```
+
+### Betroffene Operationen
+
+1. **Deployment Creation** (Zeile 104)
+   - `github.rest.repos.createDeployment()` 
+   - Fehlende Permission: `deployments: write`
+
+2. **Issue Creation** (Zeile 119)
+   - `github.rest.issues.create()`
+   - Fehlende Permission: `issues: write`
+
+3. **Git Push** (Zeile 96)
+   - Model/Data Updates committen
+   - Fehlende Permission: `contents: write`
+
+### Root Cause Analysis
+
+**Problem**: Keine explizite `permissions`-Sektion im Workflow  
+**Folge**: `GITHUB_TOKEN` hatte nur **Read-Only Permissions**  
+**Kontext**: GitHub Actions verweigert API-Calls ohne explizite Berechtigungen
+
+---
+
+## 🔍 DIAGNOSE
+
+### 1. Error Logs Analyse
+
+```
+'x-accepted-github-permissions': 'deployments=write'
+'x-accepted-github-permissions': 'issues=write'
+```
+
+Die API akzeptiert diese Permissions, aber der Token hatte sie nicht.
+
+### 2. Workflow-Vergleich
+
+**ml-training.yml** (funktioniert):
+```yaml
+permissions:
+  contents: write  # Required for git push
+```
+
+**ml-pipeline.yml** (fehlerhaft):
+```yaml
+# ❌ KEINE permissions-Sektion
+```
+
+---
+
+## ✅ LÖSUNG
+
+### Code-Änderung
+
+**Datei**: [.github/workflows/ml-pipeline.yml](.github/workflows/ml-pipeline.yml#L31-L34)
+
+```diff
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120  # 2 hours max
+
++   permissions:
++     contents: write      # Required for git push
++     deployments: write   # Required for creating deployments
++     issues: write        # Required for creating issues on failure
+
+    steps:
+      - name: Checkout repository
+```
+
+### Permissions Breakdown
+
+| Permission | Zweck | Verwendung |
+|------------|-------|------------|
+| `contents: write` | Git-Push für Model Updates | Zeile 96 - Commit & Push |
+| `deployments: write` | Deployment-Erstellung | Zeile 104 - `createDeployment()` |
+| `issues: write` | Issue bei Pipeline-Fehler | Zeile 119 - `issues.create()` |
+
+---
+
+## 🧪 VALIDIERUNG
+
+### Test 1: Automatischer Trigger durch Push
+
+**Commit**: `64d0ed9`  
+**Message**: "🔒 Fix MLOps Pipeline: Add GitHub Token Permissions"  
+**Trigger**: Push auf `main` (Workflow-Datei geändert)  
+**Result**: ✅ **Success** (Run `20599345582`)
+
+### Test 2: Manueller Trigger via `gh` CLI
+
+```bash
+gh workflow run ml-pipeline.yml
+```
+
+**Run ID**: `20599495677`  
+**Status**: ✅ **Success** (completed in ~36s)  
+**Trigger**: `workflow_dispatch`
+
+### Pipeline History
+
+| Run ID | Trigger | Status | Timestamp |
+|--------|---------|--------|-----------|
+| `20599009053` | push | ❌ **Failure** (403 Errors) | 14:41:04 |
+| `20599345582` | push | ✅ **Success** | 14:59:03 |
+| `20599495677` | manual | ✅ **Success** | 15:06:24 |
+
+**Beweis**: Nach dem Fix laufen alle Workflows erfolgreich durch.
+
+---
+
+## 🛠️ SETUP: GitHub CLI Installation
+
+Da `gh` CLI fehlte, wurde es für zukünftige Operationen installiert:
+
+```bash
+brew install gh
+gh auth login --web
+```
+
+**Code**: `545E-59B6`  
+**Status**: ✅ Authenticated als `minimalmerlin`  
+**Scopes**: `gist`, `read:org`, `repo`
+
+### Neue Capabilities
+
+```bash
+# Workflows triggern
+gh workflow run ml-pipeline.yml
+
+# Status überwachen
+gh run list --workflow=ml-pipeline.yml
+gh run watch <run-id>
+
+# Logs abrufen
+gh run view <run-id> --log
+```
+
+---
+
+## 📊 IMPACT
+
+### Vor dem Fix
+
+- ❌ Deployment-Erstellung failed
+- ❌ Issue-Notification failed
+- ❌ Pipeline blockiert bei API-Calls
+- ⚠️ Manuelle Intervention nötig
+
+### Nach dem Fix
+
+- ✅ Deployment-Erstellung funktioniert
+- ✅ Issue-Notification bei Fehlern
+- ✅ Git-Push für Model Updates
+- ✅ Vollautomatische MLOps Pipeline
+
+### Business Value
+
+- **Automation**: Pipeline läuft täglich um 3 AM UTC
+- **Monitoring**: Automatische Issues bei Fehlern
+- **GitOps**: Model-Updates werden automatisch committed
+- **Deployment**: Production Deployments werden getrackt
+
+---
+
+## 📁 FILES MODIFIED
+
+### 1. `.github/workflows/ml-pipeline.yml`
+
+**Zeilen**: 31-34  
+**Änderung**: `permissions`-Sektion hinzugefügt  
+**Diff**:
+```yaml
++    permissions:
++      contents: write      # Required for git push
++      deployments: write   # Required for creating deployments
++      issues: write        # Required for creating issues on failure
+```
+
+**Commit**: `64d0ed9`  
+**URL**: https://github.com/minimalmerlin/lol-win-predictor/commit/64d0ed96768ffda7cb75157f2fff395b460da9f5
+
+---
+
+## 🔐 SECURITY NOTES
+
+### Permission Principle
+
+**Minimal Permissions**: Nur die **explizit benötigten** Permissions wurden vergeben:
+- ✅ `contents: write` - für Git Operations
+- ✅ `deployments: write` - für Deployment Tracking
+- ✅ `issues: write` - für Error Notifications
+
+**NICHT vergeben**:
+- ❌ `pull_requests: write` (nicht benötigt)
+- ❌ `packages: write` (nicht benötigt)
+- ❌ Andere Scopes
+
+### Token Scope
+
+Der `GITHUB_TOKEN` hat automatisch:
+- ✅ Zugriff nur auf das aktuelle Repository
+- ✅ Expiration nach Workflow-Ende
+- ✅ Keine Cross-Repo Permissions
+
+---
+
+## 🚀 NEXT STEPS
+
+### Short-term
+
+1. **Monitor Pipeline Runs**
+   - Täglich um 3 AM UTC
+   - Prüfe GitHub Issues auf Fehler-Benachrichtigungen
+
+2. **Deployment Tracking**
+   - Deployments werden jetzt in GitHub registriert
+   - Verfolgbar unter: `https://github.com/minimalmerlin/lol-win-predictor/deployments`
+
+### Long-term
+
+1. **Consider Additional Notifications**
+   - E-Mail-Benachrichtigungen (wie in `mlops-pipeline.yml`)
+   - Slack/Discord Webhooks
+   - PagerDuty Integration
+
+2. **Pipeline Optimization**
+   - Caching von Dependencies (bereits vorhanden: `cache: 'pip'`)
+   - Parallel-Tests
+   - Performance Monitoring
+
+---
+
+## 🎓 LESSONS LEARNED
+
+### 1. GitHub Actions Permissions
+
+**Default**: GITHUB_TOKEN hat nur Read-Rechte  
+**Lösung**: Explizite `permissions`-Sektion erforderlich  
+**Best Practice**: Minimal Permissions Principle
+
+### 2. Workflow Debugging
+
+**Error Message**: "Resource not accessible by integration"  
+**Indicator**: 403 Status + `x-accepted-github-permissions` Header  
+**Fix**: Permission fehlt im Token
+
+### 3. Cross-Workflow Consistency
+
+**Problem**: Verschiedene Workflows hatten unterschiedliche Permission-Setups  
+**Learning**: Einheitliche Permission-Strategie über alle Workflows  
+**Recommendation**: Template für zukünftige Workflows
+
+---
+
+## 📚 RELATED WORKFLOWS
+
+### 1. `ml-training.yml`
+- **Permissions**: `contents: write` (✅ funktioniert)
+- **Zweck**: Daily ML Training Loop (4 AM UTC)
+- **Status**: Productive
+
+### 2. `mlops-pipeline.yml`
+- **Notifications**: E-Mail statt GitHub Issues
+- **Permissions**: Implizit (funktioniert)
+- **Zweck**: MLOps Check/Retrain/Monitor
+
+### 3. `ml-pipeline.yml` (FIXED)
+- **Permissions**: `contents`, `deployments`, `issues` (✅ jetzt komplett)
+- **Zweck**: Automated Pipeline mit Deployment Tracking
+- **Status**: Fixed & Productive
+
+---
+
+## 🔗 REFERENCES
+
+- [GitHub Actions Permissions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
+- [Deployment API](https://docs.github.com/rest/deployments/deployments#create-a-deployment)
+- [Issues API](https://docs.github.com/rest/issues/issues#create-an-issue)
+- [GitHub CLI](https://cli.github.com/)
+
+---
+
+**Session 6 Ende**: 2025-12-30 15:15 CET  
+**Status**: ✅ MLOps Pipeline Permission Fix COMPLETE  
+**Impact**: Vollautomatische MLOps Pipeline jetzt produktiv
+
