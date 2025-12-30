@@ -71,3 +71,5 @@ data/crawler_state/
 
 # Model backups only (keep trained models in repo for deployment)
 models/backups/
+.vercel
+.env*.local
