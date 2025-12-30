@@ -29,6 +29,7 @@ from riot_live_client import RiotLiveClient
 from dynamic_build_generator import DynamicBuildGenerator, Champion, GameState
 from champion_matchup_predictor import ChampionMatchupPredictor
 from win_prediction_model import WinPredictionModel
+from game_state_predictor import GameStatePredictor
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -156,6 +157,7 @@ class StatsResponse(BaseModel):
 
 champion_predictor = None
 win_predictor = None
+game_state_predictor = None  # New: 79.28% accuracy game state model
 champion_stats = None
 item_builds = None
 item_recommender = None
@@ -167,7 +169,7 @@ build_generator = None
 @app.on_event("startup")
 async def load_models():
     """Load ML models and data on startup"""
-    global champion_predictor, win_predictor, champion_stats, item_builds, item_recommender, best_teammates, riot_live_client, build_generator
+    global champion_predictor, win_predictor, game_state_predictor, champion_stats, item_builds, item_recommender, best_teammates, riot_live_client, build_generator
 
     logger.info("🚀 Loading models...")
 
@@ -192,6 +194,14 @@ async def load_models():
             logger.info("✓ Win Predictor loaded (Linear Regression - fallback)")
     except Exception as e:
         logger.error(f"❌ Failed to load Win Predictor: {e}")
+
+    # Game State Predictor (NEW - 79.28% accuracy with timeline data)
+    try:
+        game_state_predictor = GameStatePredictor()
+        game_state_predictor.load_model('./models/game_state_predictor.pkl')
+        logger.info(f"✓ Game State Predictor loaded (Accuracy: {game_state_predictor.metadata.get('accuracy', 0)*100:.2f}%)")
+    except Exception as e:
+        logger.error(f"❌ Failed to load Game State Predictor: {e}")
 
     # Champion Stats
     try:
@@ -254,11 +264,12 @@ async def root():
     return {
         "status": "healthy",
         "service": "LoL Intelligent Coach API v2",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "endpoints": {
             "docs": "/docs",
             "champion_matchup": "/api/predict-champion-matchup",
             "game_state": "/api/predict-game-state",
+            "game_state_v2": "/api/predict-game-state-v2 (NEW: 79.28% accuracy)",
             "champion_stats": "/api/champion-stats",
             "champion_search": "/api/champions/search?query=yasou",
             "champion_details": "/api/champions/{champion_name}",
@@ -281,11 +292,13 @@ async def health_check():
         "models_loaded": {
             "champion_predictor": champion_predictor is not None,
             "win_predictor": win_predictor is not None,
+            "game_state_predictor": game_state_predictor is not None and game_state_predictor.is_loaded,
             "champion_stats": champion_stats is not None,
             "item_builds": item_builds is not None,
             "item_recommender": item_recommender is not None,
             "best_teammates": best_teammates is not None
-        }
+        },
+        "game_state_predictor_info": game_state_predictor.get_model_info() if game_state_predictor and game_state_predictor.is_loaded else None
     }
 
 
@@ -431,6 +444,95 @@ async def predict_game_state(http_request: Request, request: GameStateRequest):
         raise HTTPException(status_code=400, detail=f"Invalid request: {str(e)}")
     except Exception as e:
         logger.error(f"Error in game state prediction: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Internal server error during prediction. Please try again later."
+        )
+
+
+# New Request Model for Game State V2 (Timeline-based)
+class GameStateV2Request(BaseModel):
+    """Request model for the new Game State Predictor (79.28% accuracy)"""
+    blue_gold: int = Field(..., ge=0, example=35000)
+    red_gold: int = Field(..., ge=0, example=30000)
+    blue_xp: int = Field(..., ge=0, example=45000)
+    red_xp: int = Field(..., ge=0, example=42000)
+    blue_level: int = Field(..., ge=1, le=18, example=12)
+    red_level: int = Field(..., ge=1, le=18, example=11)
+    blue_cs: int = Field(..., ge=0, example=350)
+    red_cs: int = Field(..., ge=0, example=320)
+    blue_kills: int = Field(..., ge=0, example=15)
+    red_kills: int = Field(..., ge=0, example=10)
+    blue_dragons: int = Field(0, ge=0, le=4, example=2)
+    red_dragons: int = Field(0, ge=0, le=4, example=1)
+    blue_barons: int = Field(0, ge=0, le=2, example=0)
+    red_barons: int = Field(0, ge=0, le=2, example=0)
+    blue_towers: int = Field(0, ge=0, le=11, example=4)
+    red_towers: int = Field(0, ge=0, le=11, example=2)
+
+
+@app.post("/api/predict-game-state-v2", response_model=PredictionResponse, dependencies=[])
+@limiter.limit("10/minute")
+async def predict_game_state_v2(http_request: Request, request: GameStateV2Request):
+    """
+    🆕 NEW: Predict win probability using the advanced Game State Predictor
+    
+    This model is trained on 10,000 matches with timeline data and achieves
+    79.28% accuracy (compared to ~52% for draft-only predictions).
+    
+    Features used:
+    - Gold (total and diff)
+    - XP (total and diff)
+    - Level
+    - CS (minions killed)
+    - Kills (total and diff)
+    - Objectives (Dragons, Barons, Towers)
+    
+    Returns:
+    - Blue/Red team win probabilities
+    - Prediction text
+    - Confidence level
+    - Game state analysis
+    """
+    # Verify API key
+    await verify_api_key(http_request)
+
+    if not game_state_predictor or not game_state_predictor.is_loaded:
+        raise HTTPException(status_code=503, detail="Game State Predictor not loaded")
+
+    try:
+        result = game_state_predictor.predict(
+            blue_gold=request.blue_gold,
+            red_gold=request.red_gold,
+            blue_xp=request.blue_xp,
+            red_xp=request.red_xp,
+            blue_level=request.blue_level,
+            red_level=request.red_level,
+            blue_cs=request.blue_cs,
+            red_cs=request.red_cs,
+            blue_kills=request.blue_kills,
+            red_kills=request.red_kills,
+            blue_dragons=request.blue_dragons,
+            red_dragons=request.red_dragons,
+            blue_barons=request.blue_barons,
+            red_barons=request.red_barons,
+            blue_towers=request.blue_towers,
+            red_towers=request.red_towers
+        )
+
+        return PredictionResponse(
+            blue_win_probability=result['blue_win_probability'],
+            red_win_probability=result['red_win_probability'],
+            prediction=result['prediction'],
+            confidence=result['confidence'],
+            details=result['details']
+        )
+
+    except ValueError as e:
+        logger.warning(f"Invalid input for game state v2 prediction: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid request: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error in game state v2 prediction: {e}", exc_info=True)
         raise HTTPException(
             status_code=500,
             detail="Internal server error during prediction. Please try again later."

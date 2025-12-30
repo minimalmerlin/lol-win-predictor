@@ -1,0 +1,8 @@
+{
+  "model": "game_state_predictor",
+  "snapshot_time": 20,
+  "accuracy": 0.7927543953116676,
+  "roc_auc": 0.8779693747728099,
+  "matches_count": 9384,
+  "timestamp": "2025-12-30T13:03:57.063267"
+}
