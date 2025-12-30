@@ -56,11 +56,28 @@ export function getPassiveImageUrl(imgName: string, version: string = "14.24.1")
 
 // --- ITEM HELPERS (Added to fix Build Errors in Draft Page) ---
 
+// Legacy/removed items that don't have images in current patch
+const LEGACY_ITEMS = new Set([
+  '3174', // Athene's Unholy Grail (removed in Season 11)
+  '3175', // Stirring Wardstone (deprecated)
+  3174,
+  3175
+]);
+
 /**
  * Generiert die URL für ein Item-Icon basierend auf der ID.
  * Default Version fallback, falls keine Version übergeben wird.
+ * Für veraltete Items wird ein Fallback-Bild verwendet.
  */
 export function getItemImageUrl(id: string | number, version: string = "14.24.1"): string {
+  const itemId = String(id);
+
+  // Check if item is legacy/removed
+  if (LEGACY_ITEMS.has(itemId) || LEGACY_ITEMS.has(Number(itemId))) {
+    // Use older patch version that still has these items
+    return `https://ddragon.leagueoflegends.com/cdn/10.23.1/img/item/${id}.png`;
+  }
+
   return `https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${id}.png`;
 }
 

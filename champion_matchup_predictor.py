@@ -25,8 +25,14 @@ class ChampionMatchupPredictor:
     def load_model(self, model_path: str):
         """Load the trained champion matchup prediction model"""
         try:
-            with open(model_path, 'rb') as f:
-                data = pickle.load(f)
+            # Try joblib first (modern scikit-learn models)
+            try:
+                import joblib
+                data = joblib.load(model_path)
+            except:
+                # Fallback to pickle for older models
+                with open(model_path, 'rb') as f:
+                    data = pickle.load(f)
 
             # Handle different pickle formats
             if isinstance(data, dict):
