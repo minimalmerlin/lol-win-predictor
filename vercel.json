@@ -5,15 +5,5 @@
       "src": "api/**/*.py",
       "use": "@vercel/python"
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/lol-coach-frontend/$1"
-    }
   ]
 }
