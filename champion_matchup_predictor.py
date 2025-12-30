@@ -22,8 +22,14 @@ class ChampionMatchupPredictor:
         self.champion_to_id = {}
         self.id_to_champion = {}
 
-    def load_model(self, model_path: str):
-        """Load the trained champion matchup prediction model"""
+    def load_model(self, model_path: str, champion_stats: Dict = None):
+        """
+        Load the trained champion matchup prediction model
+
+        Args:
+            model_path: Path to the pickled model file
+            champion_stats: Optional dict of champion stats from database (if None, stats disabled)
+        """
         try:
             # Try joblib first (modern scikit-learn models)
             try:
@@ -47,11 +53,13 @@ class ChampionMatchupPredictor:
             logger.info(f"  Model type: {type(self.model).__name__}")
             logger.info(f"  Champions loaded: {len(self.champion_to_id)}")
 
-            # Load champion stats for additional insights
-            stats_path = Path('./data/champion_data/champion_stats.json')
-            if stats_path.exists():
-                with open(stats_path, 'r') as f:
-                    self.champion_stats = json.load(f)
+            # Use provided champion stats (from database) instead of loading from JSON
+            if champion_stats is not None:
+                self.champion_stats = champion_stats
+                logger.info(f"  Champion stats loaded from database ({len(champion_stats)} champions)")
+            else:
+                logger.warning("  No champion stats provided - win rate features disabled")
+                self.champion_stats = {}
 
         except Exception as e:
             logger.error(f"Failed to load champion predictor: {e}")

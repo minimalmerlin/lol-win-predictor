@@ -21,12 +21,31 @@ import difflib
 class IntelligentItemRecommender:
     """Intelligenter Item-Recommender mit Heuristik"""
 
-    def __init__(self, data_dir='./data/champion_data'):
+    def __init__(self, data_dir='./data/champion_data', champion_stats: Dict = None, item_builds: Dict = None):
+        """
+        Initialize Item Recommender
+
+        Args:
+            data_dir: Legacy parameter (not used when champion_stats/item_builds provided)
+            champion_stats: Dict of champion stats from database (recommended)
+            item_builds: Dict of item builds from database (recommended)
+        """
         self.data_dir = Path(data_dir)
 
-        # Load data
-        self.champion_stats = self._load_json('champion_stats.json')
-        self.item_builds = self._load_json('item_builds.json')
+        # Use provided data (from database) or fall back to loading JSON files
+        if champion_stats is not None:
+            self.champion_stats = champion_stats
+            print(f"✓ Using champion stats from database ({len(champion_stats)} champions)")
+        else:
+            self.champion_stats = self._load_json('champion_stats.json')
+            print(f"⚠️  Loading champion stats from JSON fallback")
+
+        if item_builds is not None:
+            self.item_builds = item_builds
+            print(f"✓ Using item builds from database ({len(item_builds)} champions)")
+        else:
+            self.item_builds = self._load_json('item_builds.json')
+            print(f"⚠️  Loading item builds from JSON fallback")
 
         # Build champion name index for fuzzy matching
         self.champion_names = list(set(
@@ -34,12 +53,10 @@ class IntelligentItemRecommender:
             list(self.item_builds.keys())
         ))
 
-        print(f"✓ Loaded {len(self.champion_stats)} champion stats")
-        print(f"✓ Loaded {len(self.item_builds)} champions with item builds")
         print(f"✓ Total {len(self.champion_names)} unique champions")
 
     def _load_json(self, filename: str) -> dict:
-        """Lädt JSON Datei"""
+        """Lädt JSON Datei (legacy fallback)"""
         path = self.data_dir / filename
         if not path.exists():
             print(f"⚠️  {filename} nicht gefunden")

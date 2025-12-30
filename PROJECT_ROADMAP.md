@@ -263,8 +263,7 @@
 
 #### Woche 4: Production Deployment & Abschlussarbeit
 - [ ] **Deployment:**
-  - [ ] Vercel (Frontend)
-  - [ ] Railway/Render (Backend)
+  - [ ] Vercel (Frontend + Python Serverless Functions)
   - [ ] Supabase/RDS (PostgreSQL)
 - [ ] **Monitoring:**
   - [ ] Sentry (Error Tracking)
@@ -623,11 +622,11 @@ CREATE TABLE strategy_rules (
   - jellyfish (Phonetic Matching: Soundex, Metaphone)
   - fuzzywuzzy / RapidFuzz (Levenshtein Distance)
 - **API Integration:** requests, httpx
-- **Deployment:** Railway / Render
+- **Deployment:** Vercel Serverless Functions
 
 ### **Database**
 - **Primary:** PostgreSQL 15+ (Ontologie, Structured Data)
-- **Hosting:** Supabase / AWS RDS / Railway
+- **Hosting:** Vercel Postgres / Supabase / AWS RDS
 - **ORM:** SQLAlchemy (Python)
 - **Migrations:** Alembic
 
@@ -635,7 +634,7 @@ CREATE TABLE strategy_rules (
 - **Training:** GitHub Actions (Daily at 04:00 UTC)
 - **Model Versioning:** DVC (Data Version Control)
 - **Monitoring:** Sentry (Errors), Plausible (Analytics)
-- **CI/CD:** GitHub Actions → Vercel + Railway
+- **CI/CD:** GitHub Actions → Vercel
 
 ### **Data Sources**
 - **Riot Games API:**
@@ -733,7 +732,7 @@ CREATE TABLE strategy_rules (
 - ✅ Explainable AI (Recommendation Reasoning)
 
 ### **Month 5: Production & Deployment**
-- ✅ Cloud Deployment (Vercel, Railway)
+- ✅ Cloud Deployment (Vercel Single Project)
 - ✅ Monitoring & Analytics
 - ✅ CI/CD (GitHub Actions)
 - ✅ Technical Writing (Abschlussarbeit)

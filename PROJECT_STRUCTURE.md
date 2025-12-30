@@ -46,7 +46,7 @@ data/
 ### **Configuration**
 ```
 requirements.txt                   # Python Dependencies
-railway.json                       # Railway Deployment Config
+vercel.json                        # Vercel Deployment Config
 Procfile                           # Cloud Platform Start Command
 runtime.txt                        # Python Version (3.11)
 .gitignore                         # Git Ignore Rules

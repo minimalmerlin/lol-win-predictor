@@ -60,21 +60,39 @@ class ItemBuildPath:
 class DynamicBuildGenerator:
     """Generates dynamic, AI-powered item builds"""
 
-    def __init__(self, data_dir='./data/champion_data'):
+    def __init__(self, data_dir='./data/champion_data', champion_stats: Dict = None, item_builds: Dict = None):
+        """
+        Initialize Dynamic Build Generator
+
+        Args:
+            data_dir: Legacy parameter (not used when champion_stats/item_builds provided)
+            champion_stats: Dict of champion stats from database (recommended)
+            item_builds: Dict of item builds from database (recommended)
+        """
         self.data_dir = Path(data_dir)
 
         # Load item database
         self.items = self._load_item_database()
 
-        # Load champion data
-        self.champion_stats = self._load_json('champion_stats.json')
-        self.item_builds = self._load_json('item_builds.json')
+        # Use provided data (from database) or fall back to loading JSON files
+        if champion_stats is not None:
+            self.champion_stats = champion_stats
+            print(f"✓ Using champion stats from database ({len(champion_stats)} champions)")
+        else:
+            self.champion_stats = self._load_json('champion_stats.json')
+            print(f"⚠️  Loading champion stats from JSON fallback")
+
+        if item_builds is not None:
+            self.item_builds = item_builds
+            print(f"✓ Using item builds from database ({len(item_builds)} champions)")
+        else:
+            self.item_builds = self._load_json('item_builds.json')
+            print(f"⚠️  Loading item builds from JSON fallback")
 
         print(f"✓ Loaded {len(self.items)} items")
-        print(f"✓ Loaded {len(self.champion_stats)} champion stats")
 
     def _load_json(self, filename: str) -> dict:
-        """Load JSON file"""
+        """Load JSON file (legacy fallback)"""
         path = self.data_dir / filename
         if not path.exists():
             return {}
