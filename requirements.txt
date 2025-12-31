@@ -19,5 +19,8 @@ requests>=2.31.0
 # Environment Variables
 python-dotenv>=1.0.0
 
+# Database - PostgreSQL
+psycopg2-binary>=2.9.9
+
 # Optional: Auto-Training System
 schedule>=1.1.0
