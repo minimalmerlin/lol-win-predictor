@@ -13,10 +13,16 @@ from api.core.logging import logger
 
 
 # Database Configuration
-SUPABASE_URL = os.getenv("SUPABASE_URL") or os.getenv("POSTGRES_URL")
+# Priority: POSTGRES_URL (Vercel) > SUPABASE_URL > DATABASE_URL
+SUPABASE_URL = os.getenv("POSTGRES_URL") or os.getenv("SUPABASE_URL") or os.getenv("DATABASE_URL")
+
+# CRITICAL: Vercel's POSTGRES_URL uses postgres:// but SQLAlchemy needs postgresql://
+if SUPABASE_URL and SUPABASE_URL.startswith("postgres://"):
+    SUPABASE_URL = SUPABASE_URL.replace("postgres://", "postgresql://", 1)
+    logger.info("✓ Converted postgres:// to postgresql:// for SQLAlchemy compatibility")
 
 if not SUPABASE_URL:
-    logger.warning("⚠️  SUPABASE_URL not set - database features will be disabled")
+    logger.warning("⚠️  Database URL not set - database features will be disabled")
 
 
 def get_db_connection():
