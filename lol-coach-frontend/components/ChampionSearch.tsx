@@ -136,7 +136,7 @@ export default function ChampionSearch({ onSelect }: ChampionSearchProps) {
       // NAVIGATION MODE: Gehe zur Detailseite
       setIsOpen(false);
       setSearch("");
-      router.push(`/champion/${id}`);
+      router.push(`/champions/${id}`);
     }
   };
 

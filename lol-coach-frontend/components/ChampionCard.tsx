@@ -54,7 +54,7 @@ export const ChampionCard = ({ champion, version = "14.24.1", onClick }: Champio
 
   return (
     <Link
-      href={`/champion/${champion.id}`}
+      href={`/champions/${champion.id}`}
       className="block rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-slate-900 hover:bg-slate-800"
     >
       {content}

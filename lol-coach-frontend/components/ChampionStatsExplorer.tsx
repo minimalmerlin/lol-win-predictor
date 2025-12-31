@@ -152,7 +152,7 @@ export default function ChampionStatsExplorer() {
                 <div
                   key={champ.name}
                   className="grid grid-cols-5 gap-4 p-3 rounded-lg hover:bg-slate-700/30 transition-colors cursor-pointer group"
-                  onClick={() => router.push(`/champion/${champ.name}`)}
+                  onClick={() => router.push(`/champions/${champ.name}`)}
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-slate-500 text-sm">#{index + 1}</span>

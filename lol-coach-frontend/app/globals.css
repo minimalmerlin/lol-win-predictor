@@ -55,57 +55,61 @@
 
 /* AB HIER FOLGT DEIN :root BLOCK... */
 
-/* Halo-Inspired Strategic Interface - Ultra Dark Mode Design */
+/* Hextech Data Pro - DecimalChain x Upstream x OpticOdds */
 :root {
-  --radius: 4px;
+  --radius: 12px;
 
-  /* The Void - Ultra Dark Backgrounds */
-  --background: 0 3 12;             /* Ultra Deep Space Black #00030C */
-  --card: 0 15 35;                  /* Dark UNSC Navy #000F23 */
-  --popover: 0 15 35;
+  /* Backgrounds - Deepest Black Base */
+  --background: 5 5 5;              /* #050505 - Deepest Black */
+  --card: 18 18 20;                 /* #121214 - Card Surface */
+  --popover: 18 18 20;
 
-  /* Holographic Elements - Deep Blue Primary Colors */
-  --primary: 30 144 255;            /* Deep Tactical Blue #1E90FF */
-  --accent: 0 100 180;              /* Deep Shield Blue #0064B4 */
+  /* Brand - Electric Blue */
+  --primary: 59 130 246;            /* #3B82F6 - Electric Blue */
+  --primary-glow: 96 165 250;       /* #60A5FA - Hover/Glow */
+  --accent: 59 130 246;
 
-  /* Text Colors */
-  --foreground: 200 220 240;        /* Bright Tech White #C8DCF0 */
-  --card-foreground: 100 150 200;   /* Deep Tactical Grey #6496C8 */
-  --popover-foreground: 100 150 200;
+  /* Text Hierarchy */
+  --foreground: 250 250 250;        /* #FAFAFA - Main Text */
+  --card-foreground: 161 161 170;   /* #A1A1AA - Muted Text */
+  --popover-foreground: 250 250 250;
+  --muted-foreground: 161 161 170;
 
   /* UI Elements */
-  --primary-foreground: 0 3 12;
-  --accent-foreground: 0 3 12;
-  --secondary: 0 30 70;             /* Deep Tactical Blue #001E46 */
-  --secondary-foreground: 100 150 200;
-  --muted: 0 20 50;
-  --muted-foreground: 100 150 200;
+  --primary-foreground: 5 5 5;
+  --accent-foreground: 5 5 5;
+  --secondary: 39 39 42;
+  --secondary-foreground: 250 250 250;
+  --muted: 39 39 42;
 
-  /* Borders */
-  --border: 30 144 255 / 0.35;      /* Deep Blue with transparency */
-  --input: 30 144 255 / 0.25;
-  --ring: 30 144 255;
+  /* Borders - Subtle Dark */
+  --border: 39 39 42;               /* #27272A - Border Subtle */
+  --input: 39 39 42;
+  --ring: 59 130 246;
 
-  /* Semantic Colors */
-  --destructive: 220 40 90;         /* Deep Danger Red #DC285A */
-  --destructive-foreground: 255 255 255;
+  /* Semantic Colors - Status & Data */
+  --success: 16 185 129;            /* #10B981 - Win Rate High */
+  --destructive: 239 68 68;         /* #EF4444 - Danger */
+  --destructive-foreground: 250 250 250;
+  --warning: 245 158 11;            /* #F59E0B - Medium */
+  --magic: 139 92 246;              /* #8B5CF6 - AI Insights */
 
-  /* Charts - Halo Palette */
-  --chart-1: 30 144 255;            /* Deep Tactical Blue */
-  --chart-2: 0 100 180;             /* Deep Shield Blue */
-  --chart-3: 0 200 140;             /* Success Green */
-  --chart-4: 255 165 0;             /* Alert Orange */
-  --chart-5: 220 40 90;             /* Danger Red */
+  /* Charts - Professional Data Palette */
+  --chart-1: 59 130 246;
+  --chart-2: 16 185 129;
+  --chart-3: 245 158 11;
+  --chart-4: 239 68 68;
+  --chart-5: 139 92 246;
 
-  /* Sidebar */
-  --sidebar: 0 3 12;
-  --sidebar-foreground: 100 150 200;
-  --sidebar-primary: 30 144 255;
-  --sidebar-primary-foreground: 0 3 12;
-  --sidebar-accent: 0 15 35;
-  --sidebar-accent-foreground: 100 150 200;
-  --sidebar-border: 30 144 255 / 0.35;
-  --sidebar-ring: 30 144 255;
+  /* Sidebar - Darker than Main */
+  --sidebar: 10 10 11;              /* #0A0A0B - Sidebar Background */
+  --sidebar-foreground: 161 161 170;
+  --sidebar-primary: 59 130 246;
+  --sidebar-primary-foreground: 5 5 5;
+  --sidebar-accent: 18 18 20;
+  --sidebar-accent-foreground: 250 250 250;
+  --sidebar-border: 39 39 42;
+  --sidebar-ring: 59 130 246;
 }
 
 @layer base {
@@ -114,23 +118,36 @@
   }
 
   html {
-    background-color: rgb(0, 3, 12);
+    background-color: rgb(5, 5, 5);
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: rgb(0, 3, 12);
-    color: rgb(100, 150, 200);
+    background:
+      radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      rgb(5, 5, 5);
+    background-size:
+      100% 100%,
+      40px 40px,
+      40px 40px,
+      100% 100%;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+    color: rgb(250, 250, 250);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Rajdhani for headings & numbers - Military Tech Style */
+  /* Rajdhani for headings & numbers - Tech/Data Style */
   h1, h2, h3, h4, h5, h6, .stat-number {
     font-family: 'Rajdhani', sans-serif;
     @apply font-bold tracking-tight text-foreground;
-    text-transform: uppercase;
   }
 
   h1 {
@@ -148,84 +165,75 @@
   }
 }
 
-/* Holographic Glow Effects - Halo Style */
-.holo-glow {
-  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9),
-               0 0 24px rgba(30, 144, 255, 0.5);
+/* Neon Glow Effects - Electric Blue Accent */
+.neon-glow {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+               0 0 20px rgba(59, 130, 246, 0.4);
 }
 
-.cortana-glow {
-  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9),
-               0 0 24px rgba(30, 144, 255, 0.5);
+.neon-glow-strong {
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.9),
+               0 0 30px rgba(59, 130, 246, 0.6);
 }
 
-.box-glow {
-  box-shadow: 0 0 25px rgba(30, 144, 255, 0.4),
-              inset 0 0 35px rgba(30, 144, 255, 0.08);
+.card-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15),
+              inset 0 0 30px rgba(59, 130, 246, 0.05);
 }
 
-.shield-glow {
-  box-shadow: 0 0 25px rgba(0, 100, 180, 0.4),
-              inset 0 0 35px rgba(0, 100, 180, 0.08);
+.magic-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3),
+              inset 0 0 30px rgba(139, 92, 246, 0.08);
 }
 
-/* UNSC Terminal UI Elements */
-.hud-card {
+/* Glassmorphism Card - Premium Upstream Style */
+.glass-card {
   position: relative;
-  background: rgba(0, 15, 35, 0.8);
-  border: 2px solid rgba(30, 144, 255, 0.35);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 4px;
+  border-radius: 0.75rem; /* 12px */
 }
 
-.hud-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid rgb(30, 144, 255);
-  border-left: 2px solid rgb(30, 144, 255);
-  opacity: 0.9;
+.glass-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.hud-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  border-bottom: 2px solid rgb(30, 144, 255);
-  border-right: 2px solid rgb(30, 144, 255);
-  opacity: 0.9;
+/* Data Card - OpticOdds Professional Style */
+.data-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-.hud-card:hover {
-  border-color: rgba(30, 144, 255, 0.6);
-  box-shadow: 0 0 25px rgba(30, 144, 255, 0.4),
-              inset 0 0 35px rgba(30, 144, 255, 0.08);
+.data-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* Terminal/HUD Lines */
-.terminal-line {
+/* Divider Line */
+.divider-line {
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(30, 144, 255, 0.7) 50%,
+    rgba(39, 39, 42, 1) 50%,
     transparent 100%
   );
-  box-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
 }
 
-/* Buttons - Halo Terminal Style */
+/* Buttons - Clean Modern Style */
 button {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.5rem; /* 8px */
 }
 
 button:hover:not(:disabled) {
@@ -237,125 +245,121 @@ button:active:not(:disabled) {
 }
 
 .btn-primary {
-  background: transparent;
-  border: 2px solid rgb(30, 144, 255);
-  color: rgb(30, 144, 255);
-  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9);
+  background: rgb(59, 130, 246);
+  color: rgb(5, 5, 5);
+  border: none;
+  font-weight: 600;
 }
 
 .btn-primary:hover {
-  background: rgba(30, 144, 255, 0.2);
-  box-shadow: 0 0 25px rgba(30, 144, 255, 0.6);
+  background: rgb(96, 165, 250);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
-/* Data Visualization - Halo Style */
+/* Data Visualization - Professional Style */
 .chart-line-primary {
-  stroke: rgb(30, 144, 255);
-  filter: drop-shadow(0 0 5px rgba(30, 144, 255, 0.9));
+  stroke: rgb(59, 130, 246);
+  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6));
 }
 
-.chart-line-secondary {
-  stroke: rgb(0, 100, 180);
-  filter: drop-shadow(0 0 5px rgba(0, 100, 180, 0.9));
+.chart-line-success {
+  stroke: rgb(16, 185, 129);
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.6));
 }
 
 .chart-point {
-  fill: rgb(30, 144, 255);
-  stroke: rgb(0, 3, 12);
+  fill: rgb(59, 130, 246);
+  stroke: rgb(5, 5, 5);
   stroke-width: 2;
-  filter: drop-shadow(0 0 8px rgba(30, 144, 255, 1));
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.8));
 }
 
-/* Scanning Animation (HUD Effect) */
-@keyframes scan {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-
-.scanning::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(30, 144, 255, 0.9), transparent);
-  box-shadow: 0 0 12px rgba(30, 144, 255, 0.7);
-  animation: scan 3s ease-in-out infinite;
-}
-
-/* Success/Error States - Halo Colors */
-.state-success {
-  color: rgb(0, 200, 140);
-  text-shadow: 0 0 12px rgba(0, 200, 140, 0.7);
-}
-
-.state-warning {
-  color: rgb(255, 165, 0);
-  text-shadow: 0 0 12px rgba(255, 165, 0, 0.7);
-}
-
-.state-error {
-  color: rgb(220, 40, 90);
-  text-shadow: 0 0 12px rgba(220, 40, 90, 0.7);
-}
-
-/* Glass effect for overlays - UNSC Terminal Style */
-.glass-overlay {
-  background: rgba(0, 3, 12, 0.95);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 2px solid rgba(30, 144, 255, 0.25);
-}
-
-/* Loading/Processing Indicator - Cortana Style */
-@keyframes pulse-cortana {
-  0%, 100% { opacity: 0.4; }
+/* Pulse Animation for Loading States */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
 
-.processing {
-  animation: pulse-cortana 2s ease-in-out infinite;
-  color: rgb(30, 144, 255);
-  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9);
+.loading-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Stats Display - Tactical HUD Style */
+/* Semantic Status Colors */
+.status-success {
+  color: rgb(16, 185, 129);
+}
+
+.status-warning {
+  color: rgb(245, 158, 11);
+}
+
+.status-danger {
+  color: rgb(239, 68, 68);
+}
+
+.status-magic {
+  color: rgb(139, 92, 246);
+}
+
+/* Glass Overlay for Modals/Popovers */
+.glass-overlay {
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Header - Sticky Navigation */
+.glass-header {
+  background: rgba(10, 10, 11, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Stats Display - Data-focused */
 .stat-value {
   font-family: 'Rajdhani', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: rgb(30, 144, 255);
-  text-shadow: 0 0 12px rgba(30, 144, 255, 0.9),
-               0 0 24px rgba(30, 144, 255, 0.5);
-  text-transform: uppercase;
+  color: rgb(59, 130, 246);
+  line-height: 1;
+}
+
+.stat-value.neon {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+               0 0 20px rgba(59, 130, 246, 0.4);
 }
 
 .stat-label {
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgb(100, 150, 200);
+  letter-spacing: 0.05em;
+  color: rgb(161, 161, 170);
+  font-weight: 500;
 }
 
-/* Hexagon accent (like in logo) */
-.hex-point {
+/* Accent Dot (DecimalChain style) */
+.accent-dot {
   width: 6px;
   height: 6px;
-  background: rgb(30, 144, 255);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  box-shadow: 0 0 12px rgba(30, 144, 255, 1);
+  background: rgb(59, 130, 246);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
 }
 
-/* Scan Lines Effect (Halo Terminal) */
-.scan-lines {
-  position: relative;
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(30, 144, 255, 0.04),
-    rgba(30, 144, 255, 0.04) 1px,
-    transparent 1px,
-    transparent 2px
-  );
+/* Status LED - Green Glow */
+.status-led {
+  box-shadow:
+    0 0 8px rgba(16, 185, 129, 0.8),
+    0 0 16px rgba(16, 185, 129, 0.4);
+}
+
+/* Premium Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(96, 165, 250) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

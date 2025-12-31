@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AppShell from "@/components/layout/AppShell";
 
 // Fonts are loaded via Google Fonts CDN in globals.css
-// Rajdhani for headings (military-tech style), Inter for body text
+// Rajdhani for headings, Inter for body text
 
 export const metadata: Metadata = {
-  title: "GAMING WAR ROOM - AI Victory System",
-  description: "Elite gaming intelligence platform - Deploy AI-powered match analytics, player intel, and adaptive build strategies for competitive domination",
+  title: "Hextech Data Pro - AI Victory System",
+  description: "Professional gaming analytics platform - AI-powered match insights, player statistics, and data-driven strategies for competitive advantage",
   icons: {
     icon: "/favicon.png",
     apple: "/logo.png",
@@ -24,7 +25,7 @@ export default function RootLayout({
         className="antialiased"
         suppressHydrationWarning
       >
-        {children}
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

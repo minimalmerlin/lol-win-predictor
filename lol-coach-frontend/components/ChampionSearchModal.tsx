@@ -13,7 +13,7 @@ export default function ChampionSearchModal() {
 
   const handleChampionSelect = (championId: string) => {
     setOpen(false);
-    router.push(`/champion/${championId}`);
+    router.push(`/champions/${championId}`);
   };
 
   return (
