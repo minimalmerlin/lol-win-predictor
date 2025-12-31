@@ -10,14 +10,10 @@
       "use": "@vercel/next"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/lol-coach-frontend/$1"
+      "source": "/api/:path*",
+      "destination": "/api/index.py"
     }
   ]
 }
