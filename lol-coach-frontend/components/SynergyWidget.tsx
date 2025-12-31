@@ -19,22 +19,24 @@ export function SynergyWidget({ champName }: SynergyWidgetProps) {
   }, [champName]);
 
   return (
-    <div className="bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 p-6 rounded-xl shadow-lg">
-      <h3 className="text-[#1E90FF] font-bold text-sm tracking-widest uppercase mb-4">Best Teammates</h3>
-      {stats ? (
+    <div className="glass-card p-6">
+      <h3 className="text-primary font-bold text-sm tracking-widest uppercase mb-4">Best Teammates</h3>
+      {stats && stats.best_teammates && stats.best_teammates.length > 0 ? (
         <div className="space-y-2">
           {stats.best_teammates.map((mate: any, i: number) => (
-             <div key={i} className="flex justify-between items-center bg-slate-950/50 p-3 rounded border border-white/5">
-                <span className="font-bold text-slate-200">{mate.name}</span>
-                <span className="text-xs text-green-400 font-mono bg-green-500/10 px-2 py-1 rounded">{mate.count} Wins</span>
+             <div key={i} className="flex justify-between items-center bg-white/5 p-3 rounded-lg border border-white/10">
+                <span className="font-bold text-foreground">{mate.name}</span>
+                <span className="text-xs text-success font-mono bg-success/10 px-2 py-1 rounded">{mate.count} Wins</span>
              </div>
           ))}
-          <div className="mt-4 text-center text-xs text-slate-500 uppercase">
+          <div className="mt-4 text-center text-xs text-muted-foreground uppercase">
             Based on {stats.total_wins} Wins
           </div>
         </div>
+      ) : stats === null ? (
+        <div className="text-muted-foreground text-sm italic">Lade Match-Daten...</div>
       ) : (
-        <div className="text-slate-500 text-sm italic">Lade Match-Daten...</div>
+        <div className="text-muted-foreground text-sm">Keine Daten verfügbar</div>
       )}
     </div>
   );

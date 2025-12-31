@@ -22,16 +22,25 @@ export default function ChampionStatsExplorer() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
+        setLoading(true);
+        setError(null);
         const data = await api.getChampionStats({
           min_games: minGames,
           sort_by: 'win_rate',
           limit: 100,
         });
-        setChampions(data.champions);
-        setFilteredChampions(data.champions);
+
+        if (data && data.champions && Array.isArray(data.champions)) {
+          setChampions(data.champions);
+          setFilteredChampions(data.champions);
+        } else {
+          throw new Error('Invalid data format received');
+        }
       } catch (err) {
-        setError('Failed to load champion stats');
-        console.error(err);
+        console.error('Champion stats error:', err);
+        setError('Keine Champion-Daten verfügbar');
+        setChampions([]);
+        setFilteredChampions([]);
       } finally {
         setLoading(false);
       }
@@ -65,21 +74,20 @@ export default function ChampionStatsExplorer() {
 
   if (loading) {
     return (
-      <Card className="bg-slate-800/50 border-blue-700/30 backdrop-blur">
-        <CardContent className="pt-6">
-          <div className="text-center text-slate-400">Loading champion statistics...</div>
-        </CardContent>
-      </Card>
+      <div className="glass-card p-6">
+        <div className="text-center text-muted-foreground">Lade Champion-Statistiken...</div>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <Card className="bg-red-900/20 border-red-500/50">
-        <CardContent className="pt-6">
-          <div className="text-center text-red-300">{error}</div>
-        </CardContent>
-      </Card>
+      <div className="glass-card p-6 border-destructive/50">
+        <div className="text-center text-destructive">{error}</div>
+        <div className="text-center text-muted-foreground text-sm mt-2">
+          Bitte stelle sicher, dass die API erreichbar ist.
+        </div>
+      </div>
     );
   }
 
