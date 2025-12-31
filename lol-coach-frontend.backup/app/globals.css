@@ -1,0 +1,365 @@
+/* 1. Google Fonts IMMER ganz oben */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* 2. Framework Imports */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* 3. Custom Variants */
+@custom-variant dark (&:is(.dark *));
+
+/* 4. Theme Definitionen */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: 'Rajdhani', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Monaco, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+}
+
+/* AB HIER FOLGT DEIN :root BLOCK... */
+
+/* Hextech Data Pro - DecimalChain x Upstream x OpticOdds */
+:root {
+  --radius: 12px;
+
+  /* Backgrounds - Deepest Black Base */
+  --background: 5 5 5;              /* #050505 - Deepest Black */
+  --card: 18 18 20;                 /* #121214 - Card Surface */
+  --popover: 18 18 20;
+
+  /* Brand - Electric Blue */
+  --primary: 59 130 246;            /* #3B82F6 - Electric Blue */
+  --primary-glow: 96 165 250;       /* #60A5FA - Hover/Glow */
+  --accent: 59 130 246;
+
+  /* Text Hierarchy */
+  --foreground: 250 250 250;        /* #FAFAFA - Main Text */
+  --card-foreground: 161 161 170;   /* #A1A1AA - Muted Text */
+  --popover-foreground: 250 250 250;
+  --muted-foreground: 161 161 170;
+
+  /* UI Elements */
+  --primary-foreground: 5 5 5;
+  --accent-foreground: 5 5 5;
+  --secondary: 39 39 42;
+  --secondary-foreground: 250 250 250;
+  --muted: 39 39 42;
+
+  /* Borders - Subtle Dark */
+  --border: 39 39 42;               /* #27272A - Border Subtle */
+  --input: 39 39 42;
+  --ring: 59 130 246;
+
+  /* Semantic Colors - Status & Data */
+  --success: 16 185 129;            /* #10B981 - Win Rate High */
+  --destructive: 239 68 68;         /* #EF4444 - Danger */
+  --destructive-foreground: 250 250 250;
+  --warning: 245 158 11;            /* #F59E0B - Medium */
+  --magic: 139 92 246;              /* #8B5CF6 - AI Insights */
+
+  /* Charts - Professional Data Palette */
+  --chart-1: 59 130 246;
+  --chart-2: 16 185 129;
+  --chart-3: 245 158 11;
+  --chart-4: 239 68 68;
+  --chart-5: 139 92 246;
+
+  /* Sidebar - Darker than Main */
+  --sidebar: 10 10 11;              /* #0A0A0B - Sidebar Background */
+  --sidebar-foreground: 161 161 170;
+  --sidebar-primary: 59 130 246;
+  --sidebar-primary-foreground: 5 5 5;
+  --sidebar-accent: 18 18 20;
+  --sidebar-accent-foreground: 250 250 250;
+  --sidebar-border: 39 39 42;
+  --sidebar-ring: 59 130 246;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    background-color: rgb(5, 5, 5);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      rgb(5, 5, 5);
+    background-size:
+      100% 100%,
+      40px 40px,
+      40px 40px,
+      100% 100%;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+    color: rgb(250, 250, 250);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Rajdhani for headings & numbers - Tech/Data Style */
+  h1, h2, h3, h4, h5, h6, .stat-number {
+    font-family: 'Rajdhani', sans-serif;
+    @apply font-bold tracking-tight text-foreground;
+  }
+
+  h1 {
+    @apply text-5xl lg:text-6xl;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    @apply text-4xl lg:text-5xl;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    @apply text-3xl lg:text-4xl;
+  }
+}
+
+/* Neon Glow Effects - Electric Blue Accent */
+.neon-glow {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+               0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.neon-glow-strong {
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.9),
+               0 0 30px rgba(59, 130, 246, 0.6);
+}
+
+.card-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15),
+              inset 0 0 30px rgba(59, 130, 246, 0.05);
+}
+
+.magic-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3),
+              inset 0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+/* Glassmorphism Card - Premium Upstream Style */
+.glass-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.75rem; /* 12px */
+}
+
+.glass-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Data Card - OpticOdds Professional Style */
+.data-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.data-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Divider Line */
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(39, 39, 42, 1) 50%,
+    transparent 100%
+  );
+}
+
+/* Buttons - Clean Modern Style */
+button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.5rem; /* 8px */
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: rgb(59, 130, 246);
+  color: rgb(5, 5, 5);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: rgb(96, 165, 250);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Data Visualization - Professional Style */
+.chart-line-primary {
+  stroke: rgb(59, 130, 246);
+  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6));
+}
+
+.chart-line-success {
+  stroke: rgb(16, 185, 129);
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.6));
+}
+
+.chart-point {
+  fill: rgb(59, 130, 246);
+  stroke: rgb(5, 5, 5);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.8));
+}
+
+/* Pulse Animation for Loading States */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.loading-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Semantic Status Colors */
+.status-success {
+  color: rgb(16, 185, 129);
+}
+
+.status-warning {
+  color: rgb(245, 158, 11);
+}
+
+.status-danger {
+  color: rgb(239, 68, 68);
+}
+
+.status-magic {
+  color: rgb(139, 92, 246);
+}
+
+/* Glass Overlay for Modals/Popovers */
+.glass-overlay {
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Header - Sticky Navigation */
+.glass-header {
+  background: rgba(10, 10, 11, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Stats Display - Data-focused */
+.stat-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgb(59, 130, 246);
+  line-height: 1;
+}
+
+.stat-value.neon {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+               0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(161, 161, 170);
+  font-weight: 500;
+}
+
+/* Accent Dot (DecimalChain style) */
+.accent-dot {
+  width: 6px;
+  height: 6px;
+  background: rgb(59, 130, 246);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+}
+
+/* Status LED - Green Glow */
+.status-led {
+  box-shadow:
+    0 0 8px rgba(16, 185, 129, 0.8),
+    0 0 16px rgba(16, 185, 129, 0.4);
+}
+
+/* Premium Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(96, 165, 250) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
