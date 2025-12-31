@@ -51,11 +51,10 @@ Thumbs.db
 # Logs
 *.log
 
-# Next.js
-lol-coach-frontend/.next/
-lol-coach-frontend/out/
-lol-coach-frontend/node_modules/
-lol-coach-frontend/.env*.local
+# Next.js (now in root after flattening)
+.next/
+out/
+node_modules/
 
 # Temporary files
 *.tmp
