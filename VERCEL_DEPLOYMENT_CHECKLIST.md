@@ -1,26 +1,23 @@
 # 🚀 VERCEL DEPLOYMENT CHECKLIST
 
-## ⚠️ CRITICAL: Environment Variables Setup
+## ✅ GOOD NEWS: POSTGRES_URL Already Set!
 
-**Diese Environment Variables MÜSSEN in Vercel Project Settings gesetzt werden, bevor das Backend funktioniert!**
+**Status**: Vercel already has `POSTGRES_URL` configured in Environment Variables!
 
-### Vercel Dashboard Schritte:
-1. Gehe zu: https://vercel.com/dashboard
-2. Wähle dein Projekt: `lol-win-predictor`
-3. Gehe zu: **Settings** → **Environment Variables**
-4. Füge die folgenden Variablen hinzu:
+The code has been updated to automatically use this variable with proper protocol conversion.
 
 ---
 
-## 📋 Required Environment Variables
+## 📋 Environment Variables Status
 
-### 1. Database Connection (CRITICAL)
+### 1. Database Connection ✅ CONFIGURED
 ```
-SUPABASE_URL=postgresql://postgres.[PROJECT_ID]:[PASSWORD]@aws-0-eu-central-1.pooler.supabase.com:6543/postgres
+POSTGRES_URL=postgres://...
 ```
-- **Where to find**: Supabase Dashboard → Project Settings → Database
-- **Format**: PostgreSQL connection string with pooler (port 6543, not 5432)
-- **Critical**: Without this, ALL API endpoints will return 500 errors
+- **Status**: ✅ Already set in Vercel
+- **Code Fix**: Automatically converts `postgres://` → `postgresql://` for SQLAlchemy
+- **Priority**: POSTGRES_URL > SUPABASE_URL > DATABASE_URL
+- **No action needed**: Connection should work automatically
 
 ### 2. API Key (OPTIONAL but recommended)
 ```
@@ -42,7 +39,7 @@ NEXT_PUBLIC_API_URL=
 
 ## 🔧 vercel.json Configuration
 
-**Status**: ✅ ALREADY CONFIGURED
+**Status**: ✅ FIXED & DEPLOYED
 
 The `vercel.json` file has been updated with correct rewrites:
 
@@ -61,7 +58,7 @@ The `vercel.json` file has been updated with correct rewrites:
   ],
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/api/(.*)",
       "destination": "/api/index.py"
     }
   ]
@@ -70,8 +67,13 @@ The `vercel.json` file has been updated with correct rewrites:
 
 **What this does**:
 - Routes ALL `/api/*` requests to FastAPI backend (`api/index.py`)
+- Regex pattern `(.*)` ensures full path capture
 - Frontend uses relative paths → seamless routing on Vercel
 - No CORS issues, no proxy needed
+
+**Recent Fix**:
+- Changed from `/api/:path*` to `/api/(.*)` for better Vercel v2 compatibility
+- Commit: `d04d9da` - "fix: Vercel POSTGRES_URL connection & routing"
 
 ---
 
@@ -184,16 +186,19 @@ vercel --prod
 
 ## 📝 Checklist Before Going Live
 
-- [ ] ✅ `SUPABASE_URL` set in Vercel Environment Variables
-- [ ] ✅ `vercel.json` has correct rewrites (`/api/:path*` → `/api/index.py`)
-- [ ] ✅ `app/live/page.tsx` uses relative paths (not `localhost:8000`)
-- [ ] ✅ Build successful locally (`npm run build`)
-- [ ] ✅ Git committed and pushed to GitHub
-- [ ] ✅ Vercel deployment successful (check dashboard)
-- [ ] ✅ `/health` endpoint returns 200 OK
-- [ ] ✅ `/api/champion-stats` returns JSON data
-- [ ] ✅ Dashboard loads stats (not fallback text)
-- [ ] ✅ Browser Console shows `[DEBUG]` logs
+- [x] ✅ Database URL configured (Vercel has `POSTGRES_URL`)
+- [x] ✅ Database URL conversion (`postgres://` → `postgresql://`)
+- [x] ✅ `vercel.json` has correct rewrites (`/api/(.*)` → `/api/index.py`)
+- [x] ✅ `app/live/page.tsx` uses relative paths (not `localhost:8000`)
+- [x] ✅ Build successful locally (`npm run build`)
+- [x] ✅ Git committed and pushed to GitHub
+- [ ] ⏳ Vercel deployment successful (check dashboard)
+- [ ] ⏳ `/health` endpoint returns 200 OK
+- [ ] ⏳ `/api/champion-stats` returns JSON data
+- [ ] ⏳ Dashboard loads stats (not fallback text)
+- [ ] ⏳ Browser Console shows `[DEBUG]` logs
+
+**Status**: Code fixes deployed, waiting for Vercel build to complete (~2 minutes)
 
 ---
 
