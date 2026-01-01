@@ -14,8 +14,9 @@ downloads/
 eggs/
 .eggs/
 # Python lib directories only (not frontend lib/)
-/lib/
+# Note: Frontend Next.js lib/ folder should be committed
 /lib64/
+# Ignore Python lib but not Next.js lib (which contains utils.ts, api.ts, etc.)
 parts/
 sdist/
 var/
