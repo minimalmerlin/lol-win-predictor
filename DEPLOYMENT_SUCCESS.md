@@ -48,16 +48,24 @@ Füge hinzu (wenn noch nicht vorhanden):
 
 Da die Daten nur lokal migriert wurden, musst du die Migration noch auf Vercel ausführen:
 
-**Option 1: Vercel CLI (Empfohlen)**
+**Option 1: Serverless Migration Endpoint (✅ EMPFOHLEN - keine Secrets in Git!)**
+
+1. Stelle sicher, dass `POSTGRES_URL` in Vercel Environment Variables gesetzt ist
+2. Nach dem nächsten Deployment, führe aus:
+   ```bash
+   curl -X POST https://lol-win-predictor-qqss.vercel.app/api/migrate
+   ```
+3. Erwartete Ausgabe: `{"status":"success","message":"Champion data migration completed successfully"}`
+
+**Vorteil**: Verwendet automatisch die Vercel Environment Variables (kein Secret-Leak möglich!)
+
+**Option 2: Vercel CLI lokal**
 ```bash
 cd "/Users/merlinmechler/Library/Mobile Documents/com~apple~CloudDocs/Data Analysis/Win_Predicition_System_WR"
-vercel env pull .env.vercel
-export $(cat .env.vercel | grep POSTGRES_URL | xargs)
+vercel env pull .env.production
+export $(cat .env.production | grep POSTGRES_URL | xargs)
 python3 scripts/migrate_champion_data.py
 ```
-
-**Option 2: GitHub Action**
-Erstelle einen GitHub Action Workflow, der die Migration automatisch bei jedem Deploy ausführt.
 
 **Option 3: Manuelle Supabase SQL**
 Führe das SQL direkt in Supabase aus (im SQL Editor):
