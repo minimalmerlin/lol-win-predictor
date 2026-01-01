@@ -84,19 +84,50 @@ def get_champion_stats() -> Dict[str, Dict]:
     Get champion statistics from database
 
     Returns:
-        Dict mapping champion_id to stats:
+        Dict mapping champion_name to stats:
         {
-            "157": {  # Yasuo
+            "Yasuo": {
                 "games": 1234,
                 "wins": 678,
                 "losses": 556,
                 "win_rate": 0.549,
-                "roles": {"mid": 800, "top": 434}
+                "picks": 500,
+                "bans": 300,
+                "roles": {}
             }
         }
     """
     with get_db_cursor() as cur:
-        # Query aggregated champion stats
+        # Try to get stats from champion_stats table first (if it exists)
+        try:
+            cur.execute("""
+                SELECT name, games, wins, losses, win_rate, picks, bans
+                FROM champion_stats
+                ORDER BY games DESC
+            """)
+
+            rows = cur.fetchall()
+
+            if rows:
+                # Format as dict
+                stats = {}
+                for row in rows:
+                    stats[row['name']] = {
+                        'games': row['games'],
+                        'wins': row['wins'],
+                        'losses': row['losses'],
+                        'win_rate': row['win_rate'],
+                        'picks': row['picks'],
+                        'bans': row['bans'],
+                        'roles': {}  # TODO: Implement role detection
+                    }
+
+                logger.info(f"✓ Loaded champion stats for {len(stats)} champions from DB (champion_stats table)")
+                return stats
+        except Exception as e:
+            logger.info(f"champion_stats table not found, falling back to match_champions: {e}")
+
+        # Fallback to match_champions table
         cur.execute("""
             SELECT
                 mc.champion_id,
@@ -132,7 +163,7 @@ def get_champion_stats() -> Dict[str, Dict]:
                 'roles': {}  # TODO: Implement role detection
             }
 
-        logger.info(f"✓ Loaded champion stats for {len(stats)} champions from DB")
+        logger.info(f"✓ Loaded champion stats for {len(stats)} champions from DB (match_champions fallback)")
         return stats
 
 
