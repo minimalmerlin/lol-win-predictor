@@ -38,10 +38,10 @@ Gehe zu: **Vercel Dashboard → dein Projekt → Settings → Environment Variab
 Füge hinzu (wenn noch nicht vorhanden):
 
 1. **RIOT_API_KEY** ✅ (bereits hinterlegt)
-   - Value: `RGAPI-9860c50d-0d24-441b-a350-fbce693ce6c8`
+   - Value: `[SIEHE .env DATEI - NICHT IN GIT COMMITTED]`
 
 2. **POSTGRES_URL** (Supabase Connection)
-   - Value: `postgresql://postgres.gnkhponqrnivdijybgnx:C2ePaa4rxU8fuw28@aws-1-eu-central-1.pooler.supabase.com:5432/postgres?sslmode=require`
+   - Value: `[SIEHE VERCEL ENVIRONMENT VARIABLES - NICHT IN GIT COMMITTED]`
    - Environment: Production, Preview, Development
 
 ### Migration auf Production ausführen:
