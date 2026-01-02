@@ -11,6 +11,7 @@ Architecture: Vercel Single Project
 - Database: Vercel Postgres
 """
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -25,13 +26,35 @@ from api.services.ml_engine import ml_engine
 from api.routers import predictions, champions, items, live_game, stats
 
 
+# ============================================================================
+# LIFESPAN EVENT (Load ML Models)
+# ============================================================================
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Load ML models on startup, cleanup on shutdown"""
+    logger.info("🚀 Vercel Serverless: Loading ML models...")
+    try:
+        await ml_engine.load_all_models()
+        logger.info("✓ ML models loaded successfully")
+    except Exception as e:
+        logger.error(f"❌ Failed to load ML models: {e}")
+        # Continue anyway - app will work with limited functionality
+
+    yield  # App is running
+
+    # Cleanup on shutdown (if needed)
+    logger.info("👋 Shutting down...")
+
+
 # Create FastAPI app (Vercel will use this)
 app = FastAPI(
     title="LoL Intelligent Coach API",
     description="AI-powered League of Legends win prediction and coaching system",
     version="2.1.0",
     docs_url="/api/docs",
-    redoc_url="/api/redoc"
+    redoc_url="/api/redoc",
+    lifespan=lifespan
 )
 
 # Rate limiting setup
@@ -49,17 +72,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-# ============================================================================
-# STARTUP EVENT (Load ML Models)
-# ============================================================================
-
-@app.on_event("startup")
-async def startup_event():
-    """Load ML models and data on startup (Vercel cold start)"""
-    logger.info("🚀 Vercel Serverless: Loading ML models...")
-    await ml_engine.load_all_models()
 
 
 # ============================================================================
