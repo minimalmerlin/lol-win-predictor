@@ -53,8 +53,9 @@ class MLEngine:
             self.champion_stats = get_champion_stats()
             logger.info(f"✓ Champion Stats loaded from DB ({len(self.champion_stats)} champions)")
         except Exception as e:
-            logger.error(f"❌ Failed to load Champion Stats from DB: {e}")
-            raise RuntimeError("Database required for champion stats. Check SUPABASE_URL.")
+            logger.warning(f"⚠️  Failed to load Champion Stats from DB: {e}")
+            logger.warning("⚠️  App will start but champion stats will be unavailable")
+            self.champion_stats = {}  # Empty dict instead of failing
 
         # Champion Matchup Predictor (needs champion_stats)
         try:
