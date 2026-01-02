@@ -73,3 +73,5 @@ data/crawler_state/
 models/backups/
 .vercel
 .env*.local
+.env.vercel*
+package-lock 2.json
